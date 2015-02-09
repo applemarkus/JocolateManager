@@ -1,6 +1,8 @@
 package com.jcorn.view;
 
 import com.jcorn.helper.FileHelper;
+import com.jcorn.helper.JM;
+import com.jcorn.helper.Settings;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,16 +27,15 @@ public class MainView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         pnHeader = new javax.swing.JPanel();
         lbTitle = new javax.swing.JLabel();
-        btProfile = new javax.swing.JButton();
-        btMenu = new javax.swing.JButton();
         pnStatus = new javax.swing.JPanel();
         lbCopyright = new javax.swing.JLabel();
         lbStatus = new javax.swing.JLabel();
         pnMain = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jocolate Manager");
@@ -48,15 +49,6 @@ public class MainView extends javax.swing.JFrame {
         lbTitle.setText("Jocolate Manager");
         lbTitle.setPreferredSize(new java.awt.Dimension(199, 50));
         pnHeader.add(lbTitle, java.awt.BorderLayout.CENTER);
-
-        btProfile.setText("Profile");
-        btProfile.setPreferredSize(new java.awt.Dimension(84, 20));
-        btProfile.setSize(new java.awt.Dimension(97, 20));
-        pnHeader.add(btProfile, java.awt.BorderLayout.LINE_END);
-
-        btMenu.setText("Menu");
-        btMenu.setPreferredSize(new java.awt.Dimension(78, 20));
-        pnHeader.add(btMenu, java.awt.BorderLayout.LINE_START);
 
         getContentPane().add(pnHeader, java.awt.BorderLayout.NORTH);
 
@@ -78,16 +70,11 @@ public class MainView extends javax.swing.JFrame {
 
         getContentPane().add(pnStatus, java.awt.BorderLayout.PAGE_END);
 
-        javax.swing.GroupLayout pnMainLayout = new javax.swing.GroupLayout(pnMain);
-        pnMain.setLayout(pnMainLayout);
-        pnMainLayout.setHorizontalGroup(
-            pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
-        );
-        pnMainLayout.setVerticalGroup(
-            pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 362, Short.MAX_VALUE)
-        );
+        pnMain.setLayout(new java.awt.BorderLayout());
+
+        jTabbedPane1.addTab("tab1", jPanel1);
+
+        pnMain.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pnMain, java.awt.BorderLayout.CENTER);
 
@@ -96,7 +83,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void onCopyrightClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onCopyrightClicked
         try {
-            String htmlString = FileHelper.readAllFrom("src/com/jcorn/assets/copyright.html");
+            String htmlString = FileHelper.readAllFrom(Settings.getAssetPath("copyright.html"));
             JOptionPane.showMessageDialog(this, htmlString);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Could not read Copyright File...");
@@ -105,8 +92,8 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_onCopyrightClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btMenu;
-    private javax.swing.JButton btProfile;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbCopyright;
     private javax.swing.JLabel lbStatus;
     private javax.swing.JLabel lbTitle;
