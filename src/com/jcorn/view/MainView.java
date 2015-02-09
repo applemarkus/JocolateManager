@@ -51,6 +51,10 @@ public class MainView extends javax.swing.JFrame {
         paCart = new javax.swing.JPanel();
         paBill = new javax.swing.JPanel();
         paStatus = new javax.swing.JPanel();
+        paProfile = new javax.swing.JPanel();
+        mainMenuBar = new javax.swing.JMenuBar();
+        meFile = new javax.swing.JMenu();
+        miQuit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jocolate Manager");
@@ -73,7 +77,8 @@ public class MainView extends javax.swing.JFrame {
         pnStatus.setLayout(new java.awt.BorderLayout());
 
         lbCopyright.setForeground(new java.awt.Color(255, 255, 255));
-        lbCopyright.setText("(c) by jCorn");
+        lbCopyright.setText("(c) by jCorn ");
+        lbCopyright.setPreferredSize(new java.awt.Dimension(76, 20));
         lbCopyright.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onCopyrightClicked(evt);
@@ -82,7 +87,7 @@ public class MainView extends javax.swing.JFrame {
         pnStatus.add(lbCopyright, java.awt.BorderLayout.LINE_END);
 
         lbStatus.setForeground(new java.awt.Color(255, 255, 255));
-        lbStatus.setText("Status");
+        lbStatus.setText(" ");
         pnStatus.add(lbStatus, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pnStatus, java.awt.BorderLayout.PAGE_END);
@@ -143,10 +148,26 @@ public class MainView extends javax.swing.JFrame {
         tabBar.addTab("Shopping Cart", paCart);
         tabBar.addTab("Bill", paBill);
         tabBar.addTab("Delivery Status", paStatus);
+        tabBar.addTab("Profile", paProfile);
 
         pnMain.add(tabBar, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pnMain, java.awt.BorderLayout.CENTER);
+
+        meFile.setText("File");
+
+        miQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        miQuit.setText("Quit");
+        miQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onQuit(evt);
+            }
+        });
+        meFile.add(miQuit);
+
+        mainMenuBar.add(meFile);
+
+        setJMenuBar(mainMenuBar);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -188,6 +209,12 @@ public class MainView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_onLoginClicked
 
+    private void onQuit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onQuit
+        if(JOptionPane.showConfirmDialog(this, "Do you really want to quit?", "Quit?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_onQuit
+
     private void loginMessage(String text) {
         status.set(text);
         lbLoginStatus.setText(text);
@@ -201,10 +228,14 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel lbPassword;
     public javax.swing.JLabel lbStatus;
     private javax.swing.JLabel lbTitle;
+    private javax.swing.JMenuBar mainMenuBar;
+    private javax.swing.JMenu meFile;
+    private javax.swing.JMenuItem miQuit;
     private javax.swing.JPanel paBill;
     private javax.swing.JPanel paCart;
     private javax.swing.JPanel paChoose;
     private javax.swing.JPanel paLogin;
+    private javax.swing.JPanel paProfile;
     private javax.swing.JPanel paStatus;
     private javax.swing.JPanel pnHeader;
     private javax.swing.JPanel pnMain;

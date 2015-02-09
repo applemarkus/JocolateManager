@@ -18,6 +18,6 @@ public class StatusController {
     }
     
     public void set(String text) {
-        mv.lbStatus.setText(text);
+        mv.lbStatus.setText(" " + text);
     }
 }
