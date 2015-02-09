@@ -78,6 +78,16 @@ public class MainView extends javax.swing.JFrame {
         spBillList = new javax.swing.JScrollPane();
         liBill = new javax.swing.JList();
         paStatus = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
         paProfile = new javax.swing.JPanel();
         mainMenuBar = new javax.swing.JMenuBar();
         meFile = new javax.swing.JMenu();
@@ -120,6 +130,12 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().add(pnStatus, java.awt.BorderLayout.PAGE_END);
 
         pnMain.setLayout(new java.awt.BorderLayout());
+
+        tabBar.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabBarStateChanged(evt);
+            }
+        });
 
         paLogin.setLayout(new java.awt.GridBagLayout());
 
@@ -294,7 +310,7 @@ public class MainView extends javax.swing.JFrame {
         paChoose.add(btToShoppingCart, gridBagConstraints);
 
         lbPrice.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        lbPrice.setText("Price: € 0,00");
+        lbPrice.setText("Change Values for price calculation");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -363,6 +379,7 @@ public class MainView extends javax.swing.JFrame {
 
         paBill.setLayout(new java.awt.BorderLayout());
 
+        epBillView.setText("=============\nBill #1\nDate: 9.2.2014\n\nName: Markus\n=============\n\n-------------------------------------------\n*) 1x Chocolate white, small, jcorn\t€ 10,89\n*) 2x Chocolate brown, big, default\t€ 90,13\n-------------------------------------------\n\t\tSum:\t€ 21,12\n\t\t===============\n"); // NOI18N
         spBill.setViewportView(epBillView);
 
         paBill.add(spBill, java.awt.BorderLayout.CENTER);
@@ -379,6 +396,82 @@ public class MainView extends javax.swing.JFrame {
         paBill.add(spBillList, java.awt.BorderLayout.LINE_START);
 
         tabBar.addTab("Bill", paBill);
+
+        paStatus.setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Checking Details");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(23, 0, 23, 0);
+        jPanel1.add(jLabel1, gridBagConstraints);
+
+        jProgressBar1.setValue(25);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(2, 0, 16, 0);
+        jPanel1.add(jProgressBar1, gridBagConstraints);
+
+        jLabel2.setText("Check | Packaging | Send | Receive");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(13, 7, 0, 7);
+        jPanel1.add(jLabel2, gridBagConstraints);
+
+        jTextPane1.setEditable(false);
+        jTextPane1.setText("Teststreet 4\n3523 Test\nAustria");
+        jScrollPane2.setViewportView(jTextPane1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
+        jPanel1.add(jScrollPane2, gridBagConstraints);
+
+        jLabel3.setText("Info");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(6, 4, 0, 6);
+        jPanel1.add(jLabel3, gridBagConstraints);
+
+        jButton1.setText("Update");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(12, 0, 0, 0);
+        jPanel1.add(jButton1, gridBagConstraints);
+
+        paStatus.add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Package #1 9.2" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        paStatus.add(jScrollPane1, java.awt.BorderLayout.WEST);
+
         tabBar.addTab("Delivery Status", paStatus);
         tabBar.addTab("Profile", paProfile);
 
@@ -475,8 +568,8 @@ public class MainView extends javax.swing.JFrame {
 
     private void onAmountChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_onAmountChanged
         Integer value = (Integer) spinnerAmount.getValue();
-        if(value <= 0) {
-            value = 0;
+        if(value <= 1) {
+            value = 1;
         }
         if(value >= 99999) {
             value = 99999;
@@ -484,6 +577,15 @@ public class MainView extends javax.swing.JFrame {
         spinnerAmount.setValue(value);
         calcPrice();
     }//GEN-LAST:event_onAmountChanged
+
+    private void tabBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabBarStateChanged
+        switch(tabBar.getSelectedIndex()) {
+            case 1:
+                spinnerAmount.setValue(1);
+                calcPrice();
+                break;
+        }
+    }//GEN-LAST:event_tabBarStateChanged
     
     private void loginMessage(String text) {
         status.set(text);
@@ -497,7 +599,7 @@ public class MainView extends javax.swing.JFrame {
         String text = tfText.getText();
         Integer amount = (Integer) spinnerAmount.getValue();
         JocolateModel joc = new JocolateModel(type, size, logo, text, amount);
-        lbPrice.setText("Price: € "+jocolate.calculatePrice(joc));
+        lbPrice.setText(String.format("Price: € %.2f", jocolate.calculatePrice(joc)));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -511,6 +613,16 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JComboBox cbType;
     private javax.swing.JEditorPane epBillView;
     private javax.swing.Box.Filler fillerCart;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lbAmount;
     private javax.swing.JLabel lbCopyright;
     private javax.swing.JLabel lbEmail;
