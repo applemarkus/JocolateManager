@@ -118,7 +118,7 @@ public class MainView extends javax.swing.JFrame {
         paLogin.add(btLogin, gridBagConstraints);
 
         tabBar.addTab("Login", paLogin);
-        tabBar.addTab("Choose", paChoose);
+        tabBar.addTab("Choose Chocolate", paChoose);
         tabBar.addTab("Shopping Cart", paCart);
         tabBar.addTab("Bill", paBill);
         tabBar.addTab("Delivery Status", paStatus);
