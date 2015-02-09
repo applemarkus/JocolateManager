@@ -1,5 +1,7 @@
 package com.jcorn;
 
+import com.jcorn.view.MainView;
+
 /**
  * JocolateManager
  * 
@@ -10,7 +12,10 @@ package com.jcorn;
 public class Main {
 
     public static void main(String[] args) {
-        
+        java.awt.EventQueue.invokeLater(() -> {
+            MainView mv = new MainView();
+            mv.setVisible(true);
+        });
     }
 
 }
