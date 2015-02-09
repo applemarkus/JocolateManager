@@ -1,6 +1,7 @@
 package com.jcorn.view;
 
 import com.jcorn.helper.FileHelper;
+import com.jcorn.helper.JM;
 import com.jcorn.helper.Settings;
 import java.io.File;
 import java.io.FileInputStream;

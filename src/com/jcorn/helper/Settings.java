@@ -10,6 +10,7 @@ package com.jcorn.helper;
 public class Settings {
     
     public static String assetsPath = "src/com/jcorn/assets/";
+    public final static boolean isDebug = true;
     
     public static String getAssetPath(String asset) {
         return assetsPath + asset;
