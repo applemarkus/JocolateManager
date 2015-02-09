@@ -1,9 +1,11 @@
 package com.jcorn.view;
 
 import com.jcorn.controller.LoginController;
+import com.jcorn.controller.StatusController;
 import com.jcorn.helper.FileHelper;
 import com.jcorn.helper.Settings;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,8 +17,15 @@ import javax.swing.JOptionPane;
  */
 public class MainView extends javax.swing.JFrame {
     
+    private StatusController status;
+    
     public MainView() {
         initComponents();
+        setup();
+    }
+    
+    private void setup() {
+        status = new StatusController(this);
     }
     
     @SuppressWarnings("unchecked")
@@ -115,7 +124,7 @@ public class MainView extends javax.swing.JFrame {
         paLogin.add(btLogin, gridBagConstraints);
 
         lbLoginStatus.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
-        lbLoginStatus.setText("Bitte gib deine Daten an.");
+        lbLoginStatus.setText("Please give your login informations.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -155,15 +164,23 @@ public class MainView extends javax.swing.JFrame {
     private void onLoginClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onLoginClicked
         try {
             String username = tfEmail.getText();
-            String password = tfPassword.getText();
+            String password = Arrays.toString(tfPassword.getPassword());
             
-            lbLoginStatus.setText("Wird überprüft...");
+            if(username.isEmpty()) {
+                throw new Exception("Username missing");
+            }
+            
+            if(password.isEmpty()) {
+                throw new Exception("Password missing");
+            }
+            
+            loginMessage("Submitting...");
             LoginController lc = new LoginController();
             String error = lc.login(username, password);
             if (error.isEmpty()) {
-                lbLoginStatus.setText("Login korrekt!");
+                loginMessage("Logged in as "+username);
             } else {
-                lbLoginStatus.setText("Fehler: " + error);
+                loginMessage("Error: " + error);
             }
             
         } catch (Exception e) {
@@ -171,13 +188,18 @@ public class MainView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_onLoginClicked
 
+    private void loginMessage(String text) {
+        status.set(text);
+        lbLoginStatus.setText(text);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogin;
     private javax.swing.JLabel lbCopyright;
     private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbLoginStatus;
     private javax.swing.JLabel lbPassword;
-    private javax.swing.JLabel lbStatus;
+    public javax.swing.JLabel lbStatus;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JPanel paBill;
     private javax.swing.JPanel paCart;
