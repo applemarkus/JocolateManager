@@ -14,11 +14,11 @@ import javax.swing.JOptionPane;
  * @see http://petritzdesigns.com
  */
 public class MainView extends javax.swing.JFrame {
-
+    
     public MainView() {
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -35,8 +35,9 @@ public class MainView extends javax.swing.JFrame {
         lbEmail = new javax.swing.JLabel();
         lbPassword = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
-        tfPassword = new javax.swing.JTextField();
         btLogin = new javax.swing.JButton();
+        lbLoginStatus = new javax.swing.JLabel();
+        tfPassword = new javax.swing.JPasswordField();
         paChoose = new javax.swing.JPanel();
         paCart = new javax.swing.JPanel();
         paBill = new javax.swing.JPanel();
@@ -44,6 +45,8 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jocolate Manager");
+        setPreferredSize(new java.awt.Dimension(564, 401));
+        setSize(new java.awt.Dimension(564, 401));
 
         pnHeader.setBackground(new java.awt.Color(52, 73, 94));
         pnHeader.setLayout(new java.awt.BorderLayout());
@@ -97,12 +100,6 @@ public class MainView extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         paLogin.add(tfEmail, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        paLogin.add(tfPassword, gridBagConstraints);
 
         btLogin.setText("Login");
         btLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +113,21 @@ public class MainView extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         paLogin.add(btLogin, gridBagConstraints);
+
+        lbLoginStatus.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
+        lbLoginStatus.setText("Bitte gib deine Daten an.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(9, 0, 9, 0);
+        paLogin.add(lbLoginStatus, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        paLogin.add(tfPassword, gridBagConstraints);
 
         tabBar.addTab("Login", paLogin);
         tabBar.addTab("Choose Chocolate", paChoose);
@@ -145,8 +157,14 @@ public class MainView extends javax.swing.JFrame {
             String username = tfEmail.getText();
             String password = tfPassword.getText();
             
+            lbLoginStatus.setText("Wird überprüft...");
             LoginController lc = new LoginController();
-            lc.login(username, password);
+            String error = lc.login(username, password);
+            if (error.isEmpty()) {
+                lbLoginStatus.setText("Login korrekt!");
+            } else {
+                lbLoginStatus.setText("Fehler: " + error);
+            }
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
@@ -157,6 +175,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton btLogin;
     private javax.swing.JLabel lbCopyright;
     private javax.swing.JLabel lbEmail;
+    private javax.swing.JLabel lbLoginStatus;
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbStatus;
     private javax.swing.JLabel lbTitle;
@@ -170,7 +189,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel pnStatus;
     private javax.swing.JTabbedPane tabBar;
     private javax.swing.JTextField tfEmail;
-    private javax.swing.JTextField tfPassword;
+    private javax.swing.JPasswordField tfPassword;
     // End of variables declaration//GEN-END:variables
 
 }
