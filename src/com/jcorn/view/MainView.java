@@ -27,6 +27,7 @@ public class MainView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         pnHeader = new javax.swing.JPanel();
         lbTitle = new javax.swing.JLabel();
@@ -34,8 +35,17 @@ public class MainView extends javax.swing.JFrame {
         lbCopyright = new javax.swing.JLabel();
         lbStatus = new javax.swing.JLabel();
         pnMain = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        tabBar = new javax.swing.JTabbedPane();
+        paLogin = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        paChoose = new javax.swing.JPanel();
+        paCart = new javax.swing.JPanel();
+        paBill = new javax.swing.JPanel();
+        paStatus = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jocolate Manager");
@@ -72,9 +82,48 @@ public class MainView extends javax.swing.JFrame {
 
         pnMain.setLayout(new java.awt.BorderLayout());
 
-        jTabbedPane1.addTab("tab1", jPanel1);
+        paLogin.setLayout(new java.awt.GridBagLayout());
 
-        pnMain.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+        jLabel1.setText("E-Mail:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        paLogin.add(jLabel1, gridBagConstraints);
+
+        jLabel2.setText("Password:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        paLogin.add(jLabel2, gridBagConstraints);
+
+        jTextField1.setColumns(10);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        paLogin.add(jTextField1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        paLogin.add(jTextField2, gridBagConstraints);
+
+        jButton1.setText("Login");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        paLogin.add(jButton1, gridBagConstraints);
+
+        tabBar.addTab("Login", paLogin);
+        tabBar.addTab("Choose", paChoose);
+        tabBar.addTab("Shopping Cart", paCart);
+        tabBar.addTab("Bill", paBill);
+        tabBar.addTab("Delivery Status", paStatus);
+
+        pnMain.add(tabBar, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pnMain, java.awt.BorderLayout.CENTER);
 
@@ -92,14 +141,23 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_onCopyrightClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lbCopyright;
     private javax.swing.JLabel lbStatus;
     private javax.swing.JLabel lbTitle;
+    private javax.swing.JPanel paBill;
+    private javax.swing.JPanel paCart;
+    private javax.swing.JPanel paChoose;
+    private javax.swing.JPanel paLogin;
+    private javax.swing.JPanel paStatus;
     private javax.swing.JPanel pnHeader;
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnStatus;
+    private javax.swing.JTabbedPane tabBar;
     // End of variables declaration//GEN-END:variables
 
 }
