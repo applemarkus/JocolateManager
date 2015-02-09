@@ -1,6 +1,7 @@
 package com.jcorn.view;
 
 import com.jcorn.helper.FileHelper;
+import com.jcorn.helper.Settings;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -96,7 +97,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void onCopyrightClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onCopyrightClicked
         try {
-            String htmlString = FileHelper.readAllFrom("src/com/jcorn/assets/copyright.html");
+            String htmlString = FileHelper.readAllFrom(Settings.getAssetPath("copyright.html"));
             JOptionPane.showMessageDialog(this, htmlString);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Could not read Copyright File...");
