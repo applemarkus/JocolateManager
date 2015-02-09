@@ -7,9 +7,8 @@
  */
 
 require_once 'login_manager.php';
-require_once 'XML_creator.php';
 
-$xml = new XMLCreator();
+$login = new LoginManager();
 
 //Function
 if(isset($_GET['action'])){
@@ -17,8 +16,9 @@ if(isset($_GET['action'])){
     
     switch($action) {
         case "login":
-            exit(LoginManager::login($_GET['username'], $_GET['password']));
+            exit($login->login($_GET['username'], $_GET['password']));
         default:
             break;
     }
 }
+?>

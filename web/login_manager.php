@@ -1,9 +1,19 @@
 <?php
 
+require_once 'XML_creator.php';
+
 class LoginManager {
 
-    public static function login($username, $password) {
-        return "1";
+    private $xml;
+
+    public function __construct() {
+        $this->xml = new XMLCreator();
+    }
+
+    public function login($username, $password) {
+        $array = array();
+        $array['message'] = 'Success';
+        return json_encode($array);
     }
 
 }
