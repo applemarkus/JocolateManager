@@ -1,14 +1,9 @@
 package com.jcorn.view;
 
+import com.jcorn.controller.LoginController;
 import com.jcorn.helper.FileHelper;
-import com.jcorn.helper.JM;
 import com.jcorn.helper.Settings;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,11 +32,11 @@ public class MainView extends javax.swing.JFrame {
         pnMain = new javax.swing.JPanel();
         tabBar = new javax.swing.JTabbedPane();
         paLogin = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        lbEmail = new javax.swing.JLabel();
+        lbPassword = new javax.swing.JLabel();
+        tfEmail = new javax.swing.JTextField();
+        tfPassword = new javax.swing.JTextField();
+        btLogin = new javax.swing.JButton();
         paChoose = new javax.swing.JPanel();
         paCart = new javax.swing.JPanel();
         paBill = new javax.swing.JPanel();
@@ -84,41 +79,46 @@ public class MainView extends javax.swing.JFrame {
 
         paLogin.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("E-Mail:");
+        lbEmail.setText("E-Mail:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        paLogin.add(jLabel1, gridBagConstraints);
+        paLogin.add(lbEmail, gridBagConstraints);
 
-        jLabel2.setText("Password:");
+        lbPassword.setText("Password:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        paLogin.add(jLabel2, gridBagConstraints);
+        paLogin.add(lbPassword, gridBagConstraints);
 
-        jTextField1.setColumns(10);
+        tfEmail.setColumns(10);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        paLogin.add(jTextField1, gridBagConstraints);
+        paLogin.add(tfEmail, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        paLogin.add(jTextField2, gridBagConstraints);
+        paLogin.add(tfPassword, gridBagConstraints);
 
-        jButton1.setText("Login");
+        btLogin.setText("Login");
+        btLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onLoginClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        paLogin.add(jButton1, gridBagConstraints);
+        paLogin.add(btLogin, gridBagConstraints);
 
         tabBar.addTab("Login", paLogin);
-        tabBar.addTab("Choose", paChoose);
+        tabBar.addTab("Choose Chocolate", paChoose);
         tabBar.addTab("Shopping Cart", paCart);
         tabBar.addTab("Bill", paBill);
         tabBar.addTab("Delivery Status", paStatus);
@@ -140,13 +140,24 @@ public class MainView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_onCopyrightClicked
 
+    private void onLoginClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onLoginClicked
+        try {
+            String username = tfEmail.getText();
+            String password = tfPassword.getText();
+            
+            LoginController lc = new LoginController();
+            lc.login(username, password);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
+        }
+    }//GEN-LAST:event_onLoginClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton btLogin;
     private javax.swing.JLabel lbCopyright;
+    private javax.swing.JLabel lbEmail;
+    private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbStatus;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JPanel paBill;
@@ -158,6 +169,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnStatus;
     private javax.swing.JTabbedPane tabBar;
+    private javax.swing.JTextField tfEmail;
+    private javax.swing.JTextField tfPassword;
     // End of variables declaration//GEN-END:variables
 
 }
