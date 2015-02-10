@@ -338,7 +338,7 @@ public class MainView extends javax.swing.JFrame {
         lbAllShopping.setText("All: € 0,00");
         tbMain.add(lbAllShopping);
 
-        btPayItem.setText("Pay Item");
+        btPayItem.setText("Pay");
         btPayItem.setFocusable(false);
         btPayItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btPayItem.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

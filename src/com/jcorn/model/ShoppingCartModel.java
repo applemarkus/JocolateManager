@@ -53,7 +53,7 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
     }
     
     public Double getAllPrice() {
-        return 0.00;
+        return 5.00;
     }
     
     @Override
