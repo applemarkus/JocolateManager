@@ -29,7 +29,7 @@ public class ShoppingCartController {
         try {
             new File("tmp/").mkdir();
             bw = new BufferedWriter(new FileWriter(Settings.getSaveFile(), true));
-            bw.write(item.toString());
+            bw.write(item.toFileString());
             bw.newLine();
             bw.flush();
         } catch (IOException ex) {

@@ -2,13 +2,13 @@ package com.jcorn.model;
 
 /**
  * JocolateManager
- * 
+ *
  * @author Markus Petritz
  * @version 1.0.0
  * @see http://petritzdesigns.com
  */
 public class ShoppingCartItem {
-    
+
     private final String name;
     private final String type;
     private final String size;
@@ -49,6 +49,11 @@ public class ShoppingCartItem {
 
     @Override
     public String toString() {
+        return String.format("%s: %s/%s/%s %dx", name, type, size, logo, amount);
+    }
+
+    public String toFileString() {
         return String.format("%s|%s|%s|%s|%d", name, type, size, logo, amount);
+
     }
 }
