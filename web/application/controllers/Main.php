@@ -18,7 +18,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Main extends CI_Controller {
 
     public function index() {
-        $this->load->view('welcome_message');
+        $this->template('welcome_message');
     }
 
+    private function template($view) {
+        $this->load->view("template/header.php");
+        $this->load->view($view);
+        $this->load->view("template/footer.php");
+    }
 }
