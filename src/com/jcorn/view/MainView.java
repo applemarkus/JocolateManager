@@ -10,10 +10,13 @@ import com.jcorn.helper.JM;
 import com.jcorn.model.JocolateModel;
 import com.jcorn.model.ShoppingCartItem;
 import com.jcorn.model.ShoppingCartModel;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Arrays;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 
 /**
  * JocolateManager
@@ -662,8 +665,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_onUpdate
 
     private void onShoppingCartPay(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShoppingCartPay
-        PayViewController pvw = new PayViewController();
-        pvw.setVisible(true);
+        shoppingDisplayPay();
     }//GEN-LAST:event_onShoppingCartPay
 
     private void onShoppingCartDeleteAll(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShoppingCartDeleteAll
@@ -697,6 +699,11 @@ public class MainView extends javax.swing.JFrame {
         lbPrice.setText(String.format("Price: € %.2f", JocolateController.calculatePrice(joc)));
     }
     
+    private void shoppingDisplayPay() {
+        PayViewController pvw = new PayViewController();
+        pvw.setVisible(true);
+    }
+    
     private void shoppingDeleteAll() {
         try {
             shoppingModel.clearAll();
@@ -710,6 +717,9 @@ public class MainView extends javax.swing.JFrame {
     private void shoppingDeleteSelected() {
         try {
             int selected = listShoppingCart.getSelectedIndex();
+            if(selected == -1) {
+                throw new Exception("No Selection!");
+            }
             shoppingModel.remove(selected);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -733,7 +743,33 @@ public class MainView extends javax.swing.JFrame {
             listShoppingCart.setSelectedIndex(listShoppingCart.locationToIndex(evt.getPoint()));
             
             //Menu Items
+            JMenuItem payItem = new JMenuItem("Pay");
+            JMenuItem updateItem = new JMenuItem("Update");
+            //---- Seperator
+            JMenuItem deleteSelectedItem = new JMenuItem("Delete selected");
+            JMenuItem deleteAllItem = new JMenuItem("Delete all");
             
+            //Actions
+            payItem.addActionListener((ActionEvent e) -> {
+                shoppingDisplayPay();
+            });
+            updateItem.addActionListener((ActionEvent e) -> {
+                shoppingUpdate();
+            });
+            deleteSelectedItem.addActionListener((ActionEvent e) -> {
+                shoppingDeleteSelected();
+            });
+            deleteAllItem.addActionListener((ActionEvent e) -> {
+                shoppingDeleteAll();
+            });
+            
+            JPopupMenu popup = new JPopupMenu("Shopping Cart");
+            popup.add(payItem);
+            popup.add(updateItem);
+            popup.addSeparator();
+            popup.add(deleteSelectedItem);
+             popup.add(deleteAllItem);
+            popup.show(listShoppingCart, evt.getX(), evt.getY());
         }
     }
 
