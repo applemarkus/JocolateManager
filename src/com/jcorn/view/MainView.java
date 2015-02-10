@@ -543,6 +543,7 @@ public class MainView extends javax.swing.JFrame {
             String error = lc.login(username, password);
             if (error.isEmpty()) {
                 loginMessage("Logged in as " + username);
+                //see above
             } else {
                 loginMessage("Error: " + error);
             }
