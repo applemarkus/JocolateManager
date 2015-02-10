@@ -12,13 +12,13 @@ import java.util.Random;
  */
 public class JocolateController {
 
-    public static Double calculatePrice(JocolateModel model) {
+    public static double calculatePrice(JocolateModel model) {
         /*
         Type:
             * milk chocolate        0,00 t1
             * white chocolate       0,05 t2
             * dark chocolate        0,10 t3
-            * pure cocoa chocolate  0,20 t4
+            * pure cocoa chocolate  0,30 t4
         
         Size:
             * ultra-big         8,99 s1
@@ -55,7 +55,7 @@ public class JocolateController {
         String size = model.getSize();
         String logo = model.getLogo();
        
-        Double price = 0.0;
+        double price = 0.0;
         
         switch(type) {
             case "milk chocolate":
