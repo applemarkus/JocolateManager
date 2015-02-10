@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * JocolateManager
@@ -76,7 +77,7 @@ public class ShoppingCartController {
         //Parse
         //%s|%s|%s|%s|%d
         //name, type, size, logo/text, amount
-        String[] strings = line.split(Settings.getSplitChar());
+        String[] strings = line.split(Pattern.quote(Settings.getSplitChar()));
         String name = strings[0];
         String type = strings[1];
         String size = strings[2];

@@ -602,6 +602,7 @@ public class MainView extends javax.swing.JFrame {
                 listShoppingCart.setModel(shoppingModel);
                  {
                     try {
+                        shoppingModel.clearAll();
                         shoppingModel.readAll(shoppingCart);
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(this, ex.getMessage());

@@ -49,7 +49,7 @@ public class ShoppingCartItem {
 
     @Override
     public String toString() {
-        return String.format("%s: %s/%s/%s %dx", name, type, size, logo, amount);
+        return String.format("%dx %s: %s/%s/%s", amount, name, type, size, logo);
     }
 
     public String toFileString() {

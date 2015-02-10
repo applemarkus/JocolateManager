@@ -40,7 +40,7 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
     }
     
     public void clearAll() {
-        super.fireIntervalRemoved(this, 0, shoppingCart.size() - 1);
+        //super.fireIntervalRemoved(this, 0, shoppingCart.size() - 1);
         shoppingCart.clear();
     }
     
