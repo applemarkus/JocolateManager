@@ -49,11 +49,19 @@ public class ShoppingCartController {
     }
 
     public List<ShoppingCartItem> readAll() throws Exception {
+        File saveFile;
+
         List<ShoppingCartItem> tmp = new LinkedList<>();
         BufferedReader br = null;
 
         try {
-            br = new BufferedReader(new FileReader(Settings.getSaveFile()));
+            saveFile = new File(Settings.getSaveFile());
+
+            if (!saveFile.exists() || !saveFile.canRead()) {
+                saveFile.createNewFile();
+            }
+
+            br = new BufferedReader(new FileReader(saveFile));
             while (br.ready()) {
                 tmp.add(parseLine(br.readLine()));
             }
@@ -72,7 +80,7 @@ public class ShoppingCartController {
         }
         return tmp;
     }
-    
+
     private ShoppingCartItem parseLine(String line) {
         //Parse
         //%s|%s|%s|%s|%d
@@ -85,18 +93,18 @@ public class ShoppingCartController {
         Integer amount = Integer.parseInt(strings[4]);
         return new ShoppingCartItem(name, type, size, logo_text, amount);
     }
-    
+
     public void writeAll(List<ShoppingCartItem> list) throws Exception {
         BufferedWriter bw = null;
 
         try {
             new File("tmp/").mkdir();
             bw = new BufferedWriter(new FileWriter(Settings.getSaveFile(), false));
-            
+
             for (ShoppingCartItem item : list) {
                 bw.write(item.toFileString());
             }
-            
+
             bw.newLine();
             bw.flush();
         } catch (IOException ex) {

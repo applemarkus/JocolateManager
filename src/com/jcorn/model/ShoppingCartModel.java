@@ -1,5 +1,6 @@
 package com.jcorn.model;
 
+import com.jcorn.controller.JocolateController;
 import com.jcorn.controller.ShoppingCartController;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -52,8 +53,12 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
         controller.writeAll(shoppingCart);
     }
     
-    public Double getAllPrice() {
-        return 5.00;
+    public double getAllPrice() {
+        double price = 0;
+        for (ShoppingCartItem item : this) {
+            price += item.getPrice();
+        }
+        return price;
     }
     
     @Override
