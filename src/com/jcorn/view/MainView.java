@@ -44,14 +44,14 @@ public class MainView extends javax.swing.JFrame {
         shoppingCart = new ShoppingCartController();
 
         shoppingModel = new ShoppingCartModel(shoppingCart);
-        
+
         //disable other, if they did not login
         tabBar.setEnabledAt(1, false);
         tabBar.setEnabledAt(2, false);
         tabBar.setEnabledAt(3, false);
         tabBar.setEnabledAt(4, false);
         tabBar.setEnabledAt(5, false);
-        
+
         //if they login do this:
         tabBar.setEnabledAt(1, true);
         tabBar.setEnabledAt(2, true);
@@ -704,12 +704,12 @@ public class MainView extends javax.swing.JFrame {
         JocolateModel joc = new JocolateModel(type, size, logo, text, amount);
         lbPrice.setText(String.format("Price: € %.2f", JocolateController.calculatePrice(joc)));
     }
-    
+
     private void shoppingDisplayPay() {
         PayViewController pvw = new PayViewController();
         pvw.setVisible(true);
     }
-    
+
     private void shoppingDeleteAll() {
         try {
             shoppingModel.clearAll();
@@ -719,11 +719,11 @@ public class MainView extends javax.swing.JFrame {
             JM.debug(ex.getMessage());
         }
     }
-    
+
     private void shoppingDeleteSelected() {
         try {
             int selected = listShoppingCart.getSelectedIndex();
-            if(selected == -1) {
+            if (selected == -1) {
                 throw new Exception("No Selection!");
             }
             shoppingModel.remove(selected);
@@ -732,7 +732,7 @@ public class MainView extends javax.swing.JFrame {
             JM.debug(ex.getMessage());
         }
     }
-    
+
     private void shoppingUpdate() {
         try {
             shoppingModel.clearAll();
@@ -742,19 +742,19 @@ public class MainView extends javax.swing.JFrame {
             JM.debug(ex.getMessage());
         }
     }
-    
+
     private void checkPopup(MouseEvent evt) {
-        if(evt.isPopupTrigger()) {
-            
+        if (evt.isPopupTrigger()) {
+
             listShoppingCart.setSelectedIndex(listShoppingCart.locationToIndex(evt.getPoint()));
-            
+
             //Menu Items
             JMenuItem payItem = new JMenuItem("Pay");
             JMenuItem updateItem = new JMenuItem("Update");
             //---- Seperator
             JMenuItem deleteSelectedItem = new JMenuItem("Delete selected");
             JMenuItem deleteAllItem = new JMenuItem("Delete all");
-            
+
             //Actions
             payItem.addActionListener((ActionEvent e) -> {
                 shoppingDisplayPay();
@@ -768,13 +768,13 @@ public class MainView extends javax.swing.JFrame {
             deleteAllItem.addActionListener((ActionEvent e) -> {
                 shoppingDeleteAll();
             });
-            
+
             JPopupMenu popup = new JPopupMenu("Shopping Cart");
             popup.add(payItem);
             popup.add(updateItem);
             popup.addSeparator();
             popup.add(deleteSelectedItem);
-             popup.add(deleteAllItem);
+            popup.add(deleteAllItem);
             popup.show(listShoppingCart, evt.getX(), evt.getY());
         }
     }
