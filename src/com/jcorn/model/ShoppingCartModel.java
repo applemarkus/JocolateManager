@@ -35,6 +35,13 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
     
     public void readAll(ShoppingCartController controller) throws Exception {
         shoppingCart.addAll(controller.readAll());
+        super.fireIntervalAdded(this, 0, shoppingCart.size() - 1);
+
+    }
+    
+    public void clearAll() {
+        super.fireIntervalRemoved(this, 0, shoppingCart.size() - 1);
+        shoppingCart.clear();
     }
     
     @Override

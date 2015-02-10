@@ -22,26 +22,26 @@ import javax.swing.JOptionPane;
  * @see http://petritzdesigns.com
  */
 public class MainView extends javax.swing.JFrame {
-    
+
     private StatusController status;
     private JocolateController jocolate;
     private ShoppingCartController shoppingCart;
-    
+
     private ShoppingCartModel shoppingModel;
-    
+
     public MainView() {
         initComponents();
         setup();
     }
-    
+
     private void setup() {
         status = new StatusController(this);
         jocolate = new JocolateController();
         shoppingCart = new ShoppingCartController();
-        
+
         shoppingModel = new ShoppingCartModel();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,6 +77,7 @@ public class MainView extends javax.swing.JFrame {
         paCart = new javax.swing.JPanel();
         tbMain = new javax.swing.JToolBar();
         btPayItem = new javax.swing.JButton();
+        btUpdate = new javax.swing.JButton();
         fillerCart = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         btDeleteAll = new javax.swing.JButton();
         btDeleteSelected = new javax.swing.JButton();
@@ -338,6 +339,17 @@ public class MainView extends javax.swing.JFrame {
         btPayItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btPayItem.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tbMain.add(btPayItem);
+
+        btUpdate.setText("Update");
+        btUpdate.setFocusable(false);
+        btUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onUpdate(evt);
+            }
+        });
+        tbMain.add(btUpdate);
         tbMain.add(fillerCart);
 
         btDeleteAll.setText("Delete All");
@@ -499,15 +511,15 @@ public class MainView extends javax.swing.JFrame {
         try {
             String username = tfEmail.getText();
             String password = Arrays.toString(tfPassword.getPassword());
-            
+
             if (username.isEmpty()) {
                 throw new Exception("Username missing");
             }
-            
+
             if (password.isEmpty()) {
                 throw new Exception("Password missing");
             }
-            
+
             loginMessage("Submitting...");
             LoginController lc = new LoginController();
             String error = lc.login(username, password);
@@ -516,7 +528,7 @@ public class MainView extends javax.swing.JFrame {
             } else {
                 loginMessage("Error: " + error);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
         }
@@ -588,7 +600,7 @@ public class MainView extends javax.swing.JFrame {
             //Shopping Cart shown
             case 2:
                 listShoppingCart.setModel(shoppingModel);
-                {
+                 {
                     try {
                         shoppingModel.readAll(shoppingCart);
                     } catch (Exception ex) {
@@ -599,12 +611,22 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_tabBarStateChanged
-    
+
+    private void onUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onUpdate
+        try {
+            shoppingModel.clearAll();
+            shoppingModel.readAll(shoppingCart);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex.getMessage());
+        }
+    }//GEN-LAST:event_onUpdate
+
     private void loginMessage(String text) {
         status.set(text);
         lbLoginStatus.setText(text);
     }
-    
+
     private void calcPrice() {
         String type = (String) cbType.getSelectedItem();
         String size = (String) cbSize.getSelectedItem();
@@ -621,6 +643,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton btLogin;
     private javax.swing.JButton btPayItem;
     private javax.swing.JButton btToShoppingCart;
+    private javax.swing.JButton btUpdate;
     private javax.swing.JComboBox cbLogo;
     private javax.swing.JComboBox cbSize;
     private javax.swing.JComboBox cbType;
