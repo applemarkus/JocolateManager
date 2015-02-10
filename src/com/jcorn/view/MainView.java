@@ -2,10 +2,13 @@ package com.jcorn.view;
 
 import com.jcorn.controller.JocolateController;
 import com.jcorn.controller.LoginController;
+import com.jcorn.controller.ShoppingCarController;
 import com.jcorn.controller.StatusController;
 import com.jcorn.helper.FileHelper;
 import com.jcorn.helper.Settings;
+import com.jcorn.helper.JM;
 import com.jcorn.model.JocolateModel;
+import com.jcorn.model.ShoppingCartItem;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -18,20 +21,22 @@ import javax.swing.JOptionPane;
  * @see http://petritzdesigns.com
  */
 public class MainView extends javax.swing.JFrame {
-    
+
     private StatusController status;
     private JocolateController jocolate;
-    
+    private ShoppingCarController shoppingCar;
+
     public MainView() {
         initComponents();
         setup();
     }
-    
+
     private void setup() {
         status = new StatusController(this);
         jocolate = new JocolateController();
+        shoppingCar = new ShoppingCarController();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -95,7 +100,6 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jocolate Manager");
-        setPreferredSize(new java.awt.Dimension(564, 401));
         setSize(new java.awt.Dimension(564, 401));
 
         pnHeader.setBackground(new java.awt.Color(52, 73, 94));
@@ -511,15 +515,15 @@ public class MainView extends javax.swing.JFrame {
         try {
             String username = tfEmail.getText();
             String password = Arrays.toString(tfPassword.getPassword());
-            
+
             if (username.isEmpty()) {
                 throw new Exception("Username missing");
             }
-            
+
             if (password.isEmpty()) {
                 throw new Exception("Password missing");
             }
-            
+
             loginMessage("Submitting...");
             LoginController lc = new LoginController();
             String error = lc.login(username, password);
@@ -528,7 +532,7 @@ public class MainView extends javax.swing.JFrame {
             } else {
                 loginMessage("Error: " + error);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
         }
@@ -541,7 +545,19 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_onQuit
 
     private void toShoppingCart(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toShoppingCart
-        
+        try {
+            String type = (String) cbType.getSelectedItem();
+            String size = (String) cbSize.getSelectedItem();
+            String logo = (String) cbLogo.getSelectedItem();
+            String text = tfText.getText();
+            Integer amount = (Integer) spinnerAmount.getValue();
+            JocolateModel joc = new JocolateModel(type, size, logo, text, amount);
+            ShoppingCartItem item = joc.toShoppingCartItem();
+            shoppingCar.moveToShoppingCart(item);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex.getMessage());
+        }
     }//GEN-LAST:event_toShoppingCart
 
     private void onTypeChanged(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onTypeChanged
@@ -554,10 +570,9 @@ public class MainView extends javax.swing.JFrame {
 
     private void onLogoChanged(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onLogoChanged
         calcPrice();
-        if(cbLogo.getSelectedItem().equals("Text")) {
+        if (cbLogo.getSelectedItem().equals("Text")) {
             tfText.setEnabled(true);
-        }
-        else {
+        } else {
             tfText.setEnabled(false);
         }
     }//GEN-LAST:event_onLogoChanged
@@ -568,10 +583,10 @@ public class MainView extends javax.swing.JFrame {
 
     private void onAmountChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_onAmountChanged
         Integer value = (Integer) spinnerAmount.getValue();
-        if(value <= 1) {
+        if (value <= 1) {
             value = 1;
         }
-        if(value >= 99999) {
+        if (value >= 99999) {
             value = 99999;
         }
         spinnerAmount.setValue(value);
@@ -579,19 +594,20 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_onAmountChanged
 
     private void tabBarStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabBarStateChanged
-        switch(tabBar.getSelectedIndex()) {
+        switch (tabBar.getSelectedIndex()) {
+            //Jocolate Chooser shown
             case 1:
                 spinnerAmount.setValue(1);
                 calcPrice();
                 break;
         }
     }//GEN-LAST:event_tabBarStateChanged
-    
+
     private void loginMessage(String text) {
         status.set(text);
         lbLoginStatus.setText(text);
     }
-    
+
     private void calcPrice() {
         String type = (String) cbType.getSelectedItem();
         String size = (String) cbSize.getSelectedItem();

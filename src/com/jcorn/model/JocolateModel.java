@@ -50,5 +50,18 @@ public class JocolateModel {
     public Integer getAmount() {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s|%s|%s|%s|%d", type, size, logo, text, amount);
+    }
     
+    public ShoppingCartItem toShoppingCartItem() {
+        if(logo.equals("Text")) {
+            return new ShoppingCartItem("Chocolate", type, size, text, amount);
+        }
+        else {
+            return new ShoppingCartItem("Chocolate", type, size, logo, amount);
+        }
+    }
 }

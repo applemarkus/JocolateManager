@@ -13,6 +13,32 @@ import java.util.Random;
 public class JocolateController {
 
     public Double calculatePrice(JocolateModel model) {
+        /*
+        Type:
+            * milk chocolate
+            * white chocolate
+            * dark chocolate
+            * pure cocoa chocolate
+        
+        Size:
+            * ultra-big
+            * big
+            * middle
+            * small,
+            * slim
+        
+        Logo:
+            * Default
+            * PetritzDesigns
+            * jCorn
+            * Happy Birthday
+            * Text
+        */
+        
+        String type = model.getType();
+        //...
+        
         return model.getAmount() * 10 + new Random().nextDouble();
     }
+
 }
