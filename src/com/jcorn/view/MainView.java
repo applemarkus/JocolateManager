@@ -40,6 +40,20 @@ public class MainView extends javax.swing.JFrame {
         shoppingCart = new ShoppingCartController();
 
         shoppingModel = new ShoppingCartModel(shoppingCart);
+        
+        //disable other, if they did not login
+        tabBar.setEnabledAt(1, false);
+        tabBar.setEnabledAt(2, false);
+        tabBar.setEnabledAt(3, false);
+        tabBar.setEnabledAt(4, false);
+        tabBar.setEnabledAt(5, false);
+        
+        //if they login do this:
+        tabBar.setEnabledAt(1, true);
+        tabBar.setEnabledAt(2, true);
+        tabBar.setEnabledAt(3, true);
+        tabBar.setEnabledAt(4, true);
+        tabBar.setEnabledAt(5, true);
     }
 
     @SuppressWarnings("unchecked")
