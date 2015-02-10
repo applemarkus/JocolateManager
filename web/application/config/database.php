@@ -19,7 +19,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'https://vweb05.nitrado.net',
+	'hostname' => 'vweb05.nitrado.net',
 	'username' => 'ni550490_1sql3',
 	'password' => 'hack4fun',
 	'database' => 'ni550490_1sql3',
