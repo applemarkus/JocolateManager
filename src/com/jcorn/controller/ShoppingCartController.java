@@ -85,4 +85,32 @@ public class ShoppingCartController {
         Integer amount = Integer.parseInt(strings[4]);
         return new ShoppingCartItem(name, type, size, logo_text, amount);
     }
+    
+    public void writeAll(List<ShoppingCartItem> list) throws Exception {
+        BufferedWriter bw = null;
+
+        try {
+            new File("tmp/").mkdir();
+            bw = new BufferedWriter(new FileWriter(Settings.getSaveFile(), false));
+            
+            for (ShoppingCartItem item : list) {
+                bw.write(item.toFileString());
+            }
+            
+            bw.newLine();
+            bw.flush();
+        } catch (IOException ex) {
+            System.err.println("Oh no... :( " + ex.getLocalizedMessage());
+            throw new Exception("I/O Error while writing to shopping car file");
+        } finally {
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException ex) {
+                    System.err.println("There was really a error on closing... " + ex.getLocalizedMessage());
+                    throw new Exception("I/O Error while closing shopping car file.");
+                }
+            }
+        }
+    }
 }

@@ -39,7 +39,7 @@ public class MainView extends javax.swing.JFrame {
         jocolate = new JocolateController();
         shoppingCart = new ShoppingCartController();
 
-        shoppingModel = new ShoppingCartModel();
+        shoppingModel = new ShoppingCartModel(shoppingCart);
     }
 
     @SuppressWarnings("unchecked")
@@ -603,7 +603,7 @@ public class MainView extends javax.swing.JFrame {
                  {
                     try {
                         shoppingModel.clearAll();
-                        shoppingModel.readAll(shoppingCart);
+                        shoppingModel.readAll();
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(this, ex.getMessage());
                         JM.debug(ex.getMessage());
@@ -616,7 +616,7 @@ public class MainView extends javax.swing.JFrame {
     private void onUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onUpdate
         try {
             shoppingModel.clearAll();
-            shoppingModel.readAll(shoppingCart);
+            shoppingModel.readAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             JM.debug(ex.getMessage());

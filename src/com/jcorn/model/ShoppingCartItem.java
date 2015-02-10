@@ -1,5 +1,7 @@
 package com.jcorn.model;
 
+import com.jcorn.controller.JocolateController;
+
 /**
  * JocolateManager
  *
@@ -14,13 +16,29 @@ public class ShoppingCartItem {
     private final String size;
     private final String logo;
     private Integer amount;
+    private Double price;
 
+    public ShoppingCartItem(String name, String type, String size, String logo, Integer amount, Double price) {
+        this.name = name;
+        this.type = type;
+        this.size = size;
+        this.logo = logo;
+        this.amount = amount;
+        this.price = price;
+    }
+    
     public ShoppingCartItem(String name, String type, String size, String logo, Integer amount) {
         this.name = name;
         this.type = type;
         this.size = size;
         this.logo = logo;
         this.amount = amount;
+        
+        if(logo.equals("Text")) {
+            this.price = JocolateController.calculatePrice(new JocolateModel(type, size, "Text", logo, amount));
+        } else {
+            this.price = JocolateController.calculatePrice(new JocolateModel(type, size, logo, amount));
+        }
     }
 
     public Integer getAmount() {
@@ -47,9 +65,13 @@ public class ShoppingCartItem {
         return logo;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
-        return String.format("%dx %s: %s/%s/%s", amount, name, type, size, logo);
+        return String.format("%2dx %s: %s/%s/%s - %4.2f", amount, name, type, size, logo, price);
     }
 
     public String toFileString() {

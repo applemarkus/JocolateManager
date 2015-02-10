@@ -16,24 +16,28 @@ import javax.swing.AbstractListModel;
 public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> implements Iterable<ShoppingCartItem>{
 
     private final List<ShoppingCartItem> shoppingCart;
+    private final ShoppingCartController controller;
 
-    public ShoppingCartModel() {
+    public ShoppingCartModel(ShoppingCartController controller) {
         this.shoppingCart = new LinkedList<>();
+        this.controller = controller;
     }
     
-    public void add(ShoppingCartItem item) {
+    public void add(ShoppingCartItem item) throws Exception {
         shoppingCart.add(item);
         super.fireIntervalAdded(this, shoppingCart.size() - 1, shoppingCart.size() - 1);
+        writeOut();
     }
     
-    public void remove(int index) {
+    public void remove(int index) throws Exception {
         if(index > 0) {
             shoppingCart.remove(index);
             super.fireIntervalRemoved(this, index, index);
         }
+        writeOut();
     }
     
-    public void readAll(ShoppingCartController controller) throws Exception {
+    public void readAll() throws Exception {
         shoppingCart.addAll(controller.readAll());
         super.fireIntervalAdded(this, 0, shoppingCart.size() - 1);
 
@@ -42,6 +46,10 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
     public void clearAll() {
         //super.fireIntervalRemoved(this, 0, shoppingCart.size() - 1);
         shoppingCart.clear();
+    }
+    
+    public void writeOut() throws Exception {
+        controller.writeAll(shoppingCart);
     }
     
     @Override
