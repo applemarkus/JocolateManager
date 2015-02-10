@@ -736,6 +736,7 @@ public class MainView extends javax.swing.JFrame {
         try {
             shoppingModel.clearAll();
             shoppingModel.readAll();
+            lbAllShopping.setText(String.format("€ %.2f", shoppingModel.getAllPrice()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             JM.debug(ex.getMessage());

@@ -1,8 +1,11 @@
 package com.jcorn.view;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  * JocolateManager
- * 
+ *
  * @author Markus Petritz
  * @version 1.0.0
  * @see http://petritzdesigns.com
@@ -18,9 +21,9 @@ public class PayViewController extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        btClose = new javax.swing.JButton();
+        btPay = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        pbProgress = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tfName = new javax.swing.JTextField();
@@ -56,10 +59,9 @@ public class PayViewController extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        btClose.setText("Pay & Finish");
-        btClose.setToolTipText("");
-        btClose.setEnabled(false);
-        btClose.addActionListener(new java.awt.event.ActionListener() {
+        btPay.setText("Pay & Finish");
+        btPay.setToolTipText("");
+        btPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 onClose(evt);
             }
@@ -69,7 +71,7 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        getContentPane().add(btClose, gridBagConstraints);
+        getContentPane().add(btPay, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
         jLabel1.setText("Pay");
@@ -85,7 +87,7 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        getContentPane().add(jProgressBar1, gridBagConstraints);
+        getContentPane().add(pbProgress, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel2.setText("Delivery Address:");
@@ -346,12 +348,35 @@ public class PayViewController extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean isNotEmpty(JTextField... textFields) {
+
+        for (JTextField textField : textFields) {
+            if (textField.getText().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void onClose(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClose
-        this.setVisible(false);
+        if(checkInformation())
+        {
+            JOptionPane.showMessageDialog(this, "PAID");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Please provide all information with the star");
+        }
     }//GEN-LAST:event_onClose
 
+    private boolean checkInformation() {
+        return isNotEmpty(tfName, tfFirstName, tfEmail, tfStreet, tfStreetnumber, 
+                tfZipCode, tfCity, tfCountry, tfCardNumber, 
+                tfExpires, tfSecurityCode);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btClose;
+    private javax.swing.JButton btPay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -370,8 +395,8 @@ public class PayViewController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JProgressBar pbProgress;
     private javax.swing.JTextField tfCardNumber;
     private javax.swing.JTextField tfCity;
     private javax.swing.JTextField tfCountry;
