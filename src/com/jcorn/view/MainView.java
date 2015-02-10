@@ -652,15 +652,13 @@ public class MainView extends javax.swing.JFrame {
             //Shopping Cart shown
             case 2:
                 listShoppingCart.setModel(shoppingModel);
-                 {
-                    try {
-                        shoppingModel.clearAll();
-                        shoppingModel.readAll();
-                        lbAllShopping.setText(String.format("€ %.2f", shoppingModel.getAllPrice()));
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(this, ex.getMessage());
-                        JM.debug(ex.getMessage());
-                    }
+                try {
+                    shoppingModel.clearAll();
+                    shoppingModel.readAll();
+                    lbAllShopping.setText(String.format("€ %.2f", shoppingModel.getAllPrice()));
+                } catch (Exception ex) {
+                    //JOptionPane.showMessageDialog(this, ex.getMessage());
+                    JM.debug(ex.getMessage());
                 }
                 break;
         }
@@ -706,6 +704,7 @@ public class MainView extends javax.swing.JFrame {
     }
 
     private void shoppingDisplayPay() {
+
         PayViewController pvw = new PayViewController();
         pvw.setVisible(true);
     }
