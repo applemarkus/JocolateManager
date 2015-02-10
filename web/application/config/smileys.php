@@ -1,17 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * JocolateManager
+ * Web
+ * 
+ * @author Markus Petritz
+ * @author Julian Maierl
+ * @author Paul Kasper
+ * @author Tobias Färber
+ * 
+ * @version 1.0.0
+ * @see http://petritzdesigns.com
+ */
+
 /*
 | -------------------------------------------------------------------
 | SMILEYS
 | -------------------------------------------------------------------
-| This file contains an array of smileys for use with the emoticon helper.
-| Individual images can be used to replace multiple smileys.  For example:
-| :-) and :) use the same image replacement.
-|
-| Please see user guide for more info:
-| http://codeigniter.com/user_guide/helpers/smiley_helper.html
-|
 */
 
 $smileys = array(

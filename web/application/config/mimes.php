@@ -1,15 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * JocolateManager
+ * Web
+ * 
+ * @author Markus Petritz
+ * @author Julian Maierl
+ * @author Paul Kasper
+ * @author Tobias Färber
+ * 
+ * @version 1.0.0
+ * @see http://petritzdesigns.com
+ */
+
 /*
 | -------------------------------------------------------------------
 | MIME TYPES
 | -------------------------------------------------------------------
-| This file contains an array of mime types.  It is used by the
-| Upload class to help identify allowed file types.
-|
 */
-
 return array(
 	'hqx'	=>	array('application/mac-binhex40', 'application/mac-binhex', 'application/x-binhex40', 'application/x-mac-binhex40'),
 	'cpt'	=>	'application/mac-compactpro',

@@ -1,13 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * JocolateManager
+ * Web
+ * 
+ * @author Markus Petritz
+ * @author Julian Maierl
+ * @author Paul Kasper
+ * @author Tobias Färber
+ * 
+ * @version 1.0.0
+ * @see http://petritzdesigns.com
+ */
+
 /*
 | -------------------------------------------------------------------
 | Foreign Characters
 | -------------------------------------------------------------------
-| This file contains an array of foreign characters for transliteration
-| conversion used by the Text helper
-|
 */
 $foreign_characters = array(
 	'/ä|æ|ǽ/' => 'ae',
