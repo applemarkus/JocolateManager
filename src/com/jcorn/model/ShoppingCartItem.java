@@ -66,6 +66,12 @@ public class ShoppingCartItem {
     }
 
     public double getPrice() {
+        if(logo.equals("Text")) {
+            this.price = JocolateController.calculatePrice(new JocolateModel(type, size, "Text", logo, amount));
+        } else {
+            this.price = JocolateController.calculatePrice(new JocolateModel(type, size, logo, amount));
+        }
+        
         return price;
     }
 
