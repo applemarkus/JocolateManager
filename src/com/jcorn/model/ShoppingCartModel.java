@@ -52,6 +52,10 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
         controller.writeAll(shoppingCart);
     }
     
+    public Double getAllPrice() {
+        return 0.00;
+    }
+    
     @Override
     public int getSize() {
         return shoppingCart.size();

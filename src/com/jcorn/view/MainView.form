@@ -438,6 +438,11 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
                   <SubComponents>
+                    <Component class="javax.swing.JLabel" name="lbAllShopping">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="All: &#x20ac; 0,00"/>
+                      </Properties>
+                    </Component>
                     <Component class="javax.swing.JButton" name="btPayItem">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Pay Item"/>

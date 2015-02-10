@@ -71,7 +71,7 @@ public class ShoppingCartItem {
 
     @Override
     public String toString() {
-        return String.format("%2dx %s: %s/%s/%s - %4.2f", amount, name, type, size, logo, price);
+        return String.format("%2dx %s: %s/%s/%s - € %4.2f", amount, name, type, size, logo, price);
     }
 
     public String toFileString() {

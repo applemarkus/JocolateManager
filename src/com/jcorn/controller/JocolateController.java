@@ -76,7 +76,7 @@ public class JocolateController {
             
         }
         
-        return model.getAmount() * price;
+        return model.getAmount() * price * new Random().nextDouble();
     }
 
 }

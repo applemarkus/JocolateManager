@@ -76,6 +76,7 @@ public class MainView extends javax.swing.JFrame {
         lbPrice = new javax.swing.JLabel();
         paCart = new javax.swing.JPanel();
         tbMain = new javax.swing.JToolBar();
+        lbAllShopping = new javax.swing.JLabel();
         btPayItem = new javax.swing.JButton();
         btUpdate = new javax.swing.JButton();
         fillerCart = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
@@ -333,6 +334,9 @@ public class MainView extends javax.swing.JFrame {
         paCart.setLayout(new java.awt.BorderLayout());
 
         tbMain.setRollover(true);
+
+        lbAllShopping.setText("All: € 0,00");
+        tbMain.add(lbAllShopping);
 
         btPayItem.setText("Pay Item");
         btPayItem.setFocusable(false);
@@ -604,6 +608,7 @@ public class MainView extends javax.swing.JFrame {
                     try {
                         shoppingModel.clearAll();
                         shoppingModel.readAll();
+                        lbAllShopping.setText(String.format("€ %.2f", shoppingModel.getAllPrice()));
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(this, ex.getMessage());
                         JM.debug(ex.getMessage());
@@ -661,6 +666,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel lbAllShopping;
     private javax.swing.JLabel lbAmount;
     private javax.swing.JLabel lbCopyright;
     private javax.swing.JLabel lbEmail;
