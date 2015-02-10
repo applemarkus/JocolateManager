@@ -450,6 +450,9 @@
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onShoppingCartPay"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btUpdate">
                       <Properties>
@@ -479,6 +482,9 @@
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onShoppingCartDeleteAll"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btDeleteSelected">
                       <Properties>
@@ -487,6 +493,9 @@
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="onShoppingCartDeleteSelected"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -514,6 +523,10 @@
                           </StringArray>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onShoppingCartListMousePressed"/>
+                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onShoppingCartListMouseReleased"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

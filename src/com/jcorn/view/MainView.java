@@ -10,6 +10,7 @@ import com.jcorn.helper.JM;
 import com.jcorn.model.JocolateModel;
 import com.jcorn.model.ShoppingCartItem;
 import com.jcorn.model.ShoppingCartModel;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -356,6 +357,11 @@ public class MainView extends javax.swing.JFrame {
         btPayItem.setFocusable(false);
         btPayItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btPayItem.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btPayItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onShoppingCartPay(evt);
+            }
+        });
         tbMain.add(btPayItem);
 
         btUpdate.setText("Update");
@@ -374,12 +380,22 @@ public class MainView extends javax.swing.JFrame {
         btDeleteAll.setFocusable(false);
         btDeleteAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btDeleteAll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btDeleteAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onShoppingCartDeleteAll(evt);
+            }
+        });
         tbMain.add(btDeleteAll);
 
         btDeleteSelected.setText("Delete Selected");
         btDeleteSelected.setFocusable(false);
         btDeleteSelected.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btDeleteSelected.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btDeleteSelected.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onShoppingCartDeleteSelected(evt);
+            }
+        });
         tbMain.add(btDeleteSelected);
 
         paCart.add(tbMain, java.awt.BorderLayout.PAGE_END);
@@ -388,6 +404,14 @@ public class MainView extends javax.swing.JFrame {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        listShoppingCart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onShoppingCartListMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onShoppingCartListMouseReleased(evt);
+            }
         });
         jScrollPane3.setViewportView(listShoppingCart);
 
@@ -634,14 +658,29 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_tabBarStateChanged
 
     private void onUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onUpdate
-        try {
-            shoppingModel.clearAll();
-            shoppingModel.readAll();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
-        }
+        shoppingUpdate();
     }//GEN-LAST:event_onUpdate
+
+    private void onShoppingCartPay(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShoppingCartPay
+        PayViewController pvw = new PayViewController();
+        pvw.setVisible(true);
+    }//GEN-LAST:event_onShoppingCartPay
+
+    private void onShoppingCartDeleteAll(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShoppingCartDeleteAll
+        shoppingDeleteAll();
+    }//GEN-LAST:event_onShoppingCartDeleteAll
+
+    private void onShoppingCartDeleteSelected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShoppingCartDeleteSelected
+        shoppingDeleteSelected();
+    }//GEN-LAST:event_onShoppingCartDeleteSelected
+
+    private void onShoppingCartListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShoppingCartListMousePressed
+        checkPopup(evt);
+    }//GEN-LAST:event_onShoppingCartListMousePressed
+
+    private void onShoppingCartListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onShoppingCartListMouseReleased
+        checkPopup(evt);
+    }//GEN-LAST:event_onShoppingCartListMouseReleased
 
     private void loginMessage(String text) {
         status.set(text);
@@ -655,7 +694,47 @@ public class MainView extends javax.swing.JFrame {
         String text = tfText.getText();
         Integer amount = (Integer) spinnerAmount.getValue();
         JocolateModel joc = new JocolateModel(type, size, logo, text, amount);
-        lbPrice.setText(String.format("Price: € %.2f", jocolate.calculatePrice(joc)));
+        lbPrice.setText(String.format("Price: € %.2f", JocolateController.calculatePrice(joc)));
+    }
+    
+    private void shoppingDeleteAll() {
+        try {
+            shoppingModel.clearAll();
+            shoppingModel.writeOut();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex.getMessage());
+        }
+    }
+    
+    private void shoppingDeleteSelected() {
+        try {
+            int selected = listShoppingCart.getSelectedIndex();
+            shoppingModel.remove(selected);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex.getMessage());
+        }
+    }
+    
+    private void shoppingUpdate() {
+        try {
+            shoppingModel.clearAll();
+            shoppingModel.readAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex.getMessage());
+        }
+    }
+    
+    private void checkPopup(MouseEvent evt) {
+        if(evt.isPopupTrigger()) {
+            
+            listShoppingCart.setSelectedIndex(listShoppingCart.locationToIndex(evt.getPoint()));
+            
+            //Menu Items
+            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
