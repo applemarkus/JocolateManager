@@ -1,7 +1,6 @@
 package com.jcorn.controller;
 
 import com.jcorn.model.JocolateModel;
-import java.util.Random;
 
 /**
  * JocolateManager
@@ -92,6 +91,9 @@ public class JocolateController {
                 
         switch(logo)
         {
+            case "Default":
+                price += l1;
+                break;
             case "PetritzDesigns":
                 price += l2;
                 break;
