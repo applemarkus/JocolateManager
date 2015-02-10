@@ -108,7 +108,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         getContentPane().add(jLabel3, gridBagConstraints);
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setColumns(8);
+        jTextField1.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -180,7 +181,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         getContentPane().add(jLabel10, gridBagConstraints);
 
-        jTextField2.setText("jTextField2");
+        jTextField2.setColumns(8);
+        jTextField2.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -189,7 +191,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 24);
         getContentPane().add(jTextField2, gridBagConstraints);
 
-        jTextField3.setText("jTextField3");
+        jTextField3.setColumns(8);
+        jTextField3.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -198,7 +201,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 24);
         getContentPane().add(jTextField3, gridBagConstraints);
 
-        jTextField4.setText("jTextField4");
+        jTextField4.setColumns(8);
+        jTextField4.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -207,7 +211,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 24);
         getContentPane().add(jTextField4, gridBagConstraints);
 
-        jTextField5.setText("jTextField5");
+        jTextField5.setColumns(8);
+        jTextField5.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -216,7 +221,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 24);
         getContentPane().add(jTextField5, gridBagConstraints);
 
-        jTextField6.setText("jTextField6");
+        jTextField6.setColumns(8);
+        jTextField6.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
@@ -225,7 +231,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 24);
         getContentPane().add(jTextField6, gridBagConstraints);
 
-        jTextField7.setText("jTextField7");
+        jTextField7.setColumns(8);
+        jTextField7.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
@@ -234,7 +241,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 24);
         getContentPane().add(jTextField7, gridBagConstraints);
 
-        jTextField8.setText("jTextField8");
+        jTextField8.setColumns(8);
+        jTextField8.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 12;
@@ -289,7 +297,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         getContentPane().add(jLabel15, gridBagConstraints);
 
-        jTextField9.setText("jTextField9");
+        jTextField9.setColumns(8);
+        jTextField9.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 13;
@@ -298,7 +307,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 24);
         getContentPane().add(jTextField9, gridBagConstraints);
 
-        jTextField10.setText("jTextField10");
+        jTextField10.setColumns(8);
+        jTextField10.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
@@ -307,7 +317,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         getContentPane().add(jTextField10, gridBagConstraints);
 
-        jTextField11.setText("jTextField11");
+        jTextField11.setColumns(8);
+        jTextField11.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 6;
@@ -316,7 +327,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         getContentPane().add(jTextField11, gridBagConstraints);
 
-        jTextField12.setText("jTextField12");
+        jTextField12.setColumns(8);
+        jTextField12.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 7;
