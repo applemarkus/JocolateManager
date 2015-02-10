@@ -15,10 +15,10 @@ public class ShoppingCartItem {
     private final String type;
     private final String size;
     private final String logo;
-    private Integer amount;
-    private Double price;
+    private int amount;
+    private double price;
 
-    public ShoppingCartItem(String name, String type, String size, String logo, Integer amount, Double price) {
+    public ShoppingCartItem(String name, String type, String size, String logo, int amount, double price) {
         this.name = name;
         this.type = type;
         this.size = size;
@@ -27,7 +27,7 @@ public class ShoppingCartItem {
         this.price = price;
     }
     
-    public ShoppingCartItem(String name, String type, String size, String logo, Integer amount) {
+    public ShoppingCartItem(String name, String type, String size, String logo, int amount) {
         this.name = name;
         this.type = type;
         this.size = size;
@@ -41,11 +41,11 @@ public class ShoppingCartItem {
         }
     }
 
-    public Integer getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -65,7 +65,7 @@ public class ShoppingCartItem {
         return logo;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
