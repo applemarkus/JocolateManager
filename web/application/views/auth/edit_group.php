@@ -1,20 +1,39 @@
-<h1><?php echo lang('edit_group_heading');?></h1>
-<p><?php echo lang('edit_group_subheading');?></p>
 
-<div id="infoMessage"><?php echo $message;?></div>
+<header id="head" class="secondary"></header>
 
-<?php echo form_open(current_url());?>
+<!-- container -->
+<div class="container">
 
-      <p>
-            <?php echo lang('edit_group_name_label', 'group_name');?> <br />
-            <?php echo form_input($group_name);?>
-      </p>
+        <!--<ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">About</li>
+        </ol>-->
 
-      <p>
-            <?php echo lang('edit_group_desc_label', 'description');?> <br />
-            <?php echo form_input($group_description);?>
-      </p>
+        <div class="row">
 
-      <p><?php echo form_submit('submit', lang('edit_group_submit_btn'));?></p>
+            <header class="page-header">
+                <h1 class="page-title">Edit Group</h1>
+            </header>
+            <p>Please enter the group information below.</p>
 
-<?php echo form_close();?>
+            <?php if($message != "") { ?>
+                <div class="alert alert-info" role="alert" id="infoMessage"><?php echo $message; ?></div>
+            <?php } ?>
+
+            <?php echo form_open(current_url());?>
+
+              <p>
+                <label for="group_name">Group Name:</label> <br />
+                <?php echo form_input($group_name);?>
+            </p>
+
+            <p>
+                <label for="description">Description:</label> <br />
+                <?php echo form_input($group_description);?>
+            </p>
+
+            <p><?php echo form_submit('submit', lang('edit_group_submit_btn'));?></p>
+
+        <?php echo form_close();?>
+    </div>
+</div>  <!-- /container -->

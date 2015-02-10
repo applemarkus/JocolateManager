@@ -1,66 +1,91 @@
-<h1><?php echo lang('edit_user_heading');?></h1>
-<p><?php echo lang('edit_user_subheading');?></p>
 
-<div id="infoMessage"><?php echo $message;?></div>
+<header id="head" class="secondary"></header>
 
-<?php echo form_open(uri_string());?>
+<!-- container -->
+<div class="container">
 
-      <p>
-            <?php echo lang('edit_user_fname_label', 'first_name');?> <br />
-            <?php echo form_input($first_name);?>
-      </p>
+    <!--<ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li class="active">About</li>
+    </ol>-->
 
-      <p>
-            <?php echo lang('edit_user_lname_label', 'last_name');?> <br />
-            <?php echo form_input($last_name);?>
-      </p>
+    <div class="row">
 
-      <p>
-            <?php echo lang('edit_user_company_label', 'company');?> <br />
-            <?php echo form_input($company);?>
-      </p>
+        <!-- Article main content -->
+        <header class="page-header">
+            <h1 class="page-title">Edit Users</h1>
+        </header>
 
-      <p>
-            <?php echo lang('edit_user_phone_label', 'phone');?> <br />
-            <?php echo form_input($phone);?>
-      </p>
+        <div class="alert alert-info" id="infoMessage2" role="alert">Please enter the user's information below.</div>
 
-      <p>
-            <?php echo lang('edit_user_password_label', 'password');?> <br />
-            <?php echo form_input($password);?>
-      </p>
+        <?php if ($message != "") { ?>
+            <div class="alert alert-info" role="alert" id="infoMessage"><?php echo $message; ?></div>
+        <?php } ?>
 
-      <p>
-            <?php echo lang('edit_user_password_confirm_label', 'password_confirm');?><br />
-            <?php echo form_input($password_confirm);?>
-      </p>
+        <?php echo form_open(uri_string()); ?>
 
-      <?php if ($this->ion_auth->is_admin()): ?>
+        <p>
+            <label for="first_name">First Name:</label> <br />
+            <?php echo form_input($first_name); ?>
+        </p>
 
-          <h3><?php echo lang('edit_user_groups_heading');?></h3>
-          <?php foreach ($groups as $group):?>
-              <label class="checkbox">
-              <?php
-                  $gID=$group['id'];
-                  $checked = null;
-                  $item = null;
-                  foreach($currentGroups as $grp) {
-                      if ($gID == $grp->id) {
-                          $checked= ' checked="checked"';
-                      break;
-                      }
-                  }
-              ?>
-              <input type="checkbox" name="groups[]" value="<?php echo $group['id'];?>"<?php echo $checked;?>>
-              <?php echo htmlspecialchars($group['name'],ENT_QUOTES,'UTF-8');?>
-              </label>
-          <?php endforeach?>
+        <p>
+            <label for="last_name">Last Name:</label> <br />
+            <?php echo form_input($last_name); ?>
+        </p>
 
-      <?php endif ?>
+        <p>
+            <label for="company">Company Name:</label> <br />
+            <?php echo form_input($company); ?>
+        </p>
 
-      <?php echo form_hidden('id', $user->id);?>
-      <?php echo form_hidden($csrf); ?>
+        <p>
+            <label for="phone">Phone:</label> <br />
+            <?php echo form_input($phone); ?>
+        </p>
 
-      <p><?php echo form_submit('submit', lang('edit_user_submit_btn'));?></p>
+        <p>
+            <label for="password">New Password: (For changing current Password)</label> <br />
+            <?php echo form_input($password); ?>
+        </p>
 
-<?php echo form_close();?>
+        <p>
+            <label for="password_confirm">Confirm New Password: (For changing current Password)</label><br />
+            <?php echo form_input($password_confirm); ?>
+        </p>
+
+        <?php if ($this->ion_auth->is_admin()): ?>
+
+            <header class="page-header">
+                <h3 class="page-title">Groups</h3>
+            </header>
+            <?php foreach ($groups as $group): ?>
+                <label class="checkbox">
+                    <?php
+                    $gID = $group['id'];
+                    $checked = null;
+                    $item = null;
+                    foreach ($currentGroups as $grp) {
+                        if ($gID == $grp->id) {
+                            $checked = ' checked="checked"';
+                            break;
+                        }
+                    }
+                    ?>
+                    <input type="checkbox" name="groups[]" value="<?php echo $group['id']; ?>"<?php echo $checked; ?>>
+                    <?php echo htmlspecialchars($group['name'], ENT_QUOTES, 'UTF-8'); ?>
+                </label>
+            <?php endforeach ?>
+
+        <?php endif ?>
+
+        <?php echo form_hidden('id', $user->id); ?>
+        <?php echo form_hidden($csrf); ?>
+
+        <p><?php echo form_submit('submit', lang('edit_user_submit_btn')); ?></p>
+
+        <?php echo form_close(); ?>
+        <!-- /Article -->
+
+    </div>
+</div>  <!-- /container -->
