@@ -1,5 +1,8 @@
 package com.jcorn.controller;
 
+import com.jcorn.helper.HTTPRequester;
+import com.jcorn.helper.WebApiLinks;
+
 /**
  * JocolateManager
  *
@@ -10,6 +13,7 @@ package com.jcorn.controller;
 public class LoginController {
 
     public String login(String username, String password) throws Exception {
-        return "";
+        String url = WebApiLinks.getLoginApiLink(username, password);
+        return HTTPRequester.getContentFromUrl(url);
     }
 }
