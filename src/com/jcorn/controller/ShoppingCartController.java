@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * JocolateManager
@@ -13,11 +14,11 @@ import java.io.IOException;
  * @version 1.0.0
  * @see http://petritzdesigns.com
  */
-public class ShoppingCarController {
+public class ShoppingCartController {
 
     private final String saveFile = "tmp/shopping_car.jdata";
 
-    public ShoppingCarController() {
+    public ShoppingCartController() {
     }
 
     public void moveToShoppingCart(ShoppingCartItem item) throws Exception {
@@ -31,7 +32,7 @@ public class ShoppingCarController {
             bw.flush();
         } catch (IOException ex) {
             System.err.println("Oh no... :( " + ex.getLocalizedMessage());
-            throw new Exception("I/O Error while writing to shopping car file.");
+            throw new Exception("I/O Error while writing to shopping car file");
         } finally {
             if (bw != null) {
                 try {
@@ -42,5 +43,9 @@ public class ShoppingCarController {
                 }
             }
         }
+    }
+    
+    public List<ShoppingCartItem> readAll() {
+        return null;
     }
 }

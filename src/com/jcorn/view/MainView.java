@@ -2,13 +2,14 @@ package com.jcorn.view;
 
 import com.jcorn.controller.JocolateController;
 import com.jcorn.controller.LoginController;
-import com.jcorn.controller.ShoppingCarController;
+import com.jcorn.controller.ShoppingCartController;
 import com.jcorn.controller.StatusController;
 import com.jcorn.helper.FileHelper;
 import com.jcorn.helper.Settings;
 import com.jcorn.helper.JM;
 import com.jcorn.model.JocolateModel;
 import com.jcorn.model.ShoppingCartItem;
+import com.jcorn.model.ShoppingCartModel;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -21,22 +22,26 @@ import javax.swing.JOptionPane;
  * @see http://petritzdesigns.com
  */
 public class MainView extends javax.swing.JFrame {
-
+    
     private StatusController status;
     private JocolateController jocolate;
-    private ShoppingCarController shoppingCar;
-
+    private ShoppingCartController shoppingCart;
+    
+    private ShoppingCartModel shoppingModel;
+    
     public MainView() {
         initComponents();
         setup();
     }
-
+    
     private void setup() {
         status = new StatusController(this);
         jocolate = new JocolateController();
-        shoppingCar = new ShoppingCarController();
+        shoppingCart = new ShoppingCartController();
+        
+        shoppingModel = new ShoppingCartModel();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -73,10 +78,10 @@ public class MainView extends javax.swing.JFrame {
         tbMain = new javax.swing.JToolBar();
         btPayItem = new javax.swing.JButton();
         fillerCart = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-        btClearAll = new javax.swing.JButton();
-        btClearSelected = new javax.swing.JButton();
-        spShoppingCart = new javax.swing.JScrollPane();
-        tableShoppingCart = new javax.swing.JTable();
+        btDeleteAll = new javax.swing.JButton();
+        btDeleteSelected = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listShoppingCart = new javax.swing.JList();
         paBill = new javax.swing.JPanel();
         spBill = new javax.swing.JScrollPane();
         epBillView = new javax.swing.JEditorPane();
@@ -335,49 +340,28 @@ public class MainView extends javax.swing.JFrame {
         tbMain.add(btPayItem);
         tbMain.add(fillerCart);
 
-        btClearAll.setText("Clear all");
-        btClearAll.setFocusable(false);
-        btClearAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btClearAll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMain.add(btClearAll);
+        btDeleteAll.setText("Delete All");
+        btDeleteAll.setFocusable(false);
+        btDeleteAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btDeleteAll.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMain.add(btDeleteAll);
 
-        btClearSelected.setText("Clear selected");
-        btClearSelected.setFocusable(false);
-        btClearSelected.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btClearSelected.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbMain.add(btClearSelected);
+        btDeleteSelected.setText("Delete Selected");
+        btDeleteSelected.setFocusable(false);
+        btDeleteSelected.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btDeleteSelected.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbMain.add(btDeleteSelected);
 
         paCart.add(tbMain, java.awt.BorderLayout.PAGE_END);
 
-        tableShoppingCart.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Name", "Type", "Size", "Logo", "Amount"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
+        listShoppingCart.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
-        spShoppingCart.setViewportView(tableShoppingCart);
+        jScrollPane3.setViewportView(listShoppingCart);
 
-        paCart.add(spShoppingCart, java.awt.BorderLayout.CENTER);
+        paCart.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
         tabBar.addTab("Shopping Cart", paCart);
 
@@ -515,15 +499,15 @@ public class MainView extends javax.swing.JFrame {
         try {
             String username = tfEmail.getText();
             String password = Arrays.toString(tfPassword.getPassword());
-
+            
             if (username.isEmpty()) {
                 throw new Exception("Username missing");
             }
-
+            
             if (password.isEmpty()) {
                 throw new Exception("Password missing");
             }
-
+            
             loginMessage("Submitting...");
             LoginController lc = new LoginController();
             String error = lc.login(username, password);
@@ -532,7 +516,7 @@ public class MainView extends javax.swing.JFrame {
             } else {
                 loginMessage("Error: " + error);
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
         }
@@ -553,7 +537,7 @@ public class MainView extends javax.swing.JFrame {
             Integer amount = (Integer) spinnerAmount.getValue();
             JocolateModel joc = new JocolateModel(type, size, logo, text, amount);
             ShoppingCartItem item = joc.toShoppingCartItem();
-            shoppingCar.moveToShoppingCart(item);
+            shoppingCart.moveToShoppingCart(item);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             JM.debug(ex.getMessage());
@@ -600,14 +584,27 @@ public class MainView extends javax.swing.JFrame {
                 spinnerAmount.setValue(1);
                 calcPrice();
                 break;
+
+            //Shopping Cart shown
+            case 2:
+                listShoppingCart.setModel(shoppingModel);
+                {
+                    try {
+                        shoppingModel.readAll(shoppingCart);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, ex.getMessage());
+                        JM.debug(ex.getMessage());
+                    }
+                }
+                break;
         }
     }//GEN-LAST:event_tabBarStateChanged
-
+    
     private void loginMessage(String text) {
         status.set(text);
         lbLoginStatus.setText(text);
     }
-
+    
     private void calcPrice() {
         String type = (String) cbType.getSelectedItem();
         String size = (String) cbSize.getSelectedItem();
@@ -619,8 +616,8 @@ public class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btClearAll;
-    private javax.swing.JButton btClearSelected;
+    private javax.swing.JButton btDeleteAll;
+    private javax.swing.JButton btDeleteSelected;
     private javax.swing.JButton btLogin;
     private javax.swing.JButton btPayItem;
     private javax.swing.JButton btToShoppingCart;
@@ -638,6 +635,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lbAmount;
     private javax.swing.JLabel lbCopyright;
@@ -652,6 +650,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel lbTitle;
     private javax.swing.JLabel lbType;
     private javax.swing.JList liBill;
+    private javax.swing.JList listShoppingCart;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenu meFile;
     private javax.swing.JMenuItem miQuit;
@@ -666,10 +665,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel pnStatus;
     private javax.swing.JScrollPane spBill;
     private javax.swing.JScrollPane spBillList;
-    private javax.swing.JScrollPane spShoppingCart;
     private javax.swing.JSpinner spinnerAmount;
     private javax.swing.JTabbedPane tabBar;
-    private javax.swing.JTable tableShoppingCart;
     private javax.swing.JToolBar tbMain;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JPasswordField tfPassword;
