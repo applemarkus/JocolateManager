@@ -13,9 +13,9 @@ public class JocolateModel {
     private final String size;
     private final String logo;
     private final String text;
-    private final Integer amount;
+    private final int amount;
 
-    public JocolateModel(String type, String size, String logo, String text, Integer amount) {
+    public JocolateModel(String type, String size, String logo, String text, int amount) {
         this.type = type;
         this.size = size;
         this.logo = logo;
@@ -23,7 +23,7 @@ public class JocolateModel {
         this.amount = amount;
     }
     
-    public JocolateModel(String type, String size, String logo, Integer amount) {
+    public JocolateModel(String type, String size, String logo, int amount) {
         this.type = type;
         this.size = size;
         this.logo = logo;
@@ -47,7 +47,7 @@ public class JocolateModel {
         return text;
     }
 
-    public Integer getAmount() {
+    public int getAmount() {
         return amount;
     }
 
