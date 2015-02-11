@@ -1,6 +1,5 @@
 package com.jcorn.model;
 
-import com.jcorn.controller.JocolateController;
 import com.jcorn.controller.ShoppingCartController;
 import java.util.Iterator;
 import java.util.LinkedList;
