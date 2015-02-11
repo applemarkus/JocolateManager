@@ -31,8 +31,8 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
     
     public void remove(int index) throws Exception {
         if(index > 0) {
-            shoppingCart.remove(index);
             super.fireIntervalRemoved(this, index, index);
+            shoppingCart.remove(index);
         }
         writeOut();
     }

@@ -713,6 +713,7 @@ public class MainView extends javax.swing.JFrame {
         try {
             shoppingModel.clearAll();
             shoppingModel.writeOut();
+            shoppingUpdate();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             JM.debug(ex.getMessage());
