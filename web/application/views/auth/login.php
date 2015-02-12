@@ -1,62 +1,43 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+$page = "Login";
 ?>
 
-<header id="head" class="secondary"></header>
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li class="active"><?php echo $page; ?></li>
+    </ol>
+</div><!--/.row-->
 
-<!-- container -->
-<div class="container">
-
-    <div class="row">
-
-        <!-- Article main content -->
-        <article class="col-xs-12 maincontent">
-            <header class="page-header">
-                <h1 class="page-title">Sign in</h1>
-            </header>
-            <br><br>
-            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h3 class="thin text-center">Sign in</h3>
-                        <p class="text-center text-muted">Login or <a href="<?php echo base_url(); ?>index.php/auth/create_user">Register</a> now and enjoy great benefits!</p>
-                        <hr>
-                        <?php if($message != "") { ?>
-                            <div class="alert alert-info" role="alert" id="infoMessage"><?php echo $message; ?></div>
-                        <?php } ?>
-                        <?php echo form_open("auth/login");?>
-                            <div class="top-margin">
-                                <label>Email <span class="text-danger">*</span></label>
-                                <?php echo form_input($identity);?>
-                            </div>
-                            <div class="top-margin">
-                                <label>Password <span class="text-danger">*</span></label>
-                                <?php echo form_input($password);?>
-                            </div>
-                        <br>
-                            <div>
-                                <label for="remember">Remember Me: </label>    
-                                <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
-                            </div>
-                            <hr>
-
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <b><a href="forgot_password">Forgot password?</a></b>
-                                </div>
-                                <div class="col-lg-4 text-right">
-                                    <button class="btn btn-custom" type="submit" name="submit" value="Login">Sign in</button>
-                                </div>
-                            </div>
-                        <?php echo form_close();?>
-                    </div>
-                </div>
-
-            </div>
-
-        </article>
-        <!-- /Article -->
-
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header"><?php echo $page; ?></h1>
     </div>
-    <br><br><br><br>
-</div>	<!-- /container -->
+</div><!--/.row-->
+
+<div class="login-panel panel panel-default">
+    <div class="panel-heading">Please Log in</div>
+    <div class="panel-body">
+        <?php if ($message != "") { ?>
+            <div class="alert alert-info" role="alert" id="infoMessage"><?php echo $message; ?></div>
+        <?php } ?>
+        <?php echo form_open("auth/login"); ?>
+        <fieldset>
+            <div class="form-group">
+                <?php echo form_input($identity, '', 'placeholder="Email"'); ?>
+            </div>
+            <div class="form-group">
+                <?php echo form_input($password, '', 'placeholder="Password"'); ?>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"'); ?> Remember Me
+                </label>
+            </div>
+            <a href="index.html" class="btn btn-primary">Login</a>
+        </fieldset>
+        </form>
+    </div>
+</div>
