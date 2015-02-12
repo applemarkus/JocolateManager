@@ -32,16 +32,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#"><span>Jocolate</span>Manager</a>
+                    <?php
+                    if($this->ion_auth->logged_in()) {
+                    ?>
                     <ul class="user-menu">
                         <li class="dropdown pull-right">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?php
+                                $user = $this->ion_auth->user()->row();
+                                echo $user->username;
+                            ?> <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                                <li><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-user"></span> Dashboard</a></li>
+                                <?php 
+                                if($this->ion_auth->is_admin()) {
+                                ?>
+                                <li><a href="<?php echo base_url(); ?>/auth/"><span class="glyphicon glyphicon-cog"></span> Admin</a></li>
+                                <?php
+                                }
+                                ?>
+                                <li><a href="<?php echo base_url(); ?>/auth/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                             </ul>
                         </li>
                     </ul>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div><!-- /.container-fluid -->
         </nav>
@@ -84,6 +99,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li role="presentation" class="divider"></li>
                 <li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
             </ul>
-            <div class="attribution">Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a></div>
         </div><!--/.sidebar-->
         <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">	
