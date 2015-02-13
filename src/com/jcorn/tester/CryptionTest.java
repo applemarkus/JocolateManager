@@ -16,8 +16,7 @@ public class CryptionTest {
     public static void main(String[] args) {
         Crypt crypt = new Crypt();
         try {
-            System.out.println(Crypt.bytesToHex(crypt.encrypt("admin@me.com")));
-            System.out.println(Crypt.bytesToHex(crypt.encrypt("hack4fun")));
+            System.out.println(Crypt.bytesToHex(crypt.encrypt("Yololo\n\n\nahfhajksfhkjashf--------ajlsdfh kjsdhfkjalsdh kljfsad gYololo\n\n\nahfhajksfhkjashf--------ajlsdfh kjsdhfkjalsdh kljfsad gYololo\n\n\nahfhajksfhkjashf--------ajlsdfh kjsdhfkjalsdh kljfsad gYololo\n\n\nahfhajksfhkjashf--------ajlsdfh kjsdhfkjalsdh kljfsad gYololo\n\n\nahfhajksfhkjashf--------ajlsdfh kjsdhfkjalsdh kljfsad gYololo\n\n\nahfhajksfhkjashf--------ajlsdfh kjsdhfkjalsdh kljfsad gYololo\n\n\nahfhajksfhkjashf--------ajlsdfh kjsdhfkjalsdh kljfsad gYololo\n\n\nahfhajksfhkjashf--------ajlsdfh kjsdhfkjalsdh kljfsad gYololo\n\n\nahfhajksfhkjashf--------ajlsdfh kjsdhfkjalsdh kljfsad g")));
         } catch (Exception ex) {
             Logger.getLogger(CryptionTest.class.getName()).log(Level.SEVERE, null, ex);
         }

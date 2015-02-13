@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <p>Everything in [ ] is encrypted. <a href="<?php echo base_url(); ?>index.php/api/login/?email=990f04d9c5327481a7af01111bdf32f0&pwd=b0e08a6df167ab1f243caa5eb1b7f2ac">Simple Login</a></p>
     <hr>
     <a href="#lo-in-out">Login/Logout/Register</a>
+    <a href="#in-bill">Incoming Bill</a>
     <hr>
     <section id="lo-in-out">
         <h3>Login/Logout/Register</h3>
@@ -23,5 +24,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <p>And you can even logout:</p>
         <code>/api/logout</code>
     </section>
-    <section id=""></section>
+    <section id="in-bill">
+        <h3>Incoming Bill</h3>
+        
+        <p>Store bill in database</p>
+        <code>/api/incomingBill/?email=[email]&pwd=[password]&bill=[bill]</code>
+    </section>
 </div>

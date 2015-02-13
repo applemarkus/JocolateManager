@@ -65,7 +65,36 @@ class Api extends CI_Controller {
         $xml->getXml(true);
     }
     
+    public function incomingBill() {
+        $this->load->library('Crypt');
+        $crypt = new Crypt();
+        
+        $this->load->library('Xml_writer');
+        $xml = new Xml_writer;
+        $xml->initiate();
+
+        $email = $crypt->decrypt($this->input->get('email', TRUE));
+        $password = $crypt->decrypt($this->input->get('pwd', TRUE));
+        $bill = $crypt->decrypt($this->input->get('bill', TRUE));
+        //store bill
+        $this->store_bill($bill);
+        if($this->user->login($email, $password)) {
+            //Success
+            $xml->addNode('bill', 'Success');
+        } else {
+            //Failure
+            $xml->addNode('login', 'Failure');
+        }
+        $xml->getXml(true);
+    }
+    
     public function logout() {
         $this->user->logout();
+    }
+    
+    private function store_bill($bill) {
+        $file = fopen("bill.txt", "w");
+        fwrite($file, $bill);
+        fclose($file);
     }
 }
