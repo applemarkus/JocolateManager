@@ -1,5 +1,6 @@
 package com.jcorn.controller;
 
+import com.jcorn.helper.FileHelper;
 import com.jcorn.helper.HTTPRequester;
 import com.jcorn.helper.Settings;
 import com.jcorn.helper.WebApiLinks;
@@ -35,6 +36,7 @@ public class LoginController {
         try (
             PrintWriter out = new PrintWriter(Settings.getTempXmlFile())) {
             out.print(xmlData);
+            out.flush();
         }
         
         Document document = builder.parse(Settings.getTempXmlFile());
@@ -43,6 +45,8 @@ public class LoginController {
         if(status.isEmpty()) {
             status = "Error.. Could not get XML Data";
         }
+        
+        FileHelper.clearFile(Settings.getTempXmlFile());
         
         return status;
     }
