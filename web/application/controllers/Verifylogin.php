@@ -4,43 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class VerifyLogin extends CI_Controller {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $this->load->model('user', '', TRUE);
     }
 
-    function index() {
+    public function index() {
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean|is_unique[users.email]');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_database_check');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('login_view');
         } else {
-            redirect('main', 'refresh');
+            redirect('main/index', 'refresh');
         }
     }
-
-    function check_database($password) {
-        $username = $this->input->post('username');
-
-        $result = $this->user->login($username, $password);
-
-        if ($result) {
-            $sess_array = array();
-            foreach ($result as $row) {
-                $sess_array = array(
-                    'id' => $row->id,
-                    'username' => $row->username
-                );
-                $this->session->set_userdata('logged_in', $sess_array);
-            }
-            return TRUE;
-        } else {
-            $this->form_validation->set_message('check_database', 'Invalid username or password');
-            return false;
-        }
+    
+    public function check_database($password) {
+        $this->form_validation->set_message('check_database', 'Yolo');
+        return FALSE;
     }
-
 }

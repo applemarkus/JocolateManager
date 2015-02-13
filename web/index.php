@@ -12,7 +12,7 @@
  * @version 1.0.0
  * @see http://petritzdesigns.com
  */
-define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+define('ENVIRONMENT', 'development');
 
 switch (ENVIRONMENT) {
     case 'development':
