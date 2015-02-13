@@ -20,4 +20,4 @@ $autoload['drivers'] = array();
 $autoload['helper'] = array('url', 'form');
 $autoload['config'] = array();
 $autoload['language'] = array();
-$autoload['model'] = array();
+$autoload['model'] = array('user');

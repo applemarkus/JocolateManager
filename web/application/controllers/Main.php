@@ -22,11 +22,26 @@ class Main extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('home_view');
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+            $data['username'] = $session_data['username'];
+            $this->load->template('home_view', $data);
+        }
+        else {
+            redirect('main/login', 'refresh');
+        }
     }
-    
+
     public function login() {
-        $this->load->view('login_view');
+        $this->load->template('login_view');
+    }
+
+    public function logout() {
+        $this->user->logout();
+        redirect('main/index', 'refresh');
     }
     
+    public function register($username, $password) {
+        $this->user->register($username, $password);
+    }
 }
