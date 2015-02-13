@@ -70,7 +70,7 @@ $config['composer_autoload'] = FALSE;
 | Allowed URL Characters
 |--------------------------------------------------------------------------
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-@';
 
 
 /*
@@ -182,7 +182,7 @@ $config['standardize_newlines'] = FALSE;
 | Global XSS Filtering
 |--------------------------------------------------------------------------
 */
-$config['global_xss_filtering'] = FALSE;
+$config['global_xss_filtering'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

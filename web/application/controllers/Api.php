@@ -22,6 +22,50 @@ class Api extends CI_Controller {
     }
     
     public function index() {
-        $this->load->view('welcome_message');
+        $this->load->template('welcome_message');
+    }
+    
+    public function login() {
+        $this->load->library('MCrypt');
+        $crypt = new MCrypt();
+        
+        $this->load->library('Xml_writer');
+        $xml = new Xml_writer;
+        $xml->initiate();
+
+        $email = $crypt->decrypt($this->input->get('email', TRUE));
+        $password = $crypt->decrypt($this->input->get('pwd', TRUE));
+        if($this->user->login($email, $password)) {
+            //Success
+            $xml->addNode('login', 'Success');
+        } else {
+            //Failure
+            $xml->addNode('login', 'Failure');
+        }
+        $xml->getXml(true);
+    }
+    
+    public function register() {
+        $this->load->library('MCrypt');
+        $crypt = new MCrypt();
+        
+        $this->load->library('Xml_writer');
+        $xml = new Xml_writer;
+        $xml->initiate();
+        
+        $email = $crypt->decrypt($this->input->get('email', TRUE));
+        $password = $crypt->decrypt($this->input->get('pwd', TRUE));
+        if($this->user->register($email, $password)) {
+            //Success
+            $xml->addNode('register', 'Success');
+        } else {
+            //Failure
+            $xml->addNode('register', 'Failure');
+        }
+        $xml->getXml(true);
+    }
+    
+    public function logout() {
+        $this->user->logout();
     }
 }
