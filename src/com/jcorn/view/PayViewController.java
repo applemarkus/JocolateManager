@@ -361,7 +361,9 @@ public class PayViewController extends javax.swing.JFrame {
     private void onClose(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClose
         if(checkInformation())
         {
-            JOptionPane.showMessageDialog(this, "PAID");
+            JOptionPane.showMessageDialog(this, "Successfully paid.");
+            
+            //make bill and send to webs
         }
         else
         {
