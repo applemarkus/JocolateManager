@@ -26,8 +26,8 @@ class Api extends CI_Controller {
     }
     
     public function login() {
-        $this->load->library('MCrypt');
-        $crypt = new MCrypt();
+        $this->load->library('Crypt');
+        $crypt = new Crypt();
         
         $this->load->library('Xml_writer');
         $xml = new Xml_writer;
@@ -46,8 +46,8 @@ class Api extends CI_Controller {
     }
     
     public function register() {
-        $this->load->library('MCrypt');
-        $crypt = new MCrypt();
+        $this->load->library('Crypt');
+        $crypt = new Crypt();
         
         $this->load->library('Xml_writer');
         $xml = new Xml_writer;

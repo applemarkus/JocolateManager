@@ -1,13 +1,12 @@
 <?php
 
-class MCrypt
-{
+class Crypt {
+
     private $iv = '3vb8rgy9n5rawz8p';
     private $key = '1i6ovor79yg1bhak';
 
-
-    function __construct()
-    {
+    function __construct() {
+        
     }
 
     /**
@@ -15,8 +14,7 @@ class MCrypt
      * @param bool $isBinary whether to encrypt as binary or not. Default is: false
      * @return string Encrypted data
      */
-    function encrypt($str, $isBinary = false)
-    {
+    function encrypt($str, $isBinary = false) {
         $iv = $this->iv;
         $str = $isBinary ? $str : utf8_decode($str);
 
@@ -36,8 +34,7 @@ class MCrypt
      * @param bool $isBinary whether to decrypt as binary or not. Default is: false
      * @return string Decrypted data
      */
-    function decrypt($code, $isBinary = false)
-    {
+    function decrypt($code, $isBinary = false) {
         $code = $isBinary ? $code : $this->hex2bin($code);
         $iv = $this->iv;
 
@@ -52,8 +49,7 @@ class MCrypt
         return $isBinary ? trim($decrypted) : utf8_encode(trim($decrypted));
     }
 
-    protected function hex2bin($hexdata)
-    {
+    protected function hex2bin($hexdata) {
         $bindata = '';
 
         for ($i = 0; $i < strlen($hexdata); $i += 2) {

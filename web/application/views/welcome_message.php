@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="body">
     <p>Jocolate Manger Web API</p>
     <h2>Documentation</h2>
+    <p>Everything in [ ] is encrypted. <a href="<?php echo base_url(); ?>index.php/api/login/?email=990f04d9c5327481a7af01111bdf32f0&pwd=b0e08a6df167ab1f243caa5eb1b7f2ac">Simple Login</a></p>
     <hr>
     <a href="#lo-in-out">Login/Logout/Register</a>
     <hr>
