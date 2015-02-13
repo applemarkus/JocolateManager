@@ -10,6 +10,7 @@ package com.jcorn.helper;
 public class Settings {
     
     public static final String assetsPath = "src/com/jcorn/assets/";
+    public static final String tempXmlFile = "tmp/xml.jdata";
     public static final String saveFile = "tmp/shopping_cart.jdata";
     public static final String splitChar = "|";
     public final static boolean isDebug = true;
@@ -20,6 +21,10 @@ public class Settings {
 
     public static String getSaveFile() {
         return saveFile;
+    }
+
+    public static String getTempXmlFile() {
+        return tempXmlFile;
     }
 
     public static String getSplitChar() {

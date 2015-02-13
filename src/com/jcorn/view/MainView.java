@@ -13,7 +13,6 @@ import com.jcorn.model.ShoppingCartModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.Arrays;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -51,13 +50,6 @@ public class MainView extends javax.swing.JFrame {
         tabBar.setEnabledAt(3, false);
         tabBar.setEnabledAt(4, false);
         tabBar.setEnabledAt(5, false);
-
-        //if they login do this:
-        tabBar.setEnabledAt(1, true);
-        tabBar.setEnabledAt(2, true);
-        tabBar.setEnabledAt(3, true);
-        tabBar.setEnabledAt(4, true);
-        tabBar.setEnabledAt(5, true);
     }
 
     @SuppressWarnings("unchecked")
@@ -561,7 +553,7 @@ public class MainView extends javax.swing.JFrame {
     private void onLoginClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onLoginClicked
         try {
             String username = tfEmail.getText();
-            String password = Arrays.toString(tfPassword.getPassword());
+            String password = String.copyValueOf(tfPassword.getPassword());
 
             if (username.isEmpty()) {
                 throw new Exception("Username missing");
@@ -574,9 +566,15 @@ public class MainView extends javax.swing.JFrame {
             loginMessage("Submitting...");
             LoginController lc = new LoginController();
             String error = lc.login(username, password);
-            if (error.isEmpty()) {
+            if (error.equals("Success")) {
                 loginMessage("Logged in as " + username);
-                //see above
+                
+                //enable tabs
+                tabBar.setEnabledAt(1, true);
+                tabBar.setEnabledAt(2, true);
+                tabBar.setEnabledAt(3, true);
+                tabBar.setEnabledAt(4, true);
+                tabBar.setEnabledAt(5, true);
             } else {
                 loginMessage("Error: " + error);
             }
