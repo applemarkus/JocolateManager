@@ -1,6 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+//session_start();
 
 /**
  * JocolateManager
@@ -22,6 +23,24 @@ class Main extends CI_Controller {
     }
     
     public function index() {
-        $this->load->view('welcome_message');
+        if($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+            $data['username'] = $session_data['username'];
+            $this->load->view('home_view', $data);
+        }
+        else {
+            redirect('main/login', 'refresh');
+        }
+    }
+    
+    public function login() {
+        $this->load->helper(array('form'));
+        $this->load->view('login_view');
+    }
+    
+    public function logout() {
+        $this->session->unset_userdata('logged_in');
+        session_destroy();
+        redirect('main', 'refresh');
     }
 }

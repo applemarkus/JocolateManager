@@ -145,7 +145,7 @@ $config['cache_query_string'] = FALSE;
 | Encryption Key
 |--------------------------------------------------------------------------
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'XiI4FPRgFhJGTpgDku3TjgXHnHZBk0ab';
 
 /*
 |--------------------------------------------------------------------------
