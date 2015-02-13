@@ -104,9 +104,10 @@ class User extends CI_Model {
                 return false;
             }
 
-            $this->session->sess_destroy();
+            //$this->session->sess_destroy();
             //$this->session->sess_create();
-            session_start();
+            //session_start();
+            
             $this->db->simple_query('UPDATE ' . $this->user_table . ' SET user_last_login = "' . date('c') . '" WHERE user_id = ' . $user_data['user_id']);
 
             unset($user_data['user_pass']);
@@ -121,7 +122,6 @@ class User extends CI_Model {
     }
 
     function logout() {
-        $this->session->unset_userdata('logged_in');
         $this->session->sess_destroy();
     }
 
