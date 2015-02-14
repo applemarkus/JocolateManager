@@ -3,7 +3,6 @@ package com.jcorn.view;
 import com.jcorn.model.ShoppingCartItem;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  * JocolateManager
@@ -57,7 +56,7 @@ public class PayViewController extends javax.swing.JFrame {
         tfCountry = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lbInfo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lbPrice = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -65,11 +64,8 @@ public class PayViewController extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Pay");
         setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(742, 498));
         setMinimumSize(new java.awt.Dimension(742, 498));
-        setPreferredSize(new java.awt.Dimension(742, 498));
         setResizable(false);
-        setSize(new java.awt.Dimension(742, 498));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         btPay.setText("Pay & Finish");
@@ -119,6 +115,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(jLabel3, gridBagConstraints);
 
         tfName.setColumns(15);
+        tfName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfNameKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -184,6 +185,11 @@ public class PayViewController extends javax.swing.JFrame {
 
         tfFirstName.setColumns(15);
         tfFirstName.setText(" ");
+        tfFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfFirstNameKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -192,6 +198,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(tfFirstName, gridBagConstraints);
 
         tfEmail.setColumns(15);
+        tfEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfEmailKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -200,6 +211,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(tfEmail, gridBagConstraints);
 
         tfPhone.setColumns(15);
+        tfPhone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfPhoneKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
@@ -208,6 +224,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(tfPhone, gridBagConstraints);
 
         tfStreet.setColumns(15);
+        tfStreet.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfStreetKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -216,6 +237,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(tfStreet, gridBagConstraints);
 
         tfStreetnumber.setColumns(15);
+        tfStreetnumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfStreetnumberKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -224,6 +250,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(tfStreetnumber, gridBagConstraints);
 
         tfZipCode.setColumns(15);
+        tfZipCode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfZipCodeKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
@@ -232,6 +263,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(tfZipCode, gridBagConstraints);
 
         tfCity.setColumns(15);
+        tfCity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfCityKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 11;
@@ -285,6 +321,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(jLabel15, gridBagConstraints);
 
         tfCardNumber.setColumns(15);
+        tfCardNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfCardNumberKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
@@ -294,6 +335,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(tfCardNumber, gridBagConstraints);
 
         tfExpires.setColumns(15);
+        tfExpires.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfExpiresKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
@@ -303,6 +349,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(tfExpires, gridBagConstraints);
 
         tfSecurityCode.setColumns(15);
+        tfSecurityCode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfSecurityCodeKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 6;
@@ -312,6 +363,11 @@ public class PayViewController extends javax.swing.JFrame {
         getContentPane().add(tfSecurityCode, gridBagConstraints);
 
         tfCountry.setColumns(15);
+        tfCountry.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfCountryKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 12;
@@ -340,7 +396,7 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(2, 10, 2, 5);
         getContentPane().add(jLabel17, gridBagConstraints);
 
-        jLabel18.setText("Bla blah is missing...");
+        lbInfo.setText("Enter Information");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 9;
@@ -348,7 +404,7 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.insets = new java.awt.Insets(2, 8, 2, 2);
-        getContentPane().add(jLabel18, gridBagConstraints);
+        getContentPane().add(lbInfo, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -381,15 +437,10 @@ public class PayViewController extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean isNotEmpty(JTextField... textFields) {
-        for (JTextField textField : textFields) {
-            if (textField.getText().isEmpty()) {
-                return false;
-            }
-        }
-        return true;
+    private void check() {
+        
     }
-
+    
     public boolean isPaid() {
         return paid;
     }
@@ -403,7 +454,7 @@ public class PayViewController extends javax.swing.JFrame {
     }
 
     private void onPay(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onPay
-        if (checkInformation()) {
+        if (lbInfo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Successfully paid.");
             paid = true;
             //tell mainview that is has been paid
@@ -418,11 +469,53 @@ public class PayViewController extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_onCancel
 
-    private boolean checkInformation() {
-        return isNotEmpty(tfName, tfFirstName, tfEmail, tfStreet, tfStreetnumber,
-                tfZipCode, tfCity, tfCountry, tfCardNumber,
-                tfExpires, tfSecurityCode);
-    }
+    private void tfNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNameKeyReleased
+        check();
+    }//GEN-LAST:event_tfNameKeyReleased
+
+    private void tfFirstNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFirstNameKeyReleased
+        check();
+    }//GEN-LAST:event_tfFirstNameKeyReleased
+
+    private void tfEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfEmailKeyReleased
+        check();
+    }//GEN-LAST:event_tfEmailKeyReleased
+
+    private void tfPhoneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPhoneKeyReleased
+        check();
+    }//GEN-LAST:event_tfPhoneKeyReleased
+
+    private void tfStreetKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfStreetKeyReleased
+        check();
+    }//GEN-LAST:event_tfStreetKeyReleased
+
+    private void tfStreetnumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfStreetnumberKeyReleased
+        check();
+    }//GEN-LAST:event_tfStreetnumberKeyReleased
+
+    private void tfZipCodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfZipCodeKeyReleased
+        check();
+    }//GEN-LAST:event_tfZipCodeKeyReleased
+
+    private void tfCityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCityKeyReleased
+        check();
+    }//GEN-LAST:event_tfCityKeyReleased
+
+    private void tfCountryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCountryKeyReleased
+        check();
+    }//GEN-LAST:event_tfCountryKeyReleased
+
+    private void tfCardNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCardNumberKeyReleased
+        check();
+    }//GEN-LAST:event_tfCardNumberKeyReleased
+
+    private void tfExpiresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfExpiresKeyReleased
+        check();
+    }//GEN-LAST:event_tfExpiresKeyReleased
+
+    private void tfSecurityCodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSecurityCodeKeyReleased
+        check();
+    }//GEN-LAST:event_tfSecurityCodeKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPay;
@@ -436,7 +529,6 @@ public class PayViewController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -446,6 +538,7 @@ public class PayViewController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbInfo;
     private javax.swing.JLabel lbPrice;
     private javax.swing.JProgressBar pbProgress;
     private javax.swing.JTextField tfCardNumber;
