@@ -1,7 +1,12 @@
 package com.jcorn.view;
 
+import com.jcorn.helper.JM;
+import com.jcorn.model.BillGenerator;
+import com.jcorn.model.BillingDetails;
 import com.jcorn.model.ShoppingCartItem;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -15,6 +20,7 @@ import javax.swing.JTextField;
 public class PayViewController extends javax.swing.JFrame {
     
     private boolean paid;
+    private List<ShoppingCartItem> list;
     
     public PayViewController() {
         initComponents();
@@ -506,20 +512,45 @@ public class PayViewController extends javax.swing.JFrame {
     }
     
     public void setShoppingCartList(List<ShoppingCartItem> list) {
-        //list for making bill xml markup
+        this.list = list;
     }
     
     public void setPrice(double price) {
         lbPrice.setText(String.format("Price: € %.2f", price));
+    }
+    
+    private void makeBill() throws Exception {
+        String name = tfName.getText();
+        String firstName = tfFirstName.getText();
+        String email = tfEmail.getText();
+        String phone = tfPhone.getText();
+        String street = tfStreet.getText();
+        String streetNumber = tfStreetnumber.getText();
+        String zipCode = tfZipCode.getText();
+        String city = tfCity.getText();
+        String country = tfCountry.getText();
+        String cardNumber = tfCardNumber.getText();
+        String expires = tfExpires.getText();
+        String securityCode = tfSecurityCode.getText();
+        
+        BillingDetails billingDetails = new BillingDetails(name, firstName, email, phone, street, streetNumber, zipCode, city, country, cardNumber, expires, securityCode);
+        BillGenerator gen = new BillGenerator(billingDetails, list);
+        gen.createXml();
+        JOptionPane.showMessageDialog(this, "Uploading to Server... This can take a moment.");
+        gen.sendToWebServer();
     }
 
     private void onPay(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onPay
         if (lbInfo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Successfully paid.");
             paid = true;
-            //tell mainview that is has been paid
             this.setVisible(false);
-            //make bill and send to webs
+            try {
+                makeBill();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+                JM.debug(ex.getMessage());
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Please provide all information with the star");
         }

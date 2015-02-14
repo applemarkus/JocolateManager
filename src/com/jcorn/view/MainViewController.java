@@ -10,6 +10,7 @@ import com.jcorn.helper.JM;
 import com.jcorn.model.JocolateModel;
 import com.jcorn.model.ShoppingCartItem;
 import com.jcorn.model.ShoppingCartModel;
+import com.jcorn.model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -56,12 +57,12 @@ public class MainViewController extends javax.swing.JFrame {
                 checkIfPaid();
             }
         });
-        
+
         editVc = new EditItemViewController(status, shoppingModel);
         editVc.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentHidden(ComponentEvent e) {
-                if(editVc.isHasChanged()) {
+                if (editVc.isHasChanged()) {
                     shoppingUpdate();
                 }
             }
@@ -94,11 +95,13 @@ public class MainViewController extends javax.swing.JFrame {
 
     private void didLogin(boolean login) {
         if (login) {
+            Settings.setCurrentUser(new User(tfEmail.getText(), String.copyValueOf(tfPassword.getPassword())));
             enableTabs();
             btLogin.setText("Logout");
             tfEmail.setEnabled(false);
             tfPassword.setEnabled(false);
         } else {
+            Settings.setCurrentUser(null);
             disableTabs();
             btLogin.setText("Login");
             tfEmail.setEnabled(true);
@@ -792,9 +795,9 @@ public class MainViewController extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void checkIfPaid() {
-        if(pvw.isPaid()) {
+        if (pvw.isPaid()) {
             //is paid
             shoppingDeleteAll();
             status.set("Successfully paid.");

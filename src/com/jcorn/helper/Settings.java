@@ -1,5 +1,7 @@
 package com.jcorn.helper;
 
+import com.jcorn.model.User;
+
 /**
  * JocolateManager
  * 
@@ -15,6 +17,8 @@ public class Settings {
     public static final String splitChar = "|";
     public final static boolean isDebug = true;
     
+    public static User currentUser;
+    
     public static String getAssetPath(String asset) {
         return assetsPath + asset;
     }
@@ -29,5 +33,9 @@ public class Settings {
 
     public static String getSplitChar() {
         return splitChar;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        Settings.currentUser = currentUser;
     }
 }
