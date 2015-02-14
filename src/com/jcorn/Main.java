@@ -1,6 +1,9 @@
 package com.jcorn;
 
-import com.jcorn.view.MainView;
+import com.jcorn.helper.JM;
+import com.jcorn.view.MainViewController;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * JocolateManager
@@ -12,8 +15,13 @@ import com.jcorn.view.MainView;
 public class Main {
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            JM.debug(ex.getMessage());
+        }
         java.awt.EventQueue.invokeLater(() -> {
-            MainView mv = new MainView();
+            MainViewController mv = new MainViewController();
             mv.setVisible(true);
         });
     }

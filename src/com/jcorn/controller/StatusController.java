@@ -1,6 +1,6 @@
 package com.jcorn.controller;
 
-import com.jcorn.view.MainView;
+import com.jcorn.view.MainViewController;
 
 /**
  * JocolateManager
@@ -11,9 +11,9 @@ import com.jcorn.view.MainView;
  */
 public class StatusController {
 
-    private final MainView mv;
+    private final MainViewController mv;
     
-    public StatusController(MainView mv) {
+    public StatusController(MainViewController mv) {
         this.mv = mv;
     }
     

@@ -11,6 +11,8 @@ import com.jcorn.model.JocolateModel;
 import com.jcorn.model.ShoppingCartItem;
 import com.jcorn.model.ShoppingCartModel;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import javax.swing.JMenuItem;
@@ -24,7 +26,7 @@ import javax.swing.JPopupMenu;
  * @version 1.0.0
  * @see http://petritzdesigns.com
  */
-public class MainView extends javax.swing.JFrame {
+public class MainViewController extends javax.swing.JFrame {
 
     private StatusController status;
     private JocolateController jocolate;
@@ -32,7 +34,9 @@ public class MainView extends javax.swing.JFrame {
 
     private ShoppingCartModel shoppingModel;
 
-    public MainView() {
+    private PayViewController pvw;
+
+    public MainViewController() {
         initComponents();
         setup();
     }
@@ -43,6 +47,14 @@ public class MainView extends javax.swing.JFrame {
         shoppingCart = new ShoppingCartController();
 
         shoppingModel = new ShoppingCartModel(shoppingCart);
+
+        pvw = new PayViewController();
+        pvw.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                checkIfPaid();
+            }
+        });
 
         //disable other, if they did not login
         disableTabs();
@@ -62,6 +74,11 @@ public class MainView extends javax.swing.JFrame {
         tabBar.setEnabledAt(3, true);
         tabBar.setEnabledAt(4, true);
         tabBar.setEnabledAt(5, true);
+    }
+
+    private void loginMessage(String text) {
+        status.set(text);
+        lbLoginStatus.setText(text);
     }
 
     private void didLogin(boolean login) {
@@ -625,6 +642,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void toShoppingCart(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toShoppingCart
         try {
+            status.set("Added to Shopping Cart");
             String type = (String) cbType.getSelectedItem();
             String size = (String) cbSize.getSelectedItem();
             String logo = (String) cbLogo.getSelectedItem();
@@ -718,11 +736,6 @@ public class MainView extends javax.swing.JFrame {
         checkPopup(evt);
     }//GEN-LAST:event_onShoppingCartListMouseReleased
 
-    private void loginMessage(String text) {
-        status.set(text);
-        lbLoginStatus.setText(text);
-    }
-
     private void calcPrice() {
         String type = (String) cbType.getSelectedItem();
         String size = (String) cbSize.getSelectedItem();
@@ -734,16 +747,27 @@ public class MainView extends javax.swing.JFrame {
     }
 
     private void shoppingDisplayPay() {
-        double price = shoppingModel.getAllPrice();
-        if(price == 0.00) {
-            //nothing to pay
-            JOptionPane.showMessageDialog(this, "There is no Chocolate in your Shopping Cart. Please choose one.");
+        if (pvw.isVisible()) {
+            JOptionPane.showMessageDialog(this, "The Pay Window is already open.");
+        } else {
+            double price = shoppingModel.getAllPrice();
+            if (price == 0.00) {
+                //nothing to pay
+                JOptionPane.showMessageDialog(this, "There is no Chocolate in your Shopping Cart. Please choose one.");
+            } else {
+                status.set("Pay Items in Shopping Cart");
+                pvw.setPrice(price);
+                pvw.setShoppingCartList(shoppingModel.getShoppingCart());
+                pvw.setVisible(true);
+            }
         }
-        else {
-            PayViewController pvw = new PayViewController();
-            pvw.setPrice(price);
-            pvw.setShoppingCartList(shoppingModel.getShoppingCart());
-            pvw.setVisible(true);
+    }
+    
+    private void checkIfPaid() {
+        if(pvw.isPaid()) {
+            //is paid
+            shoppingDeleteAll();
+            status.set("Successfully paid.");
         }
     }
 

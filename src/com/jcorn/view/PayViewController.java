@@ -14,8 +14,11 @@ import javax.swing.JTextField;
  */
 public class PayViewController extends javax.swing.JFrame {
 
+    private boolean paid;
+    
     public PayViewController() {
         initComponents();
+        paid = false;
     }
 
     @SuppressWarnings("unchecked")
@@ -57,7 +60,9 @@ public class PayViewController extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lbPrice = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Pay");
         setAlwaysOnTop(true);
         setMaximumSize(new java.awt.Dimension(742, 498));
@@ -71,7 +76,7 @@ public class PayViewController extends javax.swing.JFrame {
         btPay.setToolTipText("");
         btPay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onClose(evt);
+                onPay(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -316,10 +321,10 @@ public class PayViewController extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel16.setText("* Required");
+        jLabel16.setText("* Required  ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
@@ -361,11 +366,22 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 7);
         getContentPane().add(lbPrice, gridBagConstraints);
 
+        jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onCancel(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        getContentPane().add(jButton1, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean isNotEmpty(JTextField... textFields) {
-
         for (JTextField textField : textFields) {
             if (textField.getText().isEmpty()) {
                 return false;
@@ -373,24 +389,34 @@ public class PayViewController extends javax.swing.JFrame {
         }
         return true;
     }
+
+    public boolean isPaid() {
+        return paid;
+    }
     
     public void setShoppingCartList(List<ShoppingCartItem> list) {
-        //list for making xml markup
+        //list for making bill xml markup
     }
     
     public void setPrice(double price) {
         lbPrice.setText(String.format("Price: € %.2f", price));
     }
 
-    private void onClose(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClose
+    private void onPay(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onPay
         if (checkInformation()) {
             JOptionPane.showMessageDialog(this, "Successfully paid.");
-
+            paid = true;
+            //tell mainview that is has been paid
+            this.setVisible(false);
             //make bill and send to webs
         } else {
             JOptionPane.showMessageDialog(this, "Please provide all information with the star");
         }
-    }//GEN-LAST:event_onClose
+    }//GEN-LAST:event_onPay
+
+    private void onCancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onCancel
+        this.setVisible(false);
+    }//GEN-LAST:event_onCancel
 
     private boolean checkInformation() {
         return isNotEmpty(tfName, tfFirstName, tfEmail, tfStreet, tfStreetnumber,
@@ -400,6 +426,7 @@ public class PayViewController extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPay;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

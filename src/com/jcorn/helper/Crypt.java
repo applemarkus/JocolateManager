@@ -1,8 +1,12 @@
 package com.jcorn.helper;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import javax.crypto.BadPaddingException;
 
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -33,7 +37,7 @@ public class Crypt {
         try {
             cipher = Cipher.getInstance("AES/CBC/NoPadding");
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
-            System.err.println("Error: "+e.getLocalizedMessage());
+            System.err.println("Error: " + e.getLocalizedMessage());
         }
     }
 
@@ -48,7 +52,7 @@ public class Crypt {
             cipher.init(Cipher.ENCRYPT_MODE, keyspec, ivspec);
 
             encrypted = cipher.doFinal(padString(text).getBytes());
-        } catch (Exception e) {
+        } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
             throw new Exception("[encrypt] " + e.getMessage());
         }
 
@@ -81,7 +85,7 @@ public class Crypt {
                     decrypted = newArray;
                 }
             }
-        } catch (Exception e) {
+        } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
             throw new Exception("[decrypt] " + e.getMessage());
         }
         return decrypted;
