@@ -40,6 +40,12 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
             writeOut();
         }
     }
+    
+    public void edit(ShoppingCartItem item, int index) throws Exception {
+        shoppingCart.set(index, item);
+        super.fireContentsChanged(this, index, index);
+        writeOut();
+    }
 
     public void readAll() throws Exception {
         shoppingCart.clear();

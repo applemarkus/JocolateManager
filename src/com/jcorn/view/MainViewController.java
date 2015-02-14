@@ -35,6 +35,7 @@ public class MainViewController extends javax.swing.JFrame {
     private ShoppingCartModel shoppingModel;
 
     private PayViewController pvw;
+    private EditItemViewController editVc;
 
     public MainViewController() {
         initComponents();
@@ -53,6 +54,16 @@ public class MainViewController extends javax.swing.JFrame {
             @Override
             public void componentHidden(ComponentEvent e) {
                 checkIfPaid();
+            }
+        });
+        
+        editVc = new EditItemViewController(status, shoppingModel);
+        editVc.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                if(editVc.isHasChanged()) {
+                    shoppingUpdate();
+                }
             }
         });
 
@@ -141,6 +152,7 @@ public class MainViewController extends javax.swing.JFrame {
         fillerCart = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         btDeleteAll = new javax.swing.JButton();
         btDeleteSelected = new javax.swing.JButton();
+        btEditSelected = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         listShoppingCart = new javax.swing.JList();
         paBill = new javax.swing.JPanel();
@@ -448,6 +460,17 @@ public class MainViewController extends javax.swing.JFrame {
         });
         tbMain.add(btDeleteSelected);
 
+        btEditSelected.setText("Edit Selected");
+        btEditSelected.setFocusable(false);
+        btEditSelected.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btEditSelected.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btEditSelected.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onShoppingCartEditSelected(evt);
+            }
+        });
+        tbMain.add(btEditSelected);
+
         paCart.add(tbMain, java.awt.BorderLayout.PAGE_END);
 
         listShoppingCart.setModel(new javax.swing.AbstractListModel() {
@@ -736,6 +759,13 @@ public class MainViewController extends javax.swing.JFrame {
         checkPopup(evt);
     }//GEN-LAST:event_onShoppingCartListMouseReleased
 
+    private void onShoppingCartEditSelected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShoppingCartEditSelected
+        int index = listShoppingCart.getSelectedIndex();
+        JocolateModel item = shoppingModel.getElementAt(index).toJocolateModel();
+        editVc.setItem(item, index);
+        editVc.setVisible(true);
+    }//GEN-LAST:event_onShoppingCartEditSelected
+
     private void calcPrice() {
         String type = (String) cbType.getSelectedItem();
         String size = (String) cbSize.getSelectedItem();
@@ -844,6 +874,7 @@ public class MainViewController extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btDeleteAll;
     private javax.swing.JButton btDeleteSelected;
+    private javax.swing.JButton btEditSelected;
     private javax.swing.JButton btLogin;
     private javax.swing.JButton btPayItem;
     private javax.swing.JButton btToShoppingCart;
