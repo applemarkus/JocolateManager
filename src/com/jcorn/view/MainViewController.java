@@ -16,6 +16,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.URL;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -159,10 +160,10 @@ public class MainViewController extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         listShoppingCart = new javax.swing.JList();
         paBill = new javax.swing.JPanel();
-        spBill = new javax.swing.JScrollPane();
-        epBillView = new javax.swing.JEditorPane();
         spBillList = new javax.swing.JScrollPane();
         liBill = new javax.swing.JList();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        browserPane = new org.fit.cssbox.swingbox.BrowserPane();
         paStatus = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -497,11 +498,6 @@ public class MainViewController extends javax.swing.JFrame {
 
         paBill.setLayout(new java.awt.BorderLayout());
 
-        epBillView.setText("=============\nBill #1\nDate: 9.2.2014\n\nName: Markus\n=============\n\n-------------------------------------------\n*) 1x Chocolate white, small, jcorn\t€ 10,89\n*) 2x Chocolate brown, big, default\t€ 90,13\n-------------------------------------------\n\t\tSum:\t€ 21,12\n\t\t===============\n"); // NOI18N
-        spBill.setViewportView(epBillView);
-
-        paBill.add(spBill, java.awt.BorderLayout.CENTER);
-
         liBill.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Bill #1" };
             public int getSize() { return strings.length; }
@@ -512,6 +508,10 @@ public class MainViewController extends javax.swing.JFrame {
         spBillList.setViewportView(liBill);
 
         paBill.add(spBillList, java.awt.BorderLayout.LINE_START);
+
+        jScrollPane4.setViewportView(browserPane);
+
+        paBill.add(jScrollPane4, java.awt.BorderLayout.CENTER);
 
         tabBar.addTab("Bill", paBill);
 
@@ -735,6 +735,16 @@ public class MainViewController extends javax.swing.JFrame {
                     JM.debug(ex.getMessage());
                 }
                 break;
+            //Bill shown
+            case 3: {
+                try {
+                    browserPane.setPage(new URL("http://jocolate:25001/index.php/api/"));
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                    JM.debug(ex.getMessage());
+                }
+            }
+            break;
         }
     }//GEN-LAST:event_tabBarStateChanged
 
@@ -875,6 +885,7 @@ public class MainViewController extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.fit.cssbox.swingbox.BrowserPane browserPane;
     private javax.swing.JButton btDeleteAll;
     private javax.swing.JButton btDeleteSelected;
     private javax.swing.JButton btEditSelected;
@@ -885,7 +896,6 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JComboBox cbLogo;
     private javax.swing.JComboBox cbSize;
     private javax.swing.JComboBox cbType;
-    private javax.swing.JEditorPane epBillView;
     private javax.swing.Box.Filler fillerCart;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -897,6 +907,7 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lbAllShopping;
     private javax.swing.JLabel lbAmount;
@@ -925,7 +936,6 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JPanel pnHeader;
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnStatus;
-    private javax.swing.JScrollPane spBill;
     private javax.swing.JScrollPane spBillList;
     private javax.swing.JSpinner spinnerAmount;
     private javax.swing.JTabbedPane tabBar;

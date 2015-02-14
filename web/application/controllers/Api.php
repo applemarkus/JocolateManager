@@ -138,6 +138,14 @@ class Api extends CI_Controller {
 
         $xml->getXml(true);
     }
+    
+    public function bills() {
+        //return bills
+    }
+    
+    public function bill() {
+        //return bill at index
+    }
 
     public function logout() {
         $this->user->logout();

@@ -29,5 +29,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         <p>Store bill in database</p>
         <code>/api/incomingBill/?email=[email]&pwd=[password]&bill=[bill]</code>
+        
+        <p>Get bills</p>
+        <code>/api/bills/?email=[email]&pwd=[password]</code>
+        
+        <p>Get specific bill as html</p>
+        <code>/api/bill/?email=[email]&pwd=[password]&id=[bill_id]</code>
     </section>
 </div>
