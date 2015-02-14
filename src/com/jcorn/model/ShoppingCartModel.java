@@ -70,6 +70,10 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
         return price;
     }
 
+    public List<ShoppingCartItem> getShoppingCart() {
+        return shoppingCart;
+    }
+
     @Override
     public int getSize() {
         return shoppingCart.size();

@@ -734,9 +734,17 @@ public class MainView extends javax.swing.JFrame {
     }
 
     private void shoppingDisplayPay() {
-
-        PayViewController pvw = new PayViewController();
-        pvw.setVisible(true);
+        double price = shoppingModel.getAllPrice();
+        if(price == 0.00) {
+            //nothing to pay
+            JOptionPane.showMessageDialog(this, "There is no Chocolate in your Shopping Cart. Please choose one.");
+        }
+        else {
+            PayViewController pvw = new PayViewController();
+            pvw.setPrice(price);
+            pvw.setShoppingCartList(shoppingModel.getShoppingCart());
+            pvw.setVisible(true);
+        }
     }
 
     private void shoppingDeleteAll() {

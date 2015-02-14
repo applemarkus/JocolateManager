@@ -1,5 +1,7 @@
 package com.jcorn.view;
 
+import com.jcorn.model.ShoppingCartItem;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -54,9 +56,15 @@ public class PayViewController extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        lbPrice = new javax.swing.JLabel();
 
         setTitle("Pay");
         setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(742, 498));
+        setMinimumSize(new java.awt.Dimension(742, 498));
+        setPreferredSize(new java.awt.Dimension(742, 498));
+        setResizable(false);
+        setSize(new java.awt.Dimension(742, 498));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         btPay.setText("Pay & Finish");
@@ -78,7 +86,6 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(jLabel1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -345,6 +352,15 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         getContentPane().add(jSeparator1, gridBagConstraints);
 
+        lbPrice.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
+        lbPrice.setText("Price: € 0,00");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 7);
+        getContentPane().add(lbPrice, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -357,23 +373,28 @@ public class PayViewController extends javax.swing.JFrame {
         }
         return true;
     }
+    
+    public void setShoppingCartList(List<ShoppingCartItem> list) {
+        //list for making xml markup
+    }
+    
+    public void setPrice(double price) {
+        lbPrice.setText(String.format("Price: € %.2f", price));
+    }
 
     private void onClose(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClose
-        if(checkInformation())
-        {
+        if (checkInformation()) {
             JOptionPane.showMessageDialog(this, "Successfully paid.");
-            
+
             //make bill and send to webs
-        }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(this, "Please provide all information with the star");
         }
     }//GEN-LAST:event_onClose
 
     private boolean checkInformation() {
-        return isNotEmpty(tfName, tfFirstName, tfEmail, tfStreet, tfStreetnumber, 
-                tfZipCode, tfCity, tfCountry, tfCardNumber, 
+        return isNotEmpty(tfName, tfFirstName, tfEmail, tfStreet, tfStreetnumber,
+                tfZipCode, tfCity, tfCountry, tfCardNumber,
                 tfExpires, tfSecurityCode);
     }
 
@@ -398,6 +419,7 @@ public class PayViewController extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbPrice;
     private javax.swing.JProgressBar pbProgress;
     private javax.swing.JTextField tfCardNumber;
     private javax.swing.JTextField tfCity;
