@@ -3,6 +3,7 @@ package com.jcorn.view;
 import com.jcorn.model.ShoppingCartItem;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  * JocolateManager
@@ -12,14 +13,14 @@ import javax.swing.JOptionPane;
  * @see http://petritzdesigns.com
  */
 public class PayViewController extends javax.swing.JFrame {
-
+    
     private boolean paid;
     
     public PayViewController() {
         initComponents();
         paid = false;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -89,6 +90,8 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(jLabel1, gridBagConstraints);
+
+        pbProgress.setMaximum(11);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -135,7 +138,7 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
         getContentPane().add(jLabel4, gridBagConstraints);
 
-        jLabel5.setText("Phone:");
+        jLabel5.setText("Phone: *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -143,7 +146,7 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
         getContentPane().add(jLabel5, gridBagConstraints);
 
-        jLabel6.setText("Email:");
+        jLabel6.setText("Email: *");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -396,7 +399,7 @@ public class PayViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(2, 10, 2, 5);
         getContentPane().add(jLabel17, gridBagConstraints);
 
-        lbInfo.setText("Enter Information");
+        lbInfo.setText("There are missing fields.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 9;
@@ -438,7 +441,64 @@ public class PayViewController extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void check() {
+        String name = tfName.getText();
+        String firstName = tfFirstName.getText();
+        String email = tfEmail.getText();
+        String phone = tfPhone.getText();
+        String street = tfStreet.getText();
+        String streetNumber = tfStreetnumber.getText();
+        String zipCode = tfZipCode.getText();
+        String city = tfCity.getText();
+        String country = tfCountry.getText();
+        String cardNumber = tfCardNumber.getText();
+        String expires = tfExpires.getText();
+        String securityCode = tfSecurityCode.getText();
         
+        if (name.trim().isEmpty()) {
+            lbInfo.setText("Name is missing.");
+        } else if (firstName.trim().isEmpty()) {
+            lbInfo.setText("First Name is missing.");
+        } else if (email.trim().isEmpty()) {
+            lbInfo.setText("Email is missing.");
+        } else if (phone.trim().isEmpty()) {
+            lbInfo.setText("Phone is missing.");
+        } else if (street.trim().isEmpty()) {
+            lbInfo.setText("Street is missing.");
+        } else if (streetNumber.trim().isEmpty()) {
+            lbInfo.setText("Streetnumber is missing.");
+        } else if (zipCode.trim().isEmpty()) {
+            lbInfo.setText("ZipCode is missing.");
+        } else if (city.trim().isEmpty()) {
+            lbInfo.setText("City is missing.");
+        } else if (country.trim().isEmpty()) {
+            lbInfo.setText("Country is missing.");
+        } else if (cardNumber.trim().isEmpty()) {
+            lbInfo.setText("Card Number is missing.");
+        } else if (expires.trim().isEmpty()) {
+            lbInfo.setText("Expires is missing.");
+        } else if (securityCode.trim().isEmpty()) {
+            lbInfo.setText("Security Code is missing.");
+        } else {
+            //nothing is missing!
+            lbInfo.setText("");
+        }
+        
+        int total = 12;
+        int correct = infoIsCorrect(tfName, tfFirstName, tfEmail, tfStreet, tfStreetnumber,
+                tfZipCode, tfCity, tfCountry, tfCardNumber,
+                tfExpires, tfSecurityCode);
+        pbProgress.setMaximum(total - 1);
+        pbProgress.setValue(correct);
+    }
+    
+    private int infoIsCorrect(JTextField... textFields) {
+        int counter = 0;
+        for (JTextField textField : textFields) {
+            if (!textField.getText().trim().isEmpty()) {
+                counter++;
+            }
+        }
+        return counter;
     }
     
     public boolean isPaid() {
