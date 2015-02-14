@@ -50,13 +50,13 @@ public class HTTPRequester {
         con.setRequestProperty("User-Agent", USER_AGENT);
         
         con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(postParams);
-        wr.flush();
-        wr.close();
+        try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+            wr.writeBytes(postParams);
+            wr.flush();
+        }
 
         int responseCode = con.getResponseCode();
-        JM.debug("\nSending 'POST' request to URL : " + host);
+        JM.debug("Sending 'POST' request to URL : " + host);
         JM.debug("Post parameters : " + postParams);
         JM.debug("Response Code : " + responseCode);
 

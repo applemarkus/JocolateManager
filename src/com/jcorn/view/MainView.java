@@ -13,6 +13,8 @@ import com.jcorn.model.ShoppingCartModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -45,11 +47,43 @@ public class MainView extends javax.swing.JFrame {
         shoppingModel = new ShoppingCartModel(shoppingCart);
 
         //disable other, if they did not login
+        disableTabs();
+    }
+
+    private void disableTabs() {
         tabBar.setEnabledAt(1, false);
         tabBar.setEnabledAt(2, false);
         tabBar.setEnabledAt(3, false);
         tabBar.setEnabledAt(4, false);
         tabBar.setEnabledAt(5, false);
+    }
+
+    private void enableTabs() {
+        tabBar.setEnabledAt(1, true);
+        tabBar.setEnabledAt(2, true);
+        tabBar.setEnabledAt(3, true);
+        tabBar.setEnabledAt(4, true);
+        tabBar.setEnabledAt(5, true);
+    }
+
+    private void didLogin(boolean login) {
+        if (login) {
+            enableTabs();
+            btLogin.setText("Logout");
+            tfEmail.setEnabled(false);
+            tfPassword.setEnabled(false);
+        } else {
+            disableTabs();
+            btLogin.setText("Login");
+            tfEmail.setEnabled(true);
+            tfPassword.setEnabled(true);
+        }
+        try {
+            FileHelper.clearFile(Settings.getSaveFile());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -551,36 +585,37 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_onCopyrightClicked
 
     private void onLoginClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onLoginClicked
-        try {
-            String username = tfEmail.getText();
-            String password = String.copyValueOf(tfPassword.getPassword());
+        if (btLogin.getText().equals("Login")) {
+            try {
+                String username = tfEmail.getText();
+                String password = String.copyValueOf(tfPassword.getPassword());
 
-            if (username.isEmpty()) {
-                throw new Exception("Username missing");
+                if (username.isEmpty()) {
+                    throw new Exception("Username missing");
+                }
+
+                if (password.isEmpty()) {
+                    throw new Exception("Password missing");
+                }
+
+                loginMessage("Submitting...");
+                LoginController lc = new LoginController();
+                String error = lc.login(username, password);
+                if (error.equals("Success")) {
+                    loginMessage("Logged in as " + username);
+                    didLogin(true);
+                } else {
+                    loginMessage("Error: " + error);
+                    didLogin(false);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+                JM.debug(e.getMessage());
             }
-
-            if (password.isEmpty()) {
-                throw new Exception("Password missing");
-            }
-
-            loginMessage("Submitting...");
-            LoginController lc = new LoginController();
-            String error = lc.login(username, password);
-            if (error.equals("Success")) {
-                loginMessage("Logged in as " + username);
-                
-                //enable tabs
-                tabBar.setEnabledAt(1, true);
-                tabBar.setEnabledAt(2, true);
-                tabBar.setEnabledAt(3, true);
-                tabBar.setEnabledAt(4, true);
-                tabBar.setEnabledAt(5, true);
-            } else {
-                loginMessage("Error: " + error);
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getLocalizedMessage());
+        } else if (btLogin.getText().equals("Logout")) {
+            loginMessage("Logged out");
+            didLogin(false);
         }
     }//GEN-LAST:event_onLoginClicked
 

@@ -2,6 +2,7 @@ package com.jcorn.controller;
 
 import com.jcorn.helper.FileHelper;
 import com.jcorn.helper.HTTPRequester;
+import com.jcorn.helper.JM;
 import com.jcorn.helper.Settings;
 import com.jcorn.helper.WebApiLinks;
 import java.io.PrintWriter;
@@ -19,8 +20,9 @@ import org.w3c.dom.Document;
 public class LoginController {
 
     public String login(String username, String password) throws Exception {
-        String url = WebApiLinks.getLoginApiLink(username, password);
-        String response = HTTPRequester.getContentFromUrl(url);
+        String url = WebApiLinks.postLogin;
+        String postParam = WebApiLinks.getPostLoginParam(username, password);
+        String response = HTTPRequester.getContentFromUrlWithPost(url, postParam);
         //XML Parser
         String parsedResponse = parseXml(response);
         return parsedResponse;
@@ -28,6 +30,7 @@ public class LoginController {
     
     private String parseXml(String xmlData) throws Exception {
         String status = "";
+        String error = "";
         
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -41,6 +44,14 @@ public class LoginController {
         
         Document document = builder.parse(Settings.getTempXmlFile());
         status = document.getDocumentElement().getElementsByTagName("login").item(0).getChildNodes().item(0).getNodeValue();
+        error = document.getDocumentElement().getElementsByTagName("error").item(0).getChildNodes().item(0).getNodeValue();
+        
+        JM.debug("status: "+status);
+        JM.debug("error: "+error);
+        
+        if(!error.equals("none")) {
+            throw new Exception(error);
+        }
         
         if(status.isEmpty()) {
             status = "Error.. Could not get XML Data";

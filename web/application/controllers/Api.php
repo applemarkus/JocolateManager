@@ -40,6 +40,8 @@ class Api extends CI_Controller {
         $xml = new Xml_writer;
         $xml->initiate();
 
+        $error = "none";
+
         try {
             $email = $crypt->decrypt($this->get_input('email'));
             $password = $crypt->decrypt($this->get_input('pwd'));
@@ -52,7 +54,10 @@ class Api extends CI_Controller {
                 $xml->addNode(LOGIN, 'Failure');
             }
         } catch (Exception $exc) {
-            $xml->addNode(ERROR, $exc->getMessage());
+            $error = $exc->getMessage();
+        } finally {
+            //display error, even if none
+            $xml->addNode(ERROR, $error);
         }
 
         $xml->getXml(true);
@@ -108,7 +113,7 @@ class Api extends CI_Controller {
         } catch (Exception $exc) {
             $xml->addNode(ERROR, $exc->getMessage());
         }
-        
+
         $xml->getXml(true);
     }
 
@@ -127,16 +132,9 @@ class Api extends CI_Controller {
             throw new Exception("Empty input!");
         }
 
-        //try GET first
-        $input_get = $this->input->get($name, TRUE);
-        if (isset($input_get)) {
-            return $input_get;
-        }
-
-        //then POST
-        $input_post = $this->input->post($name, TRUE);
-        if (isset($input_post)) {
-            return $input_get;
+        $input = $this->input->post_get($name, TRUE);
+        if (isset($input)) {
+            return $input;
         }
 
         throw new Exception("Missing input: $name");
