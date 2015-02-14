@@ -57,7 +57,7 @@ public class JocolateModel {
     }
     
     public ShoppingCartItem toShoppingCartItem() {
-        if(logo.equals("Text")) {
+        if(!logo.equals("Default") && !logo.equals("PetritzDesigns") && !logo.equals("jCorn") && !logo.equals("Happy Birthday")) {
             return new ShoppingCartItem("Chocolate", type, size, text, amount);
         }
         else {

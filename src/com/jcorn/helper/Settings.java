@@ -1,5 +1,7 @@
 package com.jcorn.helper;
 
+import com.jcorn.model.User;
+
 /**
  * JocolateManager
  * 
@@ -10,9 +12,12 @@ package com.jcorn.helper;
 public class Settings {
     
     public static final String assetsPath = "src/com/jcorn/assets/";
+    public static final String tempXmlFile = "tmp/xml.jdata";
     public static final String saveFile = "tmp/shopping_cart.jdata";
     public static final String splitChar = "|";
     public final static boolean isDebug = true;
+    
+    public static User currentUser;
     
     public static String getAssetPath(String asset) {
         return assetsPath + asset;
@@ -22,7 +27,15 @@ public class Settings {
         return saveFile;
     }
 
+    public static String getTempXmlFile() {
+        return tempXmlFile;
+    }
+
     public static String getSplitChar() {
         return splitChar;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        Settings.currentUser = currentUser;
     }
 }

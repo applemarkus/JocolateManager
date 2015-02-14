@@ -33,12 +33,7 @@ public class ShoppingCartItem {
         this.size = size;
         this.logo = logo;
         this.amount = amount;
-        
-        if(logo.equals("Text")) {
-            this.price = JocolateController.calculatePrice(new JocolateModel(type, size, "Text", logo, amount));
-        } else {
-            this.price = JocolateController.calculatePrice(new JocolateModel(type, size, logo, amount));
-        }
+        this.price = JocolateController.calculatePrice(this.toJocolateModel());
     }
 
     public int getAmount() {
@@ -66,12 +61,7 @@ public class ShoppingCartItem {
     }
 
     public double getPrice() {
-        if(logo.equals("Text")) {
-            this.price = JocolateController.calculatePrice(new JocolateModel(type, size, "Text", logo, amount));
-        } else {
-            this.price = JocolateController.calculatePrice(new JocolateModel(type, size, logo, amount));
-        }
-        
+        this.price = JocolateController.calculatePrice(this.toJocolateModel());
         return price;
     }
 
@@ -82,6 +72,13 @@ public class ShoppingCartItem {
 
     public String toFileString() {
         return String.format("%s|%s|%s|%s|%d", name, type, size, logo, amount);
-
+    }
+    
+    public JocolateModel toJocolateModel() {
+        if(!logo.equals("Default") && !logo.equals("PetritzDesigns") && !logo.equals("jCorn") && !logo.equals("Happy Birthday")) {
+            return new JocolateModel(type, size, "Text", logo, amount);
+        } else {
+            return new JocolateModel(type, size, logo, amount);
+        }
     }
 }

@@ -56,7 +56,7 @@ $config['enable_hooks'] = FALSE;
 | Class Extension Prefix
 |--------------------------------------------------------------------------
 */
-$config['subclass_prefix'] = 'MY_';
+$config['subclass_prefix'] = 'PD_';
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ $config['composer_autoload'] = FALSE;
 | Allowed URL Characters
 |--------------------------------------------------------------------------
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-@';
 
 
 /*
@@ -145,7 +145,7 @@ $config['cache_query_string'] = FALSE;
 | Encryption Key
 |--------------------------------------------------------------------------
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'XiI4FPRgFhJGTpgDku3TjgXHnHZBk0ab';
 
 /*
 |--------------------------------------------------------------------------
@@ -182,7 +182,7 @@ $config['standardize_newlines'] = FALSE;
 | Global XSS Filtering
 |--------------------------------------------------------------------------
 */
-$config['global_xss_filtering'] = FALSE;
+$config['global_xss_filtering'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
