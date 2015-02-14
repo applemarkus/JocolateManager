@@ -642,7 +642,7 @@ public class MainViewController extends javax.swing.JFrame {
                 loginMessage("Submitting...");
                 LoginController lc = new LoginController();
                 String error = lc.login(username, password);
-                if (error.equals("Success")) {
+                if (error.equals("success")) {
                     loginMessage("Logged in as " + username);
                     didLogin(true);
                 } else {
