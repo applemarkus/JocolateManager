@@ -13,8 +13,6 @@ import com.jcorn.model.ShoppingCartModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -686,11 +684,10 @@ public class MainView extends javax.swing.JFrame {
             case 2:
                 listShoppingCart.setModel(shoppingModel);
                 try {
-                    shoppingModel.clearAll();
                     shoppingModel.readAll();
-                    lbAllShopping.setText(String.format("€ %.2f", shoppingModel.getAllPrice()));
+                    lbAllShopping.setText(String.format("€ %.2f ", shoppingModel.getAllPrice()));
                 } catch (Exception ex) {
-                    //JOptionPane.showMessageDialog(this, ex.getMessage());
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
                     JM.debug(ex.getMessage());
                 }
                 break;
@@ -745,7 +742,6 @@ public class MainView extends javax.swing.JFrame {
     private void shoppingDeleteAll() {
         try {
             shoppingModel.clearAll();
-            shoppingModel.writeOut();
             shoppingUpdate();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -760,6 +756,7 @@ public class MainView extends javax.swing.JFrame {
                 throw new Exception("No Selection!");
             }
             shoppingModel.remove(selected);
+            shoppingUpdate();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             JM.debug(ex.getMessage());
@@ -768,9 +765,8 @@ public class MainView extends javax.swing.JFrame {
 
     private void shoppingUpdate() {
         try {
-            shoppingModel.clearAll();
             shoppingModel.readAll();
-            lbAllShopping.setText(String.format("€ %.2f", shoppingModel.getAllPrice()));
+            lbAllShopping.setText(String.format("€ %.2f ", shoppingModel.getAllPrice()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
             JM.debug(ex.getMessage());

@@ -1,6 +1,8 @@
 package com.jcorn.model;
 
 import com.jcorn.controller.ShoppingCartController;
+import com.jcorn.helper.FileHelper;
+import com.jcorn.helper.Settings;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,12 +10,12 @@ import javax.swing.AbstractListModel;
 
 /**
  * JocolateManager
- * 
+ *
  * @author Markus Petritz
  * @version 1.0.0
  * @see http://petritzdesigns.com
  */
-public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> implements Iterable<ShoppingCartItem>{
+public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> implements Iterable<ShoppingCartItem> {
 
     private final List<ShoppingCartItem> shoppingCart;
     private final ShoppingCartController controller;
@@ -22,36 +24,44 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
         this.shoppingCart = new LinkedList<>();
         this.controller = controller;
     }
-    
+
     public void add(ShoppingCartItem item) throws Exception {
         shoppingCart.add(item);
         super.fireIntervalAdded(this, shoppingCart.size() - 1, shoppingCart.size() - 1);
         writeOut();
     }
-    
-    public void remove(int index) throws Exception {
-        if(index > 0) {
-            super.fireIntervalRemoved(this, index, index);
-            shoppingCart.remove(index);
-        }
-        writeOut();
-    }
-    
-    public void readAll() throws Exception {
-        shoppingCart.addAll(controller.readAll());
-        super.fireIntervalAdded(this, 0, shoppingCart.size() - 1);
 
+    public void remove(int index) throws Exception {
+        shoppingCart.remove(index);
+        super.fireIntervalRemoved(this, index, index);
+        if(shoppingCart.isEmpty()) {
+            clearAll();
+        } else {
+            writeOut();
+        }
     }
-    
-    public void clearAll() {
-        //super.fireIntervalRemoved(this, 0, shoppingCart.size() - 1);
+
+    public void readAll() throws Exception {
         shoppingCart.clear();
+        shoppingCart.addAll(controller.readAll());
+        if(shoppingCart.isEmpty()) {
+            super.fireIntervalAdded(this, 0, 0);
+        }
+        else {
+            super.fireIntervalAdded(this, 0, shoppingCart.size() - 1);
+        }
     }
-    
+
+    public void clearAll() throws Exception {
+        FileHelper.clearFile(Settings.getSaveFile());
+        readAll();
+    }
+
     public void writeOut() throws Exception {
+        FileHelper.clearFile(Settings.getSaveFile());
         controller.writeAll(shoppingCart);
     }
-    
+
     public double getAllPrice() {
         double price = 0;
         for (ShoppingCartItem item : this) {
@@ -59,7 +69,7 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
         }
         return price;
     }
-    
+
     @Override
     public int getSize() {
         return shoppingCart.size();
@@ -74,5 +84,5 @@ public class ShoppingCartModel extends AbstractListModel<ShoppingCartItem> imple
     public Iterator<ShoppingCartItem> iterator() {
         return shoppingCart.iterator();
     }
-    
+
 }
