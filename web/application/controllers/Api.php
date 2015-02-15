@@ -138,7 +138,7 @@ class Api extends CI_Controller {
 
         $xml->getXml(true);
     }
-    
+
     public function bills() {
         $this->load->library('Crypt');
         $crypt = new Crypt();
@@ -156,7 +156,7 @@ class Api extends CI_Controller {
             if ($this->user->login($email, $password)) {
                 //Success
                 $xml->addNode(LOGIN, SUCCESS);
-                
+
                 $xml->startBranch('bills');
                 $this->createBills($xml, $email);
                 $xml->endBranch();
@@ -174,16 +174,11 @@ class Api extends CI_Controller {
 
         $xml->getXml(true);
     }
-    
+
     public function bill() {
         $this->load->library('Crypt');
         $crypt = new Crypt();
-
-        $this->load->library('Xml_writer');
-        $xml = new Xml_writer;
-        $xml->initiate();
-
-        $error = "none";
+        $error = "";
 
         try {
             $email = $crypt->decrypt($this->get_input('email'));
@@ -191,25 +186,18 @@ class Api extends CI_Controller {
             $id = $this->get_input('id');
 
             if ($this->user->login($email, $password)) {
-                //Success
-                $xml->addNode(LOGIN, SUCCESS);
-                
-                $xml->startBranch('bill');
-                $xml->addNode('data', $this->get_bill_data($id), '', TRUE);
-                $xml->endBranch();
+                $this->get_bill_data($id);
             } else {
-                //Failure
-                $xml->addNode(LOGIN, FAILURE);
-                $xml->addNode(BILL, FAILURE);
+                $error = "Login failed.";
             }
         } catch (Exception $exc) {
             $error = $exc->getMessage();
         } finally {
             //display error, even if none
-            $xml->addNode(ERROR, $error);
+            if (!$error == "") {
+                show_error($error);
+            }
         }
-
-        $xml->getXml(true);
     }
 
     public function logout() {
@@ -221,37 +209,87 @@ class Api extends CI_Controller {
         $sql = "SELECT * FROM $this->bill_table WHERE user_id = '$user_id'";
         $query = $this->db->query($sql);
         $count = $query->num_rows();
-        
+
         $sql = "INSERT INTO `$this->bill_table`(`bill_id`, `user_id`, `bill_name`, `bill_date`, `bill_data`) VALUES (?,?,?,?,?)";
-        if(!$this->db->query($sql, array('', $user_id, 'Bill #'.$count, date('c'), $bill))) {
+        if (!$this->db->query($sql, array('', $user_id, 'Bill #' . $count, date('c'), $bill))) {
             return false;
         }
-        
+
         return true;
     }
-    
+
     private function get_bill_data($id) {
         $sql = "SELECT * FROM $this->bill_table WHERE bill_id = '$id'";
         $query = $this->db->query($sql);
-        
-        if($query->num_rows() == 1) {
-            return $this->parse_xml($query->row()->bill_data);
-        }
-        else {
+
+        if ($query->num_rows() == 1) {
+            $this->parse_xml($query->row()->bill_data, $query->row()->bill_name);
+        } else {
             throw new Exception("There are bills with the same id!");
         }
     }
-    
-    private function parse_xml($xml_data) {
-        return $xml_data;
+
+    private function parse_xml($xml_data, $bill_name) {
+        $this->load->library('parser');
+        $xml = new SimpleXMLElement($xml_data);
+
+        $name = $xml->Details[0]->name;
+        $firstName = $xml->Details[0]->firstName;
+        $email = $xml->Details[0]->email;
+        $phone = $xml->Details[0]->phone;
+        $street = $xml->Details[0]->street;
+        $streetNumber = $xml->Details[0]->streetNumber;
+        $zipCode = $xml->Details[0]->zipCode;
+        $city = $xml->Details[0]->city;
+        $country = $xml->Details[0]->country;
+        $cardNumber = $xml->Details[0]->cardNumber;
+        $expires = $xml->Details[0]->expires;
+        $securityCode = $xml->Details[0]->securityCode;
+
+        $date_o = $xml->Details[0]->date;
+        $date = date('d.m.Y H:i', intval($date_o));
+        $price = 0.00;
+
+        $shopping_items = array();
+        foreach($xml->ShoppingCart[0]->ShoppingCartItem as $item) {
+            $price += doubleval(str_replace(',', '.', $item->price));
+            array_push($shopping_items, array(
+                'name' => $item->name,
+                'type' => $item->type,
+                'size' => $item->size,
+                'logo' => $item->logo,
+                'amount' => $item->amount,
+                'price' => '€ '.$item->price
+            ));
+        }
+        
+        $data = array(
+            'bill_name' => $bill_name,
+            'name' => $name,
+            'firstName' => $firstName,
+            'email' => $email,
+            'phone' => $phone,
+            'street' => $street,
+            'streetNumber' => $streetNumber,
+            'zipCode' => $zipCode,
+            'city' => $city,
+            'country' => $country,
+            'cardNumber' => $cardNumber,
+            'expires' => $expires,
+            'securityCode' => $securityCode,
+            'date' => $date,
+            'price' => '€ '.  str_replace('.', ',', $price),
+            'shopping_items' => $shopping_items
+        );
+        $this->parser->parse('bill_view', $data);
     }
-    
+
     private function createBills(Xml_writer $xml, $email) {
         $user_id = $this->email_to_userid($email);
         $sql = "SELECT `bill_id`, `bill_name`, `bill_date` FROM `$this->bill_table` WHERE user_id = '$user_id'";
         $query = $this->db->query($sql);
-        
-        if($query->num_rows() > 0) {
+
+        if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $xml->startBranch(BILL);
                 $xml->addNode('id', $row->bill_id);
@@ -274,15 +312,15 @@ class Api extends CI_Controller {
 
         throw new Exception("Missing input: $name");
     }
-    
+
     private function email_to_userid($email) {
         $sql = "SELECT user_id FROM users WHERE user_email = '$email'";
         $query = $this->db->query($sql);
-        if($query->num_rows() == 1) {
+        if ($query->num_rows() == 1) {
             return $query->row()->user_id;
-        }
-        else {
+        } else {
             throw new Exception("There are users with the same email!");
         }
     }
+
 }
