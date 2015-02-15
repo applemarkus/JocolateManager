@@ -18,7 +18,7 @@ public class Main {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
             MainViewController mv = new MainViewController();

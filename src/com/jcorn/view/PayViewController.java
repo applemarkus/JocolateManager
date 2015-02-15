@@ -549,7 +549,7 @@ public class PayViewController extends javax.swing.JFrame {
                 this.setVisible(false);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
-                JM.debug(ex.getMessage());
+                JM.debug(ex);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please provide all information with the star");

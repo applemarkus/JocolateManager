@@ -1,5 +1,6 @@
 package com.jcorn.view;
 
+import com.jcorn.controller.BillController;
 import com.jcorn.controller.JocolateController;
 import com.jcorn.controller.LoginController;
 import com.jcorn.controller.ShoppingCartController;
@@ -7,6 +8,7 @@ import com.jcorn.controller.StatusController;
 import com.jcorn.helper.FileHelper;
 import com.jcorn.helper.Settings;
 import com.jcorn.helper.JM;
+import com.jcorn.model.BillModel;
 import com.jcorn.model.JocolateModel;
 import com.jcorn.model.ShoppingCartItem;
 import com.jcorn.model.ShoppingCartModel;
@@ -33,8 +35,10 @@ public class MainViewController extends javax.swing.JFrame {
     private StatusController status;
     private JocolateController jocolate;
     private ShoppingCartController shoppingCart;
+    private BillController billController;
 
     private ShoppingCartModel shoppingModel;
+    private BillModel billModel;
 
     private PayViewController pvw;
     private EditItemViewController editVc;
@@ -50,6 +54,7 @@ public class MainViewController extends javax.swing.JFrame {
         shoppingCart = new ShoppingCartController();
 
         shoppingModel = new ShoppingCartModel(shoppingCart);
+        billModel = new BillModel(billController);
 
         pvw = new PayViewController();
         pvw.addComponentListener(new ComponentAdapter() {
@@ -112,7 +117,7 @@ public class MainViewController extends javax.swing.JFrame {
             FileHelper.clearFile(Settings.getSaveFile());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }
 
@@ -621,7 +626,7 @@ public class MainViewController extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, htmlString);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Could not read Copyright File...");
-            System.err.println("I/O Error: " + ex.getLocalizedMessage());
+            JM.debug(ex);
         }
     }//GEN-LAST:event_onCopyrightClicked
 
@@ -652,7 +657,7 @@ public class MainViewController extends javax.swing.JFrame {
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
-                JM.debug(e.getMessage());
+                JM.debug(e);
             }
         } else if (btLogin.getText().equals("Logout")) {
             loginMessage("Logged out");
@@ -679,7 +684,7 @@ public class MainViewController extends javax.swing.JFrame {
             shoppingCart.moveToShoppingCart(item);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }//GEN-LAST:event_toShoppingCart
 
@@ -732,17 +737,24 @@ public class MainViewController extends javax.swing.JFrame {
                     lbAllShopping.setText(String.format("€ %.2f ", shoppingModel.getAllPrice()));
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
-                    JM.debug(ex.getMessage());
+                    JM.debug(ex);
                 }
                 break;
             //Bill shown
             case 3: {
+                liBill.setModel(billModel);
                 try {
-                    browserPane.setPage(new URL("http://jocolate:25001/index.php/api/"));
-                } catch (IOException ex) {
+                    billModel.getAll();
+                } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
-                    JM.debug(ex.getMessage());
+                    JM.debug(ex);
                 }
+//                try {
+//                    browserPane.setPage(new URL("http://jocolate:25001/index.php/api/"));
+//                } catch (IOException ex) {
+//                    JOptionPane.showMessageDialog(this, ex.getMessage());
+//                    JM.debug(ex.getMessage());
+//                }
             }
             break;
         }
@@ -820,7 +832,7 @@ public class MainViewController extends javax.swing.JFrame {
             shoppingUpdate();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }
 
@@ -834,7 +846,7 @@ public class MainViewController extends javax.swing.JFrame {
             shoppingUpdate();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }
 
@@ -844,7 +856,7 @@ public class MainViewController extends javax.swing.JFrame {
             lbAllShopping.setText(String.format("€ %.2f ", shoppingModel.getAllPrice()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }
 
