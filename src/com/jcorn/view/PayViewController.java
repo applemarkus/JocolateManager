@@ -542,11 +542,11 @@ public class PayViewController extends javax.swing.JFrame {
 
     private void onPay(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onPay
         if (lbInfo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Successfully paid.");
-            paid = true;
-            this.setVisible(false);
             try {
                 makeBill();
+                JOptionPane.showMessageDialog(this, "Successfully paid.");
+                paid = true;
+                this.setVisible(false);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
                 JM.debug(ex.getMessage());

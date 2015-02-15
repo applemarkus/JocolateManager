@@ -91,13 +91,20 @@ public class Crypt {
         return decrypted;
     }
 
-    public static String bytesToHex(byte[] buf) {
-        char[] chars = new char[2 * buf.length];
-        for (int i = 0; i < buf.length; ++i) {
-            chars[2 * i] = HEX_CHARS[(buf[i] & 0xF0) >>> 4];
-            chars[2 * i + 1] = HEX_CHARS[buf[i] & 0x0F];
+    public static String bytesToHex(byte[] b) {
+        StringBuffer buf = new StringBuffer();
+        int len = b.length;
+        for (int j = 0; j < len; j++) {
+            buf.append(byteToHex(b[j]));
         }
-        return new String(chars);
+        return buf.toString();
+    }
+
+    public static String byteToHex(byte b) {
+        char hexDigit[] = {'0', '1', '2', '3', '4', '5', '6', '7',
+            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+        char[] a = {hexDigit[(b >> 4) & 0x0f], hexDigit[b & 0x0f]};
+        return new String(a);
     }
 
     public static byte[] hexToBytes(String str) {
