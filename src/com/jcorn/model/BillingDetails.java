@@ -1,8 +1,7 @@
 package com.jcorn.model;
 
-import java.sql.Timestamp;
+import java.text.Normalizer;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * JocolateManager
@@ -28,19 +27,19 @@ public class BillingDetails {
     private final String date;
 
     public BillingDetails(String name, String firstName, String email, String phone, String street, String streetNumber, String zipCode, String city, String country, String cardNumber, String expires, String securityCode) {
-        this.name = name;
-        this.firstName = firstName;
-        this.email = email;
-        this.phone = phone;
-        this.street = street;
-        this.streetNumber = streetNumber;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.country = country;
-        this.cardNumber = cardNumber;
-        this.expires = expires;
-        this.securityCode = securityCode;
-        this.date = getTimestamp();
+        this.name = normalize(name);
+        this.firstName = normalize(firstName);
+        this.email = normalize(email);
+        this.phone = normalize(phone);
+        this.street = normalize(street);
+        this.streetNumber = normalize(streetNumber);
+        this.zipCode = normalize(zipCode);
+        this.city = normalize(city);
+        this.country = normalize(country);
+        this.cardNumber = normalize(cardNumber);
+        this.expires = normalize(expires);
+        this.securityCode = normalize(securityCode);
+        this.date = normalize(getTimestamp());
     }
 
     public String getName() {
@@ -94,9 +93,15 @@ public class BillingDetails {
     public String getDate() {
         return date;
     }
-    
+
     private String getTimestamp() {
         Calendar cal = Calendar.getInstance();
         return "" + cal.getTimeInMillis() / 1000L;
+    }
+
+    private String normalize(String input) {
+        return Normalizer
+                .normalize(input, Normalizer.Form.NFD)
+                .replaceAll("[^\\p{ASCII}]", "");
     }
 }

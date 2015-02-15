@@ -1,12 +1,17 @@
 package com.jcorn.view;
 
+import com.jcorn.controller.BillController;
 import com.jcorn.controller.JocolateController;
 import com.jcorn.controller.LoginController;
+import com.jcorn.controller.PackageController;
 import com.jcorn.controller.ShoppingCartController;
 import com.jcorn.controller.StatusController;
 import com.jcorn.helper.FileHelper;
 import com.jcorn.helper.Settings;
 import com.jcorn.helper.JM;
+import com.jcorn.helper.WebApiLinks;
+import com.jcorn.model.BillModel;
+import com.jcorn.model.DeliveryStatusModel;
 import com.jcorn.model.JocolateModel;
 import com.jcorn.model.ShoppingCartItem;
 import com.jcorn.model.ShoppingCartModel;
@@ -33,8 +38,12 @@ public class MainViewController extends javax.swing.JFrame {
     private StatusController status;
     private JocolateController jocolate;
     private ShoppingCartController shoppingCart;
+    private BillController billController;
+    private PackageController packageController;
 
     private ShoppingCartModel shoppingModel;
+    private BillModel billModel;
+    private DeliveryStatusModel deliveryModel;
 
     private PayViewController pvw;
     private EditItemViewController editVc;
@@ -48,8 +57,12 @@ public class MainViewController extends javax.swing.JFrame {
         status = new StatusController(this);
         jocolate = new JocolateController();
         shoppingCart = new ShoppingCartController();
+        billController = new BillController();
+        packageController = new PackageController();
 
         shoppingModel = new ShoppingCartModel(shoppingCart);
+        billModel = new BillModel(billController);
+        deliveryModel = new DeliveryStatusModel(packageController);
 
         pvw = new PayViewController();
         pvw.addComponentListener(new ComponentAdapter() {
@@ -78,7 +91,6 @@ public class MainViewController extends javax.swing.JFrame {
         tabBar.setEnabledAt(2, false);
         tabBar.setEnabledAt(3, false);
         tabBar.setEnabledAt(4, false);
-        tabBar.setEnabledAt(5, false);
     }
 
     private void enableTabs() {
@@ -86,7 +98,6 @@ public class MainViewController extends javax.swing.JFrame {
         tabBar.setEnabledAt(2, true);
         tabBar.setEnabledAt(3, true);
         tabBar.setEnabledAt(4, true);
-        tabBar.setEnabledAt(5, true);
     }
 
     private void loginMessage(String text) {
@@ -112,7 +123,7 @@ public class MainViewController extends javax.swing.JFrame {
             FileHelper.clearFile(Settings.getSaveFile());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }
 
@@ -156,6 +167,7 @@ public class MainViewController extends javax.swing.JFrame {
         fillerCart = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         btDeleteAll = new javax.swing.JButton();
         btDeleteSelected = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
         btEditSelected = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         listShoppingCart = new javax.swing.JList();
@@ -164,18 +176,22 @@ public class MainViewController extends javax.swing.JFrame {
         liBill = new javax.swing.JList();
         jScrollPane4 = new javax.swing.JScrollPane();
         browserPane = new org.fit.cssbox.swingbox.BrowserPane();
+        tbBill = new javax.swing.JToolBar();
+        jButton2 = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        lbAmountBills = new javax.swing.JLabel();
         paStatus = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        pbDeliveryStatus = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btDeliveryStatusUpdate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        paProfile = new javax.swing.JPanel();
+        liDeliveryStatus = new javax.swing.JList();
+        tbDelivery = new javax.swing.JToolBar();
+        jButton3 = new javax.swing.JButton();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        lbAmountPackages = new javax.swing.JLabel();
         mainMenuBar = new javax.swing.JMenuBar();
         meFile = new javax.swing.JMenu();
         miQuit = new javax.swing.JMenuItem();
@@ -463,6 +479,7 @@ public class MainViewController extends javax.swing.JFrame {
             }
         });
         tbMain.add(btDeleteSelected);
+        tbMain.add(jSeparator1);
 
         btEditSelected.setText("Edit Selected");
         btEditSelected.setFocusable(false);
@@ -504,7 +521,12 @@ public class MainViewController extends javax.swing.JFrame {
             public Object getElementAt(int i) { return strings[i]; }
         });
         liBill.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        liBill.setSize(new java.awt.Dimension(50, 136));
+        liBill.setSize(new java.awt.Dimension(100, 136));
+        liBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onBillMouseClicked(evt);
+            }
+        });
         spBillList.setViewportView(liBill);
 
         paBill.add(spBillList, java.awt.BorderLayout.LINE_START);
@@ -512,6 +534,25 @@ public class MainViewController extends javax.swing.JFrame {
         jScrollPane4.setViewportView(browserPane);
 
         paBill.add(jScrollPane4, java.awt.BorderLayout.CENTER);
+
+        tbBill.setRollover(true);
+
+        jButton2.setText("Update");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onBillUpdate(evt);
+            }
+        });
+        tbBill.add(jButton2);
+        tbBill.add(filler1);
+
+        lbAmountBills.setText("Amount Bills: 0");
+        tbBill.add(lbAmountBills);
+
+        paBill.add(tbBill, java.awt.BorderLayout.PAGE_END);
 
         tabBar.addTab("Bill", paBill);
 
@@ -530,16 +571,17 @@ public class MainViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(23, 0, 23, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        jProgressBar1.setValue(25);
+        pbDeliveryStatus.setMaximum(4);
+        pbDeliveryStatus.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(2, 0, 16, 0);
-        jPanel1.add(jProgressBar1, gridBagConstraints);
+        jPanel1.add(pbDeliveryStatus, gridBagConstraints);
 
-        jLabel2.setText("Check | Packaging | Send | Receive");
+        jLabel2.setText(" Check | Packaging | Send | Receive");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -548,50 +590,56 @@ public class MainViewController extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(13, 7, 0, 7);
         jPanel1.add(jLabel2, gridBagConstraints);
 
-        jTextPane1.setEditable(false);
-        jTextPane1.setText("Teststreet 4\n3523 Test\nAustria");
-        jScrollPane2.setViewportView(jTextPane1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 16;
-        gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
-        jPanel1.add(jScrollPane2, gridBagConstraints);
-
-        jLabel3.setText("Info");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(6, 4, 0, 6);
-        jPanel1.add(jLabel3, gridBagConstraints);
-
-        jButton1.setText("Update");
+        btDeliveryStatusUpdate.setText("Update");
+        btDeliveryStatusUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onDeliveryStatusUpdate(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(12, 0, 0, 0);
-        jPanel1.add(jButton1, gridBagConstraints);
+        jPanel1.add(btDeliveryStatusUpdate, gridBagConstraints);
 
         paStatus.add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        liDeliveryStatus.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Package #1 9.2" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        liDeliveryStatus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onDeliveryMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(liDeliveryStatus);
 
         paStatus.add(jScrollPane1, java.awt.BorderLayout.WEST);
 
+        tbDelivery.setRollover(true);
+
+        jButton3.setText("Update");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onDeliveryUpdate(evt);
+            }
+        });
+        tbDelivery.add(jButton3);
+        tbDelivery.add(filler2);
+
+        lbAmountPackages.setText("Amount Packages: 0");
+        tbDelivery.add(lbAmountPackages);
+
+        paStatus.add(tbDelivery, java.awt.BorderLayout.PAGE_END);
+
         tabBar.addTab("Delivery Status", paStatus);
-        tabBar.addTab("Profile", paProfile);
 
         pnMain.add(tabBar, java.awt.BorderLayout.CENTER);
 
@@ -621,7 +669,7 @@ public class MainViewController extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, htmlString);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Could not read Copyright File...");
-            System.err.println("I/O Error: " + ex.getLocalizedMessage());
+            JM.debug(ex);
         }
     }//GEN-LAST:event_onCopyrightClicked
 
@@ -652,7 +700,7 @@ public class MainViewController extends javax.swing.JFrame {
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
-                JM.debug(e.getMessage());
+                JM.debug(e);
             }
         } else if (btLogin.getText().equals("Logout")) {
             loginMessage("Logged out");
@@ -679,7 +727,7 @@ public class MainViewController extends javax.swing.JFrame {
             shoppingCart.moveToShoppingCart(item);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }//GEN-LAST:event_toShoppingCart
 
@@ -732,19 +780,24 @@ public class MainViewController extends javax.swing.JFrame {
                     lbAllShopping.setText(String.format("€ %.2f ", shoppingModel.getAllPrice()));
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
-                    JM.debug(ex.getMessage());
+                    JM.debug(ex);
                 }
                 break;
             //Bill shown
-            case 3: {
-                try {
-                    browserPane.setPage(new URL("http://jocolate:25001/index.php/api/"));
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage());
-                    JM.debug(ex.getMessage());
-                }
-            }
-            break;
+            case 3:
+                liBill.setModel(billModel);
+                browserPane.setText("");
+                billUpdate();
+                break;
+            //Delivery Status
+            case 4:
+                btDeliveryStatusUpdate.setEnabled(false);
+                pbDeliveryStatus.setValue(0);
+                liDeliveryStatus.setModel(deliveryModel);
+                deliveryUpdate();
+                break;
+            default:
+                break;
         }
     }//GEN-LAST:event_tabBarStateChanged
 
@@ -773,11 +826,82 @@ public class MainViewController extends javax.swing.JFrame {
     }//GEN-LAST:event_onShoppingCartListMouseReleased
 
     private void onShoppingCartEditSelected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShoppingCartEditSelected
-        int index = listShoppingCart.getSelectedIndex();
-        JocolateModel item = shoppingModel.getElementAt(index).toJocolateModel();
-        editVc.setItem(item, index);
-        editVc.setVisible(true);
+        shoppingEditSelected();
     }//GEN-LAST:event_onShoppingCartEditSelected
+
+    private void onBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onBillMouseClicked
+        billMouseClicked();
+    }//GEN-LAST:event_onBillMouseClicked
+
+    private void onBillUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onBillUpdate
+        billUpdate();
+    }//GEN-LAST:event_onBillUpdate
+
+    private void onDeliveryUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onDeliveryUpdate
+        deliveryUpdate();
+    }//GEN-LAST:event_onDeliveryUpdate
+
+    private void onDeliveryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onDeliveryMouseClicked
+        deliveryMouseClicked();
+    }//GEN-LAST:event_onDeliveryMouseClicked
+
+    private void onDeliveryStatusUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onDeliveryStatusUpdate
+        deliveryMouseClicked();
+    }//GEN-LAST:event_onDeliveryStatusUpdate
+
+    private void billUpdate() {
+        try {
+            billModel.getAll();
+            lbAmountBills.setText("Amount Bills: " + billModel.getSize());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex);
+        }
+    }
+
+    private void billMouseClicked() {
+        try {
+            int index = liBill.getSelectedIndex();
+            if (index != -1) {
+                showBill(billModel.getElementAt(index).getId());
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex);
+        }
+    }
+
+    private void showBill(int id) throws Exception {
+        String url = WebApiLinks.getBill(id);
+        browserPane.setPage(new URL(url));
+    }
+
+    private void deliveryUpdate() {
+        try {
+            deliveryModel.getAll();
+            lbAmountPackages.setText("Amount Packages: " + deliveryModel.getSize());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex);
+        }
+    }
+
+    private void deliveryMouseClicked() {
+        try {
+            int index = liDeliveryStatus.getSelectedIndex();
+            if (index != -1) {
+                showPackage(deliveryModel.getElementAt(index).getId());
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex);
+        }
+    }
+    
+    private void showPackage(int id) throws Exception {
+        btDeliveryStatusUpdate.setEnabled(true);
+        pbDeliveryStatus.setValue(packageController.getStatus(id));
+    }
 
     private void calcPrice() {
         String type = (String) cbType.getSelectedItem();
@@ -811,6 +935,7 @@ public class MainViewController extends javax.swing.JFrame {
             //is paid
             shoppingDeleteAll();
             status.set("Successfully paid.");
+            tabBar.setSelectedIndex(3);
         }
     }
 
@@ -820,7 +945,7 @@ public class MainViewController extends javax.swing.JFrame {
             shoppingUpdate();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }
 
@@ -834,7 +959,7 @@ public class MainViewController extends javax.swing.JFrame {
             shoppingUpdate();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }
 
@@ -844,7 +969,22 @@ public class MainViewController extends javax.swing.JFrame {
             lbAllShopping.setText(String.format("€ %.2f ", shoppingModel.getAllPrice()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
+        }
+    }
+
+    private void shoppingEditSelected() {
+        try {
+            int index = listShoppingCart.getSelectedIndex();
+            if (index == -1) {
+                throw new Exception("No Selection!");
+            }
+            JocolateModel item = shoppingModel.getElementAt(index).toJocolateModel();
+            editVc.setItem(item, index);
+            editVc.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex);
         }
     }
 
@@ -859,6 +999,8 @@ public class MainViewController extends javax.swing.JFrame {
             //---- Seperator
             JMenuItem deleteSelectedItem = new JMenuItem("Delete selected");
             JMenuItem deleteAllItem = new JMenuItem("Delete all");
+            //---- Seperator
+            JMenuItem editSelected = new JMenuItem("Edit selected");
 
             //Actions
             payItem.addActionListener((ActionEvent e) -> {
@@ -873,6 +1015,9 @@ public class MainViewController extends javax.swing.JFrame {
             deleteAllItem.addActionListener((ActionEvent e) -> {
                 shoppingDeleteAll();
             });
+            editSelected.addActionListener((ActionEvent e) -> {
+                shoppingEditSelected();
+            });
 
             JPopupMenu popup = new JPopupMenu("Shopping Cart");
             popup.add(payItem);
@@ -880,6 +1025,8 @@ public class MainViewController extends javax.swing.JFrame {
             popup.addSeparator();
             popup.add(deleteSelectedItem);
             popup.add(deleteAllItem);
+            popup.addSeparator();
+            popup.add(editSelected);
             popup.show(listShoppingCart, evt.getX(), evt.getY());
         }
     }
@@ -888,6 +1035,7 @@ public class MainViewController extends javax.swing.JFrame {
     private org.fit.cssbox.swingbox.BrowserPane browserPane;
     private javax.swing.JButton btDeleteAll;
     private javax.swing.JButton btDeleteSelected;
+    private javax.swing.JButton btDeliveryStatusUpdate;
     private javax.swing.JButton btEditSelected;
     private javax.swing.JButton btLogin;
     private javax.swing.JButton btPayItem;
@@ -896,21 +1044,22 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JComboBox cbLogo;
     private javax.swing.JComboBox cbSize;
     private javax.swing.JComboBox cbType;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler fillerCart;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JLabel lbAllShopping;
     private javax.swing.JLabel lbAmount;
+    private javax.swing.JLabel lbAmountBills;
+    private javax.swing.JLabel lbAmountPackages;
     private javax.swing.JLabel lbCopyright;
     private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbLoginStatus;
@@ -923,6 +1072,7 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JLabel lbTitle;
     private javax.swing.JLabel lbType;
     private javax.swing.JList liBill;
+    private javax.swing.JList liDeliveryStatus;
     private javax.swing.JList listShoppingCart;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenu meFile;
@@ -931,14 +1081,16 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JPanel paCart;
     private javax.swing.JPanel paChoose;
     private javax.swing.JPanel paLogin;
-    private javax.swing.JPanel paProfile;
     private javax.swing.JPanel paStatus;
+    private javax.swing.JProgressBar pbDeliveryStatus;
     private javax.swing.JPanel pnHeader;
     private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnStatus;
     private javax.swing.JScrollPane spBillList;
     private javax.swing.JSpinner spinnerAmount;
     private javax.swing.JTabbedPane tabBar;
+    private javax.swing.JToolBar tbBill;
+    private javax.swing.JToolBar tbDelivery;
     private javax.swing.JToolBar tbMain;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JPasswordField tfPassword;

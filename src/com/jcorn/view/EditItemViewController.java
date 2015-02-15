@@ -270,7 +270,7 @@ public class EditItemViewController extends javax.swing.JFrame {
             this.setVisible(false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex.getMessage());
+            JM.debug(ex);
         }
     }//GEN-LAST:event_btToShoppingCarttoShoppingCart
 
