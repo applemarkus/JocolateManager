@@ -69,4 +69,5 @@ public class WebApiLinks {
         String password = Crypt.bytesToHex(crypt.encrypt(Settings.currentUser.getPassword()));
         return String.format(getPackage, username, password, id);
     }
+    
 }
