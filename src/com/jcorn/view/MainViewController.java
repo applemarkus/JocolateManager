@@ -172,6 +172,10 @@ public class MainViewController extends javax.swing.JFrame {
         liBill = new javax.swing.JList();
         jScrollPane4 = new javax.swing.JScrollPane();
         browserPane = new org.fit.cssbox.swingbox.BrowserPane();
+        tbBill = new javax.swing.JToolBar();
+        jButton2 = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        lbAmountBills = new javax.swing.JLabel();
         paStatus = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -527,6 +531,25 @@ public class MainViewController extends javax.swing.JFrame {
 
         paBill.add(jScrollPane4, java.awt.BorderLayout.CENTER);
 
+        tbBill.setRollover(true);
+
+        jButton2.setText("Update");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onBillUpdate(evt);
+            }
+        });
+        tbBill.add(jButton2);
+        tbBill.add(filler1);
+
+        lbAmountBills.setText("Bills: 0");
+        tbBill.add(lbAmountBills);
+
+        paBill.add(tbBill, java.awt.BorderLayout.PAGE_END);
+
         tabBar.addTab("Bill", paBill);
 
         paStatus.setLayout(new java.awt.BorderLayout());
@@ -752,12 +775,7 @@ public class MainViewController extends javax.swing.JFrame {
             //Bill shown
             case 3: {
                 liBill.setModel(billModel);
-                try {
-                    billModel.getAll();
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage());
-                    JM.debug(ex);
-                }
+                billUpdate();
             }
             break;
         }
@@ -794,6 +812,20 @@ public class MainViewController extends javax.swing.JFrame {
     private void onBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onBillMouseClicked
         billMouseClicked();
     }//GEN-LAST:event_onBillMouseClicked
+
+    private void onBillUpdate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onBillUpdate
+        billUpdate();
+    }//GEN-LAST:event_onBillUpdate
+
+    private void billUpdate() {
+        try {
+            billModel.getAll();
+            lbAmountBills.setText("Amount Bills: " + billModel.getSize());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex);
+        }
+    }
 
     private void calcPrice() {
         String type = (String) cbType.getSelectedItem();
@@ -951,8 +983,10 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JComboBox cbLogo;
     private javax.swing.JComboBox cbSize;
     private javax.swing.JComboBox cbType;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler fillerCart;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -967,6 +1001,7 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lbAllShopping;
     private javax.swing.JLabel lbAmount;
+    private javax.swing.JLabel lbAmountBills;
     private javax.swing.JLabel lbCopyright;
     private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbLoginStatus;
@@ -995,6 +1030,7 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JScrollPane spBillList;
     private javax.swing.JSpinner spinnerAmount;
     private javax.swing.JTabbedPane tabBar;
+    private javax.swing.JToolBar tbBill;
     private javax.swing.JToolBar tbMain;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JPasswordField tfPassword;

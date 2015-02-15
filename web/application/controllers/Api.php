@@ -208,7 +208,7 @@ class Api extends CI_Controller {
         $user_id = $this->email_to_userid($email);
         $sql = "SELECT * FROM $this->bill_table WHERE user_id = '$user_id'";
         $query = $this->db->query($sql);
-        $count = $query->num_rows();
+        $count = $query->num_rows() + 1;
 
         $sql = "INSERT INTO `$this->bill_table`(`bill_id`, `user_id`, `bill_name`, `bill_date`, `bill_data`) VALUES (?,?,?,?,?)";
         if (!$this->db->query($sql, array('', $user_id, 'Bill #' . $count, date('c'), $bill))) {
@@ -278,7 +278,7 @@ class Api extends CI_Controller {
             'expires' => $expires,
             'securityCode' => $securityCode,
             'date' => $date,
-            'price' => '€ '.  str_replace('.', ',', $price),
+            'price' => '€ '. number_format($price, 2, ',', '.'),
             'shopping_items' => $shopping_items
         );
         $this->parser->parse('bill_view', $data);
