@@ -103,9 +103,9 @@ public class ShoppingCartController {
 
             for (ShoppingCartItem item : list) {
                 bw.write(item.toFileString());
+                bw.newLine();
             }
 
-            bw.newLine();
             bw.flush();
         } catch (IOException ex) {
             System.err.println("Oh no... :( " + ex.getLocalizedMessage());
