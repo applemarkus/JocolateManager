@@ -16,6 +16,7 @@ public class WebApiLinks {
     public static final String postBill = api + "incomingBill/";
     public static final String postBillParam = postLoginParam + "&bill=%s";
     public static final String postGetBills = api + "bills/";
+    public static final String getBill = api + "bill/?email=%s&pwd=%s&id=%d";
 
     public static String getLoginApiLink(String username, String password) throws Exception {
         Crypt crypt = new Crypt();
@@ -44,5 +45,12 @@ public class WebApiLinks {
         String username = Crypt.bytesToHex(crypt.encrypt(Settings.currentUser.getUsername()));
         String password = Crypt.bytesToHex(crypt.encrypt(Settings.currentUser.getPassword()));
         return String.format(postLoginParam, username, password);
+    }
+    
+    public static String getBill(int id) throws Exception {
+        Crypt crypt = new Crypt();
+        String username = Crypt.bytesToHex(crypt.encrypt(Settings.currentUser.getUsername()));
+        String password = Crypt.bytesToHex(crypt.encrypt(Settings.currentUser.getPassword()));
+        return String.format(getBill, username, password, id);
     }
 }

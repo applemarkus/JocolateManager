@@ -2,13 +2,13 @@ package com.jcorn.model;
 
 /**
  * JocolateManager
- * 
+ *
  * @author Markus Petritz
  * @version 1.0.0
  * @see http://petritzdesigns.com
  */
 public class Bill {
-    
+
     private final int id;
     private final String name;
     private final String date;
@@ -33,6 +33,6 @@ public class Bill {
 
     @Override
     public String toString() {
-        return name;
+        return name + "     ";
     }
 }

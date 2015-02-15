@@ -38,7 +38,6 @@ public class BillController {
     
     private List<Bill> parseXml(String xmlData) throws Exception {
         List<Bill> temp = new LinkedList<>();
-        temp.add(new Bill(1, "YOlo", "25"));
         
         String status = "";
         String error = "";
@@ -59,18 +58,15 @@ public class BillController {
         status = document.getDocumentElement().getElementsByTagName("login").item(0).getChildNodes().item(0).getNodeValue();
         error = document.getDocumentElement().getElementsByTagName("error").item(0).getChildNodes().item(0).getNodeValue();
         
-        System.out.println("roooot: "+document.getDocumentElement().getNodeName());
-        System.out.println("------------------------------------");
         NodeList nList = document.getElementsByTagName("bills").item(0).getChildNodes();
         for(int i = 0; i < nList.getLength(); ++i) {
             Node nNode = nList.item(i);
-            System.out.println("\nCurrent Element: "+nNode.getNodeName());
             if(nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElem = (Element) nNode;
-                
-                System.out.println("\tid: "+eElem.getElementsByTagName("id").item(0).getTextContent());
-                System.out.println("\tname: "+eElem.getElementsByTagName("name").item(0).getTextContent());
-                System.out.println("\tdate: "+eElem.getElementsByTagName("date").item(0).getTextContent());
+                int id = Integer.parseInt(eElem.getElementsByTagName("id").item(0).getTextContent());
+                String name = eElem.getElementsByTagName("name").item(0).getTextContent();
+                String date = eElem.getElementsByTagName("date").item(0).getTextContent();
+                temp.add(new Bill(id, name, date));
             }
         }
         
@@ -86,7 +82,6 @@ public class BillController {
         }
         
         FileHelper.clearFile(Settings.getTempXmlFile());
-        
         return temp;
     }
 }

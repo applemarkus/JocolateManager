@@ -8,6 +8,7 @@ import com.jcorn.controller.StatusController;
 import com.jcorn.helper.FileHelper;
 import com.jcorn.helper.Settings;
 import com.jcorn.helper.JM;
+import com.jcorn.helper.WebApiLinks;
 import com.jcorn.model.BillModel;
 import com.jcorn.model.JocolateModel;
 import com.jcorn.model.ShoppingCartItem;
@@ -52,6 +53,7 @@ public class MainViewController extends javax.swing.JFrame {
         status = new StatusController(this);
         jocolate = new JocolateController();
         shoppingCart = new ShoppingCartController();
+        billController = new BillController();
 
         shoppingModel = new ShoppingCartModel(shoppingCart);
         billModel = new BillModel(billController);
@@ -161,6 +163,7 @@ public class MainViewController extends javax.swing.JFrame {
         fillerCart = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         btDeleteAll = new javax.swing.JButton();
         btDeleteSelected = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
         btEditSelected = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         listShoppingCart = new javax.swing.JList();
@@ -468,6 +471,7 @@ public class MainViewController extends javax.swing.JFrame {
             }
         });
         tbMain.add(btDeleteSelected);
+        tbMain.add(jSeparator1);
 
         btEditSelected.setText("Edit Selected");
         btEditSelected.setFocusable(false);
@@ -509,7 +513,12 @@ public class MainViewController extends javax.swing.JFrame {
             public Object getElementAt(int i) { return strings[i]; }
         });
         liBill.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        liBill.setSize(new java.awt.Dimension(50, 136));
+        liBill.setSize(new java.awt.Dimension(100, 136));
+        liBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onBillMouseClicked(evt);
+            }
+        });
         spBillList.setViewportView(liBill);
 
         paBill.add(spBillList, java.awt.BorderLayout.LINE_START);
@@ -749,12 +758,6 @@ public class MainViewController extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
                     JM.debug(ex);
                 }
-//                try {
-//                    browserPane.setPage(new URL("http://jocolate:25001/index.php/api/"));
-//                } catch (IOException ex) {
-//                    JOptionPane.showMessageDialog(this, ex.getMessage());
-//                    JM.debug(ex.getMessage());
-//                }
             }
             break;
         }
@@ -785,11 +788,12 @@ public class MainViewController extends javax.swing.JFrame {
     }//GEN-LAST:event_onShoppingCartListMouseReleased
 
     private void onShoppingCartEditSelected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShoppingCartEditSelected
-        int index = listShoppingCart.getSelectedIndex();
-        JocolateModel item = shoppingModel.getElementAt(index).toJocolateModel();
-        editVc.setItem(item, index);
-        editVc.setVisible(true);
+        shoppingEditSelected();
     }//GEN-LAST:event_onShoppingCartEditSelected
+
+    private void onBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onBillMouseClicked
+        billMouseClicked();
+    }//GEN-LAST:event_onBillMouseClicked
 
     private void calcPrice() {
         String type = (String) cbType.getSelectedItem();
@@ -860,6 +864,38 @@ public class MainViewController extends javax.swing.JFrame {
         }
     }
 
+    private void shoppingEditSelected() {
+        try {
+            int index = listShoppingCart.getSelectedIndex();
+            if (index == -1) {
+                throw new Exception("No Selection!");
+            }
+            JocolateModel item = shoppingModel.getElementAt(index).toJocolateModel();
+            editVc.setItem(item, index);
+            editVc.setVisible(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex);
+        }
+    }
+
+    private void billMouseClicked() {
+        try {
+            int index = liBill.getSelectedIndex();
+            if (index != -1) {
+                showBill(billModel.getElementAt(index).getId());
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex);
+        }
+    }
+
+    private void showBill(int id) throws Exception {
+        String url = WebApiLinks.getBill(id);
+        browserPane.setPage(new URL(url));
+    }
+
     private void checkPopup(MouseEvent evt) {
         if (evt.isPopupTrigger()) {
 
@@ -871,6 +907,8 @@ public class MainViewController extends javax.swing.JFrame {
             //---- Seperator
             JMenuItem deleteSelectedItem = new JMenuItem("Delete selected");
             JMenuItem deleteAllItem = new JMenuItem("Delete all");
+            //---- Seperator
+            JMenuItem editSelected = new JMenuItem("Edit selected");
 
             //Actions
             payItem.addActionListener((ActionEvent e) -> {
@@ -885,6 +923,9 @@ public class MainViewController extends javax.swing.JFrame {
             deleteAllItem.addActionListener((ActionEvent e) -> {
                 shoppingDeleteAll();
             });
+            editSelected.addActionListener((ActionEvent e) -> {
+                shoppingEditSelected();
+            });
 
             JPopupMenu popup = new JPopupMenu("Shopping Cart");
             popup.add(payItem);
@@ -892,6 +933,8 @@ public class MainViewController extends javax.swing.JFrame {
             popup.addSeparator();
             popup.add(deleteSelectedItem);
             popup.add(deleteAllItem);
+            popup.addSeparator();
+            popup.add(editSelected);
             popup.show(listShoppingCart, evt.getX(), evt.getY());
         }
     }
@@ -920,6 +963,7 @@ public class MainViewController extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lbAllShopping;
     private javax.swing.JLabel lbAmount;
