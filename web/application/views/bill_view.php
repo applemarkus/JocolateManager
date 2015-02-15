@@ -19,7 +19,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 font-size: 100%;
                 ms-text-size-adjust: 100%;
                 webkit-text-size-adjust: 100%;
-                transform: scale(0.5);
             }
             html,button,input,select,textarea
             {
