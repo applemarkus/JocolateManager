@@ -29,6 +29,9 @@ public class FileHelper {
     public static void makeIfNotExist(String file) throws Exception {
         File file_io = new File(file);
         if(!file_io.exists()) {
+            String dir = file.substring(0, file.indexOf("/"));
+            File dirf = new File(dir);
+            dirf.mkdirs();
             file_io.createNewFile();
         }
     }
