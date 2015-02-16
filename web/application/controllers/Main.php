@@ -21,12 +21,31 @@ class Main extends CI_Controller {
     }
 
     public function index() {
-        if ($this->session->userdata('logged_in')) {
-            $data['email'] = $this->session->userdata('user_email');
-            $this->load->template('home_view', $data);
-        }
-        else {
-            redirect('auth/login', 'refresh');
-        }
+        $this->load->helper('form_helper');
+        $this->load->view('landing_page');
     }
+
+    public function contact() {
+        $name = $this->input->post('contact_name');
+        $email = $this->input->post('contact_email');
+        $message = $this->input->post('contact_message');
+
+        $this->load->library('email');
+
+        $this->email->from('info@petritzdesigns.at', 'Info Service - PD');
+        $this->email->to('jcorn.dev@gmail.com');
+        $this->email->bcc('applemarkus@me.com');
+
+        $this->email->subject('New Contact - JocolateManager');
+        $this->email->message('New JocolateManager Contact\n' .
+                'Name: ' . $name . "\n" .
+                'Email: ' . $email . "\n" .
+                'Message: ' . $message . "\n\n" .
+                'Automated Service');
+
+        $this->email->send();
+
+        redirect('main/index', 'refresh');
+    }
+
 }
