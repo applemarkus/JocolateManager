@@ -12,3 +12,7 @@ The Project for the Chocolate Manager that is available for Customers and our st
 * Julian Maierl
 * Paul Kasper
 * Tobias Färber
+
+## Stats
+* Lines of Code: 4550
+* Number of Classes: 32
