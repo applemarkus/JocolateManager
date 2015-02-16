@@ -55,7 +55,6 @@ public class MainViewController extends javax.swing.JFrame {
 
     private void setup() {
         try {
-            FileHelper.makeIfNotExist(Settings.getSaveFile());
             FileHelper.makeIfNotExist(Settings.getTempXmlFile());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -120,18 +119,18 @@ public class MainViewController extends javax.swing.JFrame {
             btLogin.setText("Logout");
             tfEmail.setEnabled(false);
             tfPassword.setEnabled(false);
+            try {
+                FileHelper.makeIfNotExist(Settings.getSaveFile());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+                JM.debug(ex);
+            }
         } else {
             Settings.setCurrentUser(null);
             disableTabs();
             btLogin.setText("Login");
             tfEmail.setEnabled(true);
             tfPassword.setEnabled(true);
-        }
-        try {
-            FileHelper.clearFile(Settings.getSaveFile());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-            JM.debug(ex);
         }
     }
 

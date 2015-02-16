@@ -13,7 +13,8 @@ public class Settings {
     
     public static final String assetsPath = "src/com/jcorn/assets/";
     public static final String tempXmlFile = "tmp/xml.jdata";
-    public static final String saveFile = "tmp/shopping_cart.jdata";
+    public static final String saveFile = "tmp/shopping_cart_";
+    public static final String extension = ".jdata";
     public static final String splitChar = "|";
     public final static boolean isDebug = true;
     
@@ -23,8 +24,8 @@ public class Settings {
         return assetsPath + asset;
     }
 
-    public static String getSaveFile() {
-        return saveFile;
+    public static String getSaveFile() throws Exception {
+        return saveFile + Settings.currentUser.getUsername() + extension;
     }
 
     public static String getTempXmlFile() {
