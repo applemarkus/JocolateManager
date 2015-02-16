@@ -1,5 +1,6 @@
 package com.jcorn.helper;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
@@ -22,6 +23,13 @@ public class FileHelper {
         try (PrintWriter out = new PrintWriter(file)) {
             out.print("");
             out.flush();
+        }
+    }
+    
+    public static void makeIfNotExist(String file) throws Exception {
+        File file_io = new File(file);
+        if(!file_io.exists()) {
+            file_io.createNewFile();
         }
     }
 }

@@ -54,6 +54,14 @@ public class MainViewController extends javax.swing.JFrame {
     }
 
     private void setup() {
+        try {
+            FileHelper.makeIfNotExist(Settings.getSaveFile());
+            FileHelper.makeIfNotExist(Settings.getTempXmlFile());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            JM.debug(ex);
+        }
+
         status = new StatusController(this);
         jocolate = new JocolateController();
         shoppingCart = new ShoppingCartController();
@@ -897,7 +905,7 @@ public class MainViewController extends javax.swing.JFrame {
             JM.debug(ex);
         }
     }
-    
+
     private void showPackage(int id) throws Exception {
         btDeliveryStatusUpdate.setEnabled(true);
         pbDeliveryStatus.setValue(packageController.getStatus(id));
