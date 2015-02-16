@@ -14,5 +14,5 @@ The Project for the Chocolate Manager that is available for Customers and our st
 * Tobias Färber
 
 ## Stats
-* Lines of Code: 4550
-* Number of Classes: 32
+* Lines of Code: **4550**
+* Number of Classes: **32**
