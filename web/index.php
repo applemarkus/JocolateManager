@@ -12,7 +12,7 @@
  * @version 1.0.0
  * @see http://petritzdesigns.com
  */
-define('ENVIRONMENT', 'production');
+define('ENVIRONMENT', 'development');
 
 switch (ENVIRONMENT) {
     case 'development':
