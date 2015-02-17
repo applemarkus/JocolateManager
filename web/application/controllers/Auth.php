@@ -22,7 +22,7 @@ class Auth extends CI_Controller {
 
     public function index() {
         if ($this->session->userdata('logged_in')) {
-            redirect('main/index', 'refresh');
+            redirect('member/index', 'refresh');
         }
         else {
             redirect('auth/login', 'refresh');
@@ -52,7 +52,7 @@ class Auth extends CI_Controller {
             $data['email'] = $this->input->post('email');
             $this->load->template('login_view', $data);
         } else {
-            redirect('main/index', 'refresh');
+            redirect('member/index', 'refresh');
         }
     }
     
@@ -66,7 +66,7 @@ class Auth extends CI_Controller {
             $this->load->template('login_view');
         } else {
             $this->user->register($this->input->post('email'), $this->input->post('password'), TRUE);
-            redirect('main/index', 'refresh');
+            redirect('member/index', 'refresh');
         }
     }
     
