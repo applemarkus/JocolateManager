@@ -33,22 +33,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        </tfoot>
 	 
 	        <tbody>
+	        	{bills}
 	            <tr>
-	                <td>Bill #1</td>
-	                <td>17.02.2015</td>
+	                <td>{name}</td>
+	                <td>{date}</td>
 	                <td>
-	                	<a class="btn btn-primary btn-sm" href="http://jocolate:25001/index.php/api/bill/?email=990f04d9c5327481a7af01111bdf32f0&pwd=b0e08a6df167ab1f243caa5eb1b7f2ac&id=16" target="bill_view" data-toggle="tooltip" data-placement="top" title="View in Bill Viewer"><span class="glyphicon glyphicon-eye-open"></span> View
+	                	<a class="btn btn-primary btn-sm" href="<?php echo site_url('member/bill/{id}'); ?>" target="bill_view" data-toggle="tooltip" data-placement="top" title="View in Bill Viewer"><span class="glyphicon glyphicon-eye-open"></span> View
                         </a>
                     </td>
 	            </tr>
-	            <tr>
-	                <td>Bill #2</td>
-	                <td>17.02.2015</td>
-	                <td>
-	                	<a class="btn btn-primary btn-sm" href="<?php echo site_url('api/index'); ?>" target="bill_view" data-toggle="tooltip" data-placement="top" title="View in Bill Viewer"><span class="glyphicon glyphicon-eye-open"></span> View
-                        </a>
-                    </td>
-	            </tr>
+	            {/bills}
 	        </tbody>
 	    </table>
 			</div>

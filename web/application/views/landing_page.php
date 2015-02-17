@@ -96,7 +96,7 @@
 				<div class="col-lg-4">
 					<span class="glyphicon glyphicon-download" style="font-size: 128px;"></span>
 					<h3>Download</h3>
-					<a href="#" class="btn btn-default btn-lg">Binary Release (.zip)</a>
+					<a href="https://github.com/applemarkus/JocolateManager/releases/download/v1.0/Binary.zip" class="btn btn-default btn-lg">Binary Release (.zip)</a>
 				</div>
 				<div class="col-lg-4">
 					<span class="glyphicon glyphicon-dashboard" style="font-size: 110px;"></span>
@@ -117,7 +117,7 @@
 				<br>
 				<br>
 				<div class="col-lg-6 centered">
-					<img class="centered" src="<?php echo base_url(); ?>assets/img/mobile.png" alt="">
+					<img class="centered mobile-shadow" src="<?php echo base_url(); ?>assets/img/mobile.png" alt="">
 				</div>
 
 				<div class="col-lg-6">

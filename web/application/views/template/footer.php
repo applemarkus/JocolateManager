@@ -20,7 +20,7 @@ $page = uri_string();
         <script src="<?php echo base_url(); ?>assets/js/script.js"></script>
 
 
-        <?php if($page == "member/bills") { ?>
+        <?php if($page == "member/bills" OR $page == "member/packages") { ?>
             <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
             <script src="<?php echo base_url(); ?>assets/js/datatables.bootstrap.js"></script>
 
@@ -32,6 +32,19 @@ $page = uri_string();
                 });
                 $(document).ready(function() {
                     $('#bills-table').dataTable({
+                        "aoColumnDefs": [
+                          { 'bSortable': false, 'aTargets': [ 2 ] }
+                       ]
+                    });
+                });
+
+                $("#package-view").load(function() {
+                    var link = $("#package-view").get(0).contentWindow.location;
+                    $("#package-fullsize").attr("href", link);
+                    $("#package-refresh").attr("href", link);
+                });
+                $(document).ready(function() {
+                    $('#package-table').dataTable({
                         "aoColumnDefs": [
                           { 'bSortable': false, 'aTargets': [ 2 ] }
                        ]

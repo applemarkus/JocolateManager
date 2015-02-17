@@ -20,7 +20,7 @@ $page = uri_string();
 	<!-- Custom styles -->
 	<link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet">
 
-	<?php if($page == "member/bills") { ?>
+	<?php if($page == "member/bills" || $page == "member/packages") { ?>
 		<link href="<?php echo base_url(); ?>assets/css/datatables.bootstrap.css" rel="stylesheet">
 	<?php } ?>
 
