@@ -89,17 +89,17 @@
 				<br>
 				<br>
 				<div class="col-lg-4">
-					<img src="<?php echo base_url(); ?>assets/img/intro01.png" alt="">
+					<span class="glyphicon glyphicon-list" style="font-size: 110px;"></span>
 					<h3>Chocolate Chooser</h3>
 					<p>Create the Chocolate that you love, easy and uncomplicated.</p>
 				</div>
 				<div class="col-lg-4">
-					<img src="<?php echo base_url(); ?>assets/img/intro02.png" alt="">
-					<h3>Shopping Cart</h3>
-					<p>Put all your Chocolates together and order it with one click.</p>
+					<span class="glyphicon glyphicon-download" style="font-size: 128px;"></span>
+					<h3>Download</h3>
+					<a href="#" class="btn btn-default btn-lg">Binary Release (.zip)</a>
 				</div>
 				<div class="col-lg-4">
-					<img src="<?php echo base_url(); ?>assets/img/intro03.png" alt="">
+					<span class="glyphicon glyphicon-dashboard" style="font-size: 110px;"></span>
 					<h3>Delivery Status</h3>
 					<p>Check the current status of your packet full of chocolate.</p>
 				</div>
