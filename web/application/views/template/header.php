@@ -20,12 +20,12 @@ $page = uri_string();
 	<!-- Custom styles -->
 	<link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet">
 
+	<?php if($page == "member/bills") { ?>
+		<link href="<?php echo base_url(); ?>assets/css/datatables.bootstrap.css" rel="stylesheet">
+	<?php } ?>
+
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-
-	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/smoothscroll.js"></script>
-
 
 </head>
 
@@ -49,12 +49,30 @@ $page = uri_string();
 					if($page == "member/index" || $page == "member") {
 						echo "active";
 					}
-					?>"><a href="<?php echo site_url('member/index'); ?>">Member</a></li>
-					<li><a href="#" >Bills</a></li>
-					<li><a href="#">Packages</a></li>
+					?>"><a href="<?php echo site_url('member/index'); ?>">Dashboard</a></li>
+					<li class="<?php
+					if($page == "member/bills" || $page == "bills") {
+						echo "active";
+					}
+					?>"><a href="<?php echo site_url('member/bills'); ?>" >Bills</a></li>
+					<li class="<?php
+					if($page == "member/packages") {
+						echo "active";
+					}
+					?>"><a href="<?php echo site_url('member/packages'); ?>">Packages</a></li>
+					<li class="<?php
+					if($page == "api/index" || $page == "api") {
+						echo "active";
+					}
+					?>"><a href="<?php echo site_url('api/index'); ?>">Api</a></li>
 				</ul>
 				<?php if ($this->session->userdata('logged_in')) { ?>
 				<ul class="nav navbar-nav navbar-right">
+					<li class="<?php
+					if($page == "member/profile") {
+						echo "active";
+					}
+					?>"><a href="<?php echo site_url('member/profile'); ?>">Profile</a></li>
 					<li><a href="<?php echo site_url('auth/logout'); ?>">Logout</a></li>
 				</ul>
 				<?php } else { ?>

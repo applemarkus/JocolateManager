@@ -23,10 +23,24 @@ class Member extends CI_Controller {
     public function index() {
         if ($this->session->userdata('logged_in')) {
             $data['email'] = $this->session->userdata('user_email');
+            $user = $this->user->get_user($this->user->get_id($this->session->userdata('user_email')));
+            $data['name'] = $user['name'];
             $this->load->template('home_view', $data);
         }
         else {
             redirect('auth/login', 'refresh');
         }
+    }
+
+    public function profile() {
+        $this->load->template('profile_view');
+    }
+
+    public function bills() {
+        $this->load->template('bills_view');
+    }
+
+    public function packages() {
+        $this->load->template('packages_view');
     }
 }

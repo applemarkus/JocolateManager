@@ -15,8 +15,8 @@ class User extends CI_Model {
         parent::__construct();
     }
 
-    function register($user_email = '', $user_pass = '', $auto_login = true) {
-        if ($user_email == '' OR $user_pass == '') {
+    function register($user_name = '', $user_email = '', $user_pass = '', $auto_login = true) {
+        if ($user_name == '' OR $user_email == '' OR $user_pass == '') {
             return false;
         }
 
@@ -31,6 +31,7 @@ class User extends CI_Model {
         $user_pass_hashed = $hasher->HashPassword($user_pass);
 
         $data = array(
+            'user_name' => $user_name,
             'user_email' => $user_email,
             'user_pass' => $user_pass_hashed,
             'user_date' => date('c'),
@@ -50,8 +51,8 @@ class User extends CI_Model {
         return true;
     }
 
-    function update($user_id = null, $user_email = '', $auto_login = true) {
-        if ($user_id == null OR $user_email == '') {
+    function update($user_id = null, $user_name = '', $user_email = '', $auto_login = true) {
+        if ($user_id == null OR $user_name == '' OR $user_email == '') {
             return false;
         }
 
@@ -63,6 +64,7 @@ class User extends CI_Model {
         }
 
         $data = array(
+            'user_name' => $user_name,
             'user_email' => $user_email,
             'user_modified' => date('c'),
         );
@@ -156,6 +158,29 @@ class User extends CI_Model {
         } else {
             return TRUE;
         }
+    }
+
+    function get_id($user_email) {
+        $sql = "SELECT user_id FROM users WHERE user_email = '$user_email'";
+        $query = $this->db->query($sql);
+        if ($query->num_rows() == 1) {
+            return $query->row()->user_id;
+        } else {
+            throw new Exception("There are users with the same email!");
+        }
+    }
+
+    function get_user($user_id) {
+        $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
+        $query = $this->db->query($sql);
+        $row = $query->row();
+
+        $user['id'] = $row->user_id;
+        $user['name'] = $row->user_name;
+        $user['email'] = $row->user_email;
+        $user['last_login'] = $row->user_last_login;
+
+        return $user;
     }
 
 }

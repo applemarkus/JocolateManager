@@ -160,4 +160,29 @@ a:after {
 
 footer {
     background-color: white;
+    position: fixed;
+    height: 70px;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #222222;
+}
+
+/* ==========================================================================
+   Custom
+   ========================================================================== */
+
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    display:none;
+}
+
+.panel-body .btn:not(.btn-block) { 
+    width:120px;
+    margin-bottom:10px; 
 }

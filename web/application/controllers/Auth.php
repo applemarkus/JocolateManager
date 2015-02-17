@@ -35,7 +35,7 @@ class Auth extends CI_Controller {
 
     public function logout() {
         $this->user->logout();
-        redirect('main/index', 'refresh');
+        redirect('member/index', 'refresh');
     }
     
     public function register() {
@@ -59,13 +59,14 @@ class Auth extends CI_Controller {
     public function verifyRegister() {
         $this->load->library('form_validation');
 
+        $this->form_validation->set_rules('user_name', 'Name', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->template('login_view');
-        } else {
-            $this->user->register($this->input->post('email'), $this->input->post('password'), TRUE);
+            $this->load->template('register_view');
+        } else {;
+            $this->user->register($this->input->post('user_name'), $this->input->post('email'), $this->input->post('password'), TRUE);
             redirect('member/index', 'refresh');
         }
     }
