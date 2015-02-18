@@ -36,13 +36,41 @@ class Member extends CI_Controller {
         }
     }
 
+    public function admin() {
+        $this->load->template('admin_view');
+    }
+
     public function profile() {
         $user_id = $this->user->get_id($this->session->userdata('user_email'));
         $user = $this->user->get_user($user_id);
         $data['name'] = $user['name'];
         $data['email'] = $user['email'];
-        $data['last_login'] = date('d.m.Y H:m:i', strtotime($user['last_login']));
+        $data['bills'] = $user['bills'];
+        $data['packages'] = $user['packages'];
+        $data['ip'] = $user['ip'];
+        $data['last_login'] = $this->ago_string(strtotime($user['last_login']))." ago";
+        $this->agent->parse($user['user_agent']);
+        $data['os'] = $this->agent->platform();
+        $data['browser'] = $this->agent->browser();
         $this->load->template('profile_view', $data);
+    }
+
+    private function ago_string($time) {
+        $time = time() - $time;
+        $tokens = array (
+            31536000 => 'year',
+            2592000 => 'month',
+            604800 => 'week',
+            86400 => 'day',
+            3600 => 'hour',
+            60 => 'minute',
+            1 => 'second'
+        );
+        foreach ($tokens as $unit => $text) {
+            if ($time < $unit) continue;
+            $numberOfUnits = floor($time / $unit);
+            return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
+        }
     }
 
     public function bills() {

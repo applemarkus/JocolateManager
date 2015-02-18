@@ -36,6 +36,8 @@ class User extends CI_Model {
             'user_pass' => $user_pass_hashed,
             'user_date' => date('c'),
             'user_modified' => date('c'),
+            'user_ip' => $this->input->ip_address(),
+            'user_agent_string' => $this->agent->agent_string(),
         );
 
         $this->db->set($data);
@@ -67,6 +69,8 @@ class User extends CI_Model {
             'user_name' => $user_name,
             'user_email' => $user_email,
             'user_modified' => date('c'),
+            'user_ip' => $this->input->ip_address(),
+            'user_agent_string' => $this->agent->agent_string(),
         );
 
         $this->db->where('user_id', $user_id);
@@ -110,7 +114,15 @@ class User extends CI_Model {
             //$this->session->sess_create();
             //session_start();
             
-            $this->db->simple_query('UPDATE ' . $this->user_table . ' SET user_last_login = "' . date('c') . '" WHERE user_id = ' . $user_data['user_id']);
+            //$this->db->simple_query('UPDATE ' . $this->user_table . ' SET user_last_login = "' . date('c') . '" WHERE user_id = ' . $user_data['user_id']);
+            $data = array(
+                'user_last_login' => date('c'),
+                'user_ip' => $this->input->ip_address(),
+                'user_agent_string' => $this->agent->agent_string(),
+            );
+
+            $this->db->where('user_id', $user_data['user_id']);
+            $this->db->update($this->user_table, $data);
 
             unset($user_data['user_pass']);
             $user_data['user'] = $user_data['user_email'];
@@ -148,7 +160,9 @@ class User extends CI_Model {
         $user_pass_hashed = $hasher->HashPassword($new_pass);
         $data = array(
             'user_pass' => $user_pass_hashed,
-            'user_modified' => date('c')
+            'user_modified' => date('c'),
+            'user_ip' => $this->input->ip_address(),
+            'user_agent_string' => $this->agent->agent_string(),
         );
 
         $this->db->set($data);
@@ -170,17 +184,50 @@ class User extends CI_Model {
         }
     }
 
+    function update_informations($user_id) {
+        $data = array(
+            'user_ip' => $this->input->ip_address(),
+            'user_agent_string' => $this->agent->agent_string(),
+        );
+
+        $this->db->where('user_id', $user_id);
+        $this->db->update($this->user_table, $data);
+    }
+
     function get_user($user_id) {
+        $this->update_informations($user_id);
+
         $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
         $query = $this->db->query($sql);
         $row = $query->row();
 
+        $this->db->where('user_id', $user_id);
+        $user['bills'] = $this->db->count_all('bills');
+        $user['packages'] = $this->db->count_all('packages');
+
         $user['id'] = $row->user_id;
         $user['name'] = $row->user_name;
         $user['email'] = $row->user_email;
+        $user['ip'] = $row->user_ip;
         $user['last_login'] = $row->user_last_login;
+        $user['user_agent'] = $row->user_agent_string;
 
         return $user;
     }
 
+    function is_admin($user_id = '') {
+        if($user_id == '') {
+            $user_id = $this->get_id($this->session->userdata('user_email'));
+        }
+
+        $this->db->where('user_id',$user_id);
+        $query = $this->db->get($this->user_table);
+        $row = $query->row();
+        $admin = $row->admin;
+        if($admin == "0") {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

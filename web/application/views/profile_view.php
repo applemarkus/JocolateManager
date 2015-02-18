@@ -15,13 +15,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</h3>
 			</div>
 			<div class="panel-body">
+				<h3><strong>Name: </strong><?php echo $name; ?></h3>
 				<ul class="list-group">
-				  <li class="list-group-item"><strong>Name: </strong><?php echo $name; ?></li>
 				  <li class="list-group-item"><strong>Email: </strong><?php echo $email; ?></li>
+				  <li class="list-group-item"><strong>Amount Bills: </strong><?php echo $bills; ?></li>
+				  <li class="list-group-item"><strong>Amount Packages: </strong><?php echo $packages; ?></li>
 				  <li class="list-group-item"><strong>Last Login: </strong><?php echo $last_login; ?></li>
+				  <li class="list-group-item"><strong>IP Address: </strong><?php echo $ip; ?></li>
+				  <li class="list-group-item"><strong>Browser: </strong><?php echo $browser; ?></li>
+				  <li class="list-group-item"><strong>Operating System: </strong><?php echo $os; ?></li>
 				</ul>
-				<a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-edit"></span> Change Password</a>
-				<a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Change Email</a>
+				<div class="row">
+					<div class="col-md-6">
+						<a href="mailto:<?php echo $email; ?>" class="btn btn-info btn-lg btn-block"><span class="glyphicon glyphicon-envelope"></span> Send Mail</a>
+					</div>
+					<div class="col-md-6">
+						<a href="<?php echo site_url('auth/logout'); ?>" class="btn btn-danger btn-lg btn-block"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

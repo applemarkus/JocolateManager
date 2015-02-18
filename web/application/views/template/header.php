@@ -68,6 +68,13 @@ $page = uri_string();
 				</ul>
 				<?php if ($this->session->userdata('logged_in')) { ?>
 				<ul class="nav navbar-nav navbar-right">
+					<?php if($this->user->is_admin()) { ?>
+					<li class="<?php
+					if($page == "member/admin") {
+						echo "active";
+					}
+					?>"><a href="<?php echo site_url('member/admin'); ?>">Admin</a></li>
+					<?php } ?>
 					<li class="<?php
 					if($page == "member/profile") {
 						echo "active";
