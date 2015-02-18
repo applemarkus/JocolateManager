@@ -34,6 +34,7 @@ class Auth extends CI_Controller {
     }
 
     public function logout() {
+        $this->session->unset_userdata('last_page');
         $this->user->logout();
         redirect('member/index', 'refresh');
     }
@@ -52,7 +53,11 @@ class Auth extends CI_Controller {
             $data['email'] = $this->input->post('email');
             $this->load->template('login_view', $data);
         } else {
-            redirect('member/index', 'refresh');
+            if($this->session->userdata('last_page') !== NULL) {
+                redirect($this->session->userdata('last_page'), 'refresh');
+            } else {
+                redirect('member/index', 'refresh');
+            }
         }
     }
     

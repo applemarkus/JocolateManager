@@ -6,10 +6,10 @@ $page = uri_string();
 <br><br><br><br>
 <footer class="footer hidden-xs" id="footer">
 	<div class="container">
-		<p class="text-muted"><div class="pull-right hidden-sm">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo (ENVIRONMENT === 'development') ? 'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></div><strong><a href="http://petritzdesigns.at">&copy; jCorn Development</a></strong></p>
+		<p class="text-muted"><div class="pull-right hidden-sm">Page rendered in <strong>{elapsed_time}</strong> seconds. Version <strong>1.0.0</strong></div><strong><a href="http://petritzdesigns.at">&copy; jCorn Development</a></strong></p>
 	</div>
 </footer>
-<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="top"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
         <!-- Bootstrap core JavaScript
         ================================================== -->

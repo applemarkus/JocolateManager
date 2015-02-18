@@ -56,7 +56,7 @@
 		<div class="container">
 			<div class="row centered">
 				<div class="col-lg-12">
-					<h1>Welcome To <b>JocolateManager</b>.</h1>
+					<h1>Welcome To <b>Jocolate Manager</b>.</h1>
 					<h3>The Best Chocolate Order Client.</h3>
 					<br>
 				</div>
@@ -214,16 +214,16 @@
 								<img src="<?php echo base_url(); ?>assets/img/item-02.png" alt="">
 							</div>
 							<div class="item">
-								<img src="<?php echo base_url(); ?>assets/img/item-02.png" alt="">
+								<img src="<?php echo base_url(); ?>assets/img/item-03.png" alt="">
 							</div>
 							<div class="item">
-								<img src="<?php echo base_url(); ?>assets/img/item-02.png" alt="">
+								<img src="<?php echo base_url(); ?>assets/img/item-04.png" alt="">
 							</div>
 							<div class="item">
-								<img src="<?php echo base_url(); ?>assets/img/item-02.png" alt="">
+								<img src="<?php echo base_url(); ?>assets/img/item-05.png" alt="">
 							</div>
 							<div class="item">
-								<img src="<?php echo base_url(); ?>assets/img/item-02.png" alt="">
+								<img src="<?php echo base_url(); ?>assets/img/item-06.png" alt="">
 							</div>
 						</div>
 					</div>

@@ -19,6 +19,7 @@ class Member extends CI_Controller {
     public function __construct() {
         parent::__construct();
         if (!$this->session->userdata('logged_in')) {
+            $this->session->set_userdata('last_page', uri_string());
             redirect('auth/login', 'refresh');
         }
     }
@@ -178,12 +179,6 @@ class Member extends CI_Controller {
                     'date' => date('d.m.Y H:m', strtotime($row->package_date))
                 ));
             }
-        } else {
-            array_push($package_item, array(
-                    'id' => '',
-                    'name' => 'No packages available...',
-                    'date' => ''
-                ));
         }
 
         $data = array(
