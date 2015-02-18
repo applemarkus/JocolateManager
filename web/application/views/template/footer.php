@@ -20,7 +20,7 @@ $page = uri_string();
         <script src="<?php echo base_url(); ?>assets/js/script.js"></script>
 
 
-        <?php if($page == "member/bills" OR $page == "member/packages") { ?>
+        <?php if($page == "member/bills" OR $page == "member/packages" OR $page == "member/admin") { ?>
             <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
             <script src="<?php echo base_url(); ?>assets/js/datatables.bootstrap.js"></script>
 
@@ -47,6 +47,14 @@ $page = uri_string();
                     $('#package-table').dataTable({
                         "aoColumnDefs": [
                           { 'bSortable': false, 'aTargets': [ 2 ] }
+                       ]
+                    });
+                });
+
+                $(document).ready(function() {
+                    $('#admin-table').dataTable({
+                        "aoColumnDefs": [
+                          { 'bSortable': false, 'aTargets': [ 8 ] }
                        ]
                     });
                 });
