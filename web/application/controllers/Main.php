@@ -37,7 +37,7 @@ class Main extends CI_Controller {
         $this->email->bcc('applemarkus@me.com');
 
         $this->email->subject('New Contact - JocolateManager');
-        $this->email->message('New JocolateManager Contact\n' .
+        $this->email->message('New JocolateManager Contact' . "\n" .
                 'Name: ' . $name . "\n" .
                 'Email: ' . $email . "\n" .
                 'Message: ' . $message . "\n\n" .

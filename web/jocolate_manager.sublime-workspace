@@ -1,0 +1,783 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"update",
+				"update_package_status"
+			],
+			[
+				"st",
+				"status_i"
+			],
+			[
+				"status",
+				"status_o"
+			],
+			[
+				"bill",
+				"bill_items"
+			],
+			[
+				"user",
+				"user_id_bill"
+			],
+			[
+				"user_id",
+				"user_id_real"
+			],
+			[
+				"padi",
+				"padding-left"
+			],
+			[
+				"base_",
+				"base_url"
+			],
+			[
+				"ele",
+				"elem_buffer"
+			],
+			[
+				"c",
+				"cl	class"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"paddin",
+				"padding"
+			],
+			[
+				"css",
+				"css"
+			],
+			[
+				"Re",
+				"REKURSIVFILE"
+			],
+			[
+				"d",
+				"do	Do While Loop"
+			],
+			[
+				"inser",
+				"insertionsort"
+			],
+			[
+				"bub",
+				"bubblesort"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"fel",
+				"feldY"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"margin-",
+				"margin-left"
+			],
+			[
+				"tabl",
+				"table	Tag"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"repeat",
+				"repeat-x"
+			],
+			[
+				"pr",
+				"print4Matrix4"
+			],
+			[
+				"o",
+				"overflowImVorrigenErg"
+			],
+			[
+				"i",
+				"include"
+			],
+			[
+				"re",
+				"retString"
+			],
+			[
+				"a",
+				"aNumber"
+			],
+			[
+				"int",
+				"inputFile"
+			],
+			[
+				"output",
+				"outputFile"
+			],
+			[
+				"input",
+				"inputFile"
+			],
+			[
+				"inp",
+				"inputFile"
+			],
+			[
+				"out",
+				"output"
+			],
+			[
+				"file",
+				"fileBuffer"
+			],
+			[
+				"all",
+				"allMessages"
+			],
+			[
+				"suc",
+				"successMessages"
+			],
+			[
+				"head",
+				"headers"
+			],
+			[
+				"ta",
+				"target	Attr"
+			],
+			[
+				"mysql_fetch_",
+				"mysql_fetch_assoc"
+			],
+			[
+				"fetch_assoc",
+				"mysql_fetch_assoc"
+			],
+			[
+				"error",
+				"error_reporting"
+			],
+			[
+				"date_time",
+				"date_timezone_set"
+			],
+			[
+				"base",
+				"base64_decode"
+			],
+			[
+				"base64",
+				"base64_encode"
+			],
+			[
+				"log",
+				"log"
+			],
+			[
+				"setAtr",
+				"setAttributWithAttribute"
+			],
+			[
+				"setAttr",
+				"setAttributWithAttribute"
+			],
+			[
+				"cap",
+				"caption1"
+			],
+			[
+				"image",
+				"image1"
+			],
+			[
+				"img",
+				"imgpath"
+			],
+			[
+				"co",
+				"content"
+			],
+			[
+				"mysql_fet",
+				"mysql_fetch_object"
+			],
+			[
+				"mysql_fe",
+				"mysql_fetch_object"
+			],
+			[
+				"mysql_fetch",
+				"mysql_fetch_assoc"
+			],
+			[
+				"mysql_",
+				"mysql_fetch_assoc"
+			],
+			[
+				"get_Event",
+				"get_EventInfoE"
+			],
+			[
+				"db",
+				"db_out3"
+			],
+			[
+				"qry",
+				"qry3"
+			],
+			[
+				"Eve",
+				"EventID"
+			],
+			[
+				"at",
+				"atr_Value3"
+			],
+			[
+				"atr",
+				"atr_Value2"
+			],
+			[
+				"bar",
+				"bar_name"
+			],
+			[
+				"atr_",
+				"atr_Value"
+			],
+			[
+				"mysql_num",
+				"mysql_num_rows"
+			],
+			[
+				"mysql",
+				"mysqli"
+			],
+			[
+				"Julian",
+				"Julian"
+			],
+			[
+				"usern",
+				"username"
+			],
+			[
+				"size",
+				"font-size"
+			],
+			[
+				"User",
+				"userName"
+			],
+			[
+				"test21",
+				"_test21"
+			],
+			[
+				"erro",
+				"errorCheck"
+			],
+			[
+				"new",
+				"newNewPassword"
+			],
+			[
+				"sql",
+				"sql2"
+			],
+			[
+				"pass",
+				"passwort_zusatz"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"padding",
+				"padding-right"
+			],
+			[
+				"subj",
+				"subject_mail_hack"
+			],
+			[
+				"_",
+				"_Thursday"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 287.0,
+		"selected_items":
+		[
+			[
+				"sscs",
+				"Set Syntax: CSS"
+			],
+			[
+				"ssja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"snippet",
+				"Snippet: #include <…>"
+			],
+			[
+				"ssc",
+				"Set Syntax: C"
+			],
+			[
+				"sni",
+				"Snippet: Function"
+			],
+			[
+				"ssht",
+				"Set Syntax: HTML"
+			],
+			[
+				"ssjava",
+				"Set Syntax: Java"
+			],
+			[
+				"set syntax jav",
+				"Set Syntax: Java"
+			],
+			[
+				"setsyntaxjav",
+				"Set Syntax: Java"
+			],
+			[
+				"ssjs",
+				"Set Syntax: JSON"
+			],
+			[
+				"reindet",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"se styntax jav",
+				"Set Syntax: Java"
+			],
+			[
+				"set  syntax html",
+				"Set Syntax: HTML"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets"
+	],
+	"file_history":
+	[
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/main.css",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template/footer.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/home_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Auth.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Member.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/bootstrap.css",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/register_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/packages_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/package_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Api.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template/header.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/bills_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/welcome_message.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/landing_page.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/bill_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/js/script.js",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/cache/.htaccess",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/config/profiler.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/models/phpass-0.3/PasswordHash.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/datatables.bootstrap.css",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/js/jquery.datatables.js",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/js/datatables.bootstrap.js",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/foundation-icons.css",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/login_view.php",
+		"/Users/applemarkus/Downloads/foundation-icons/foundation-icons.eot",
+		"/Users/applemarkus/Downloads/foundation-icons/foundation-icons.svg",
+		"/Users/applemarkus/Downloads/foundation-icons/foundation-icons.ttf",
+		"/Users/applemarkus/Downloads/foundation-icons/foundation-icons.woff",
+		"/Users/applemarkus/Downloads/foundation-icons/foundation-icons.css",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/styles.css",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/index.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Main.php",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/.htaccess 2",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/.htaccess",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/routes.php",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/config.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/tmp/shopping_cart.jdata",
+		"/Users/applemarkus/Downloads/bootstrap/css/bootstrap.min.css",
+		"/Users/applemarkus/Downloads/bootstrap/config.json",
+		"/Users/applemarkus/Documents/Github/JocolateManager/tmp/xml.jdata",
+		"/Users/applemarkus/Downloads/temp/Creater.java",
+		"/Users/applemarkus/Documents/Github/Backup/JocolateManager/tmp/xml.jdata",
+		"/Users/applemarkus/Documents/Github/Backup/JocolateManager/src/com/jcorn/view/PayViewController.java",
+		"/Users/applemarkus/Dropbox/School/Programmieren/Java/Schuluebungen/Q1/JavaCodingExamples/src/b107_bruchrechner/BruchGUI.java",
+		"/Users/applemarkus/Documents/Github/Backup/JocolateManager/src/com/jcorn/view/MainView.java",
+		"/Users/applemarkus/Documents/Github/JocolateManager/src/com/jcorn/tester/CryptionTest.java",
+		"/Users/applemarkus/Documents/Github/JocolateManager/src/com/jcorn/helper/MCrypt.java",
+		"/Users/applemarkus/Downloads/xml_writer-master/application/libraries/xml_writer.php",
+		"/Users/applemarkus/Downloads/xml_writer-master/application/controllers/xml.php",
+		"/Users/applemarkus/Downloads/CodeIgniter-3.0rc2/application/views/welcome_message.php",
+		"/Users/applemarkus/Downloads/SimpleLoginSecure-master/SimpleLoginSecure.php",
+		"/Users/applemarkus/Downloads/SimpleLoginSecure-master/create_users_table.sql",
+		"/Users/applemarkus/Downloads/Old/CI/application/views/welcome_message.php",
+		"/Users/applemarkus/Documents/jCorn/auftrag_julian.txt",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/credit.txt",
+		"/Users/applemarkus/Desktop/PeritzDesigns/Lumino Admin Bootstrap Template/lumino/tables/data2.json",
+		"/Users/applemarkus/Documents/Github/JocolateManager/tmp/shopping_car.jdata",
+		"/Users/applemarkus/Documents/jCorn/Test/bubble.txt",
+		"/Users/applemarkus/Documents/jCorn/Test/sort.c",
+		"/Users/applemarkus/Documents/jCorn/Test/Makefile",
+		"/Users/applemarkus/Documents/jCorn/Linz",
+		"/Users/applemarkus/Desktop/ME/Html_Website/index.html",
+		"/Users/applemarkus/Desktop/Html Website/site_styles.css",
+		"/Users/applemarkus/Desktop/Html Website/index.html",
+		"/Users/applemarkus/Desktop/Html Website/styles.css",
+		"/Users/applemarkus/Desktop/Html Website/sites/audio.html",
+		"/Users/applemarkus/Desktop/Html Website/sites/video.html",
+		"/Users/applemarkus/Desktop/Html Website/sites/yt_video.html",
+		"/Users/applemarkus/Desktop/Html Website/sites/home.html",
+		"/Users/applemarkus/Desktop/Html Website/script.js",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/configuration.php",
+		"/Users/applemarkus/ownCloud/.owncloudsync.log",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/config.sample.php",
+		"/Users/applemarkus/Downloads/owncloud/config/config.php",
+		"/Users/applemarkus/Downloads/owncloud/themes/README",
+		"/Users/applemarkus/Downloads/owncloud-bootswatch-themes-master/cyborg/core/css/styles.css",
+		"/Users/applemarkus/Desktop/Joomla_3/web.config.txt",
+		"/Users/applemarkus/Desktop/Joomla_3/robots.txt.dist",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/index.html",
+		"/Users/applemarkus/Desktop/PetritzDesigns.terminal",
+		"/Users/applemarkus/Downloads/test.c",
+		"/Users/applemarkus/Downloads/Test/Gruntfile",
+		"/Users/applemarkus/Downloads/Test/package.json",
+		"/Users/applemarkus/Dropbox/Domi + Petritz/DomiiDesigns2K15/DomiiDesigns-CI/application/config/config.php",
+		"/Users/applemarkus/Downloads/mobile-samples-master/Tasky/TaskyiOS/AppDelegate.cs",
+		"/Users/applemarkus/Desktop/Projekte/JCoffeePlusPlus/api/Makefile",
+		"/Users/applemarkus/Desktop/Projekte/JCoffeePlusPlus/api/main.cc",
+		"/Users/applemarkus/Desktop/Projekte/JCoffeePlusPlus/api/JCoffeeAPI.cc",
+		"/Users/applemarkus/Desktop/Projekte/JCoffeePlusPlus/.gitattributes",
+		"/Users/applemarkus/Downloads/JCoffee.xml",
+		"/Users/applemarkus/Downloads/relay.cpp",
+		"/Users/applemarkus/Downloads/festlex_CMU/festival/lib/dicts/cmu/Makefile",
+		"/Users/applemarkus/Downloads/festlex_CMU/festival/lib/dicts/cmu/cmudict_extensions.scm",
+		"/Users/applemarkus/Downloads/festlex_CMU/festival/lib/dicts/cmu/cmudict-0.4.diff",
+		"/Users/applemarkus/Downloads/festlex_CMU/festival/lib/dicts/cmu/allowables.scm",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/relay.cpp",
+		"/Users/applemarkus/Dropbox/School/Programmieren/C/Schuluebungen/Bsp804/main.c",
+		"/Users/applemarkus/Desktop/test/c/training/selectionsort.c",
+		"/Users/applemarkus/Desktop/test/c/training/facult.c",
+		"/Users/applemarkus/Desktop/test/c/training/fibo.c",
+		"/Users/applemarkus/Desktop/test/c/training/hanoi.c",
+		"/Users/applemarkus/Desktop/test/c/training/primzahl",
+		"/Users/applemarkus/Downloads/test_plf.c",
+		"/Users/applemarkus/Downloads/Makefile",
+		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/c/all.txt",
+		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/c/sort.c",
+		"/Users/applemarkus/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/applemarkus/Library/Application Support/Sublime Text 3/Packages/User/Context.sublime-menu",
+		"/Users/applemarkus/Dropbox/T-Cobbler-Raspberry.txt",
+		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/c/rekursiv.c",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/main.cpp",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/Makefile",
+		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/Traffic_Light.h",
+		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/wiringPi/Traffic Light/main.cpp",
+		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/wiringPi/Traffic Light/Traffic_Light.h",
+		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/wiringPi/Traffic Light/Traffic_Light.cpp",
+		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/wiringPi/Traffic Light/Makefile",
+		"/Users/applemarkus/Desktop/test/c/rekursiv.c",
+		"/Users/applemarkus/Desktop/test/c/sort.c",
+		"/Users/applemarkus/Desktop/test/c/all.txt",
+		"/Users/applemarkus/Desktop/test/c/Makefile",
+		"/Users/applemarkus/Dropbox/School/Programmieren/C/Schuluebungen/Pos_Plf_C-Uebung/main.c",
+		"/Users/applemarkus/Downloads/sort.txt",
+		"/Users/applemarkus/Desktop/test/c/sort",
+		"/Users/applemarkus/Desktop/test/sort.c",
+		"/Users/applemarkus/Desktop/test/perl/hello.pl",
+		"/Users/applemarkus/Desktop/test/Makefile",
+		"/Users/applemarkus/Desktop/test/test.c"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"bill",
+			"bill_items",
+			"bill_view",
+			"width: 120px",
+			"a",
+			"td a",
+			"width: 120",
+			"...",
+			"window",
+			"instance",
+			"app",
+			"overflowImVorrigenErg",
+			"{\n",
+			"rechnerZahl",
+			"zahlDieEntwederMultipliziertOderDividiert",
+			"zahlToCalc",
+			"ergZahl",
+			"startZahl",
+			"#include <stdio.h>\n\nint main(void)\n{\n  int startZahl = 1430814;\n  int lzahl = zahl;\n  int zahlToCalc = 2;\n\n    while(zahlToCalc < 10) \n    {\n      zahl *= zahlToCalc;\n      printf(\"%10d * %d = %d\", lzahl, zahlToCalc, zahl); br();\n      lzahl = zahl;\n      zahlToCalc++;\n    }\n\n    zahl = lzahl;\n    zahlToCalc = 2;\n    while(zahlToCalc < 10) {\n      zahl/=zahlToCalc;\n      printf(\"%15d / %d = %d\", lzahl, zahlToCalc, zahl); br();\n      lzahl = zahl;\n      zahlToCalc++;\n    }\n\n    return 0;\n\n}",
+			"WaldorfCreator.icns",
+			"section-1",
+			"icon",
+			"tile",
+			"map",
+			"text",
+			"lengh",
+			"rl",
+			"tex-muted",
+			"contai",
+			"conta",
+			"cont",
+			"container",
+			"font-size: 11px;",
+			".nav > ",
+			".nav .nav",
+			".nav > li > a",
+			".nav-tabs > li",
+			".nav-tabs > li > a",
+			"nav-tabs",
+			"abbr",
+			"#6d6d6d",
+			"6d6d6d",
+			"navbar",
+			"get_push",
+			"get_pushBadge",
+			"#2c3e50",
+			"get_NeededBarPosition",
+			"get_UserPosition",
+			"set_UserRegisterforEvent",
+			"#2",
+			"freela",
+			"mix",
+			"template manager",
+			"Size images must be 896px to 326px! !",
+			"name",
+			"db_out",
+			"$db-out",
+			"$db",
+			"db_out",
+			"login",
+			"a",
+			"a name",
+			"name",
+			"homep",
+			"Verbindung",
+			"bg-alt",
+			"bg-alr",
+			"Hey",
+			"SSL",
+			"VirtualHost",
+			"host",
+			"gall",
+			"galler",
+			"gallery",
+			"popupclose",
+			"time()",
+			"main style2 left dark fullscreen",
+			"rank",
+			"pwsalt",
+			"pw",
+			"mail",
+			"5",
+			"$_errormail_sending_password",
+			"$_error_fields2",
+			"'You entered a wrong security code!'",
+			"$_error_captcha_invalid",
+			"$_error_mail_invalid",
+			"$_error_pw_match",
+			"$_error_pw_short",
+			"_errormail_sending_mail",
+			"_errormail_sending",
+			"$_errormail_sending",
+			"$_login_fields",
+			"$_login_deac",
+			"$_login_user_incorrect",
+			"color",
+			"subject",
+			"mysql_host",
+			"mysql_user"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"metro",
+			"smsContent",
+			"length"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "jocolate_manager.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"application/models/User.php"
+			],
+			[
+				"liener",
+				"Server Backup/liener.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 314.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 1
+	}
+}

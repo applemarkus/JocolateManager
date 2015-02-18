@@ -63,7 +63,7 @@
 
 				<div class="col-lg-2">
 					<h5>Amazing Possibilities</h5>
-					<p>Create your own chocolate. Put it in the shopping cart together and order it safe und fast.</p>
+					<p>Create your own chocolate. Put it in the shopping cart and order it safe und fast.</p>
 					<img class="hidden-xs hidden-sm hidden-md" src="<?php echo base_url(); ?>assets/img/arrow1.png">
 				</div>
 				<div class="col-lg-8">
