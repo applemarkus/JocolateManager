@@ -336,10 +336,26 @@
 	"buffers":
 	[
 		{
-			"file": "application/controllers/Main.php",
+			"file": "application/controllers/Member.php",
 			"settings":
 			{
-				"buffer_size": 1301,
+				"buffer_size": 10640,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/admin_view.php",
+			"settings":
+			{
+				"buffer_size": 2137,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/views/template/footer.php",
+			"settings":
+			{
+				"buffer_size": 2881,
 				"line_ending": "Unix"
 			}
 		}
@@ -430,10 +446,15 @@
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets"
 	],
 	"file_history":
 	[
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template/header.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/packages_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/profile_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Main.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/landing_page.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/main.css",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template/footer.php",
@@ -442,10 +463,8 @@
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Member.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/bootstrap.css",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/register_view.php",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/packages_view.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/package_view.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Api.php",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template/header.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/bills_view.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/welcome_message.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/bill_view.php",
@@ -465,7 +484,6 @@
 		"/Users/applemarkus/Downloads/foundation-icons/foundation-icons.css",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/styles.css",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/index.php",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Main.php",
 		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/.htaccess 2",
 		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/.htaccess",
 		"/private/var/folders/2s/m72x28wx7c17byz78xf526dr0000gn/T/fz3temp-1/routes.php",
@@ -560,8 +578,7 @@
 		"/Users/applemarkus/Desktop/test/c/sort",
 		"/Users/applemarkus/Desktop/test/sort.c",
 		"/Users/applemarkus/Desktop/test/perl/hello.pl",
-		"/Users/applemarkus/Desktop/test/Makefile",
-		"/Users/applemarkus/Desktop/test/test.c"
+		"/Users/applemarkus/Desktop/test/Makefile"
 	],
 	"find":
 	{
@@ -579,6 +596,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"admin",
+			"package",
 			"bill",
 			"bill_items",
 			"bill_view",
@@ -698,24 +717,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/controllers/Main.php",
+					"file": "application/controllers/Member.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1301,
+						"buffer_size": 10640,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								908,
-								908
+								1072,
+								1072
 							]
 						],
 						"settings":
@@ -728,7 +747,65 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/views/admin_view.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2137,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1952,
+								1952
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/views/template/footer.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2881,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2742,
+								2742
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
