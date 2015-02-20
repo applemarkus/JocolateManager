@@ -36,6 +36,12 @@ class Member extends CI_Controller {
         }
     }
 
+    public function shopping_cart() {
+        $user = $this->user->get_user($this->user->get_id($this->session->userdata('user_email')));
+        $data['name'] = $user['name'];
+        $this->load->template('shopping_cart_view', $data);
+    }
+
     public function profile() {
         $user_id = $this->user->get_id($this->session->userdata('user_email'));
         $user = $this->user->get_user($user_id);
@@ -45,9 +51,16 @@ class Member extends CI_Controller {
         $data['packages'] = $user['packages'];
         $data['ip'] = $user['ip'];
         $data['last_login'] = $this->ago_string(strtotime($user['last_login']))." ago";
-        $this->agent->parse($user['user_agent']);
-        $data['os'] = $this->agent->platform();
-        $data['browser'] = $this->agent->browser();
+
+         if($user['user_agent'] == "JocolateManager/1.0") {
+            $data['os'] = "Unknown";
+            $data['browser'] = "JocolateManager";
+        } else {
+            $this->agent->parse($user['user_agent']);
+            $data['os'] = $this->agent->platform();
+            $data['browser'] = $this->agent->browser();
+        }
+
         $this->load->template('profile_view', $data);
     }
 

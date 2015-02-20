@@ -339,15 +339,15 @@
 			"file": "application/controllers/Member.php",
 			"settings":
 			{
-				"buffer_size": 10640,
+				"buffer_size": 10990,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/views/admin_view.php",
+			"file": "application/views/home_view.php",
 			"settings":
 			{
-				"buffer_size": 2137,
+				"buffer_size": 2532,
 				"line_ending": "Unix"
 			}
 		},
@@ -355,7 +355,7 @@
 			"file": "application/views/template/footer.php",
 			"settings":
 			{
-				"buffer_size": 2881,
+				"buffer_size": 3014,
 				"line_ending": "Unix"
 			}
 		}
@@ -445,24 +445,36 @@
 	[
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/models",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/admin",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets"
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css"
 	],
 	"file_history":
 	[
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/shopping_cart_view.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template/header.php",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/packages_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/home_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/main.css",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Admin.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/models/User.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/admin/register_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Auth.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/register_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/admin/admin_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/config/config.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/admin_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/admin/profile_view.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/profile_view.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/config/autoload.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template/footer.php",
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/packages_view.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Main.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/landing_page.php",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/main.css",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/template/footer.php",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/home_view.php",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Auth.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Member.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/assets/css/bootstrap.css",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/register_view.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/package_view.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers/Api.php",
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views/bills_view.php",
@@ -569,16 +581,7 @@
 		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/wiringPi/Traffic Light/Traffic_Light.h",
 		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/wiringPi/Traffic Light/Traffic_Light.cpp",
 		"/Users/applemarkus/Dropbox/School/Programmieren/Program_Tests/wiringPi/Traffic Light/Makefile",
-		"/Users/applemarkus/Desktop/test/c/rekursiv.c",
-		"/Users/applemarkus/Desktop/test/c/sort.c",
-		"/Users/applemarkus/Desktop/test/c/all.txt",
-		"/Users/applemarkus/Desktop/test/c/Makefile",
-		"/Users/applemarkus/Dropbox/School/Programmieren/C/Schuluebungen/Pos_Plf_C-Uebung/main.c",
-		"/Users/applemarkus/Downloads/sort.txt",
-		"/Users/applemarkus/Desktop/test/c/sort",
-		"/Users/applemarkus/Desktop/test/sort.c",
-		"/Users/applemarkus/Desktop/test/perl/hello.pl",
-		"/Users/applemarkus/Desktop/test/Makefile"
+		"/Users/applemarkus/Desktop/test/c/rekursiv.c"
 	],
 	"find":
 	{
@@ -596,6 +599,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"bill_items",
 			"admin",
 			"package",
 			"bill",
@@ -717,7 +721,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -726,15 +730,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10640,
+						"buffer_size": 10990,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1072,
-								1072
+								1176,
+								1176
 							]
 						],
 						"settings":
@@ -752,30 +756,31 @@
 				},
 				{
 					"buffer": 1,
-					"file": "application/views/admin_view.php",
+					"file": "application/views/home_view.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2137,
+						"buffer_size": 2532,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1952,
-								1952
+								118,
+								118
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -784,15 +789,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2881,
+						"buffer_size": 3014,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2742,
-								2742
+								406,
+								406
 							]
 						],
 						"settings":
@@ -805,7 +810,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                <td>
 			                	<a class="btn btn-primary btn-sm" href="<?php echo site_url('admin/profile/{id}'); ?>" data-toggle="tooltip" data-placement="top" title="View {name}'s Profile"><span class="glyphicon glyphicon-eye-open"></span>
 		                        </a>
-		                        <a class="btn btn-danger btn-sm" href="<?php echo site_url('admin/delete/{id}'); ?>" data-toggle="tooltip" data-placement="top" title="Delete {name}'s Profile"><span class="glyphicon glyphicon-remove"></span>
+		                        <a class="btn btn-danger btn-sm" href="<?php echo site_url('admin/profile_delete/{id}'); ?>" data-toggle="tooltip" data-placement="top" title="Delete {name}'s Profile"><span class="glyphicon glyphicon-remove"></span>
 		                        </a>
 		                    </td>
 			            </tr>
@@ -68,4 +68,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<span class="glyphicon glyphicon-bookmark"></span> Quick Shortcuts
+			</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12 col-md-12">
+					<a href="<?php echo site_url('admin/register'); ?>" id="shortcut" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-fire"></span> <br/>Make User</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </div>

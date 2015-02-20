@@ -70,7 +70,7 @@ class Auth extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->template('register_view');
-        } else {;
+        } else {
             $this->user->register($this->input->post('user_name'), $this->input->post('email'), $this->input->post('password'), TRUE);
             redirect('member/index', 'refresh');
         }

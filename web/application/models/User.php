@@ -195,15 +195,24 @@ class User extends CI_Model {
     }
 
     function get_user($user_id) {
-        $this->update_informations($user_id);
+        if(!$this->user->is_admin()) {
+            $this->update_informations($user_id);
+        }
 
         $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
         $query = $this->db->query($sql);
+
+        if($query->num_rows() <= 0) {
+            show_error("A User with id: $user_id could not be found...");
+        }
+
         $row = $query->row();
 
-        $this->db->where('user_id', $user_id);
-        $user['bills'] = $this->db->count_all('bills');
-        $user['packages'] = $this->db->count_all('packages');
+        $sql = "SELECT * FROM bills WHERE user_id = '$user_id'";
+        $user['bills'] = $this->db->query($sql)->num_rows();
+
+        $sql = "SELECT * FROM packages WHERE user_id = '$user_id'";
+        $user['packages'] = $this->db->query($sql)->num_rows();
 
         $user['id'] = $row->user_id;
         $user['name'] = $row->user_name;

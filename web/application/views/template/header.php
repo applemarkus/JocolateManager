@@ -51,6 +51,11 @@ $page = uri_string();
 					}
 					?>"><a href="<?php echo site_url('member/index'); ?>">Dashboard</a></li>
 					<li class="<?php
+					if($page == "member/shopping_cart" || $page == "shopping_cart") {
+						echo "active";
+					}
+					?>"><a href="<?php echo site_url('member/shopping_cart'); ?>" >Shopping Cart</a></li>
+					<li class="<?php
 					if($page == "member/bills" || $page == "bills") {
 						echo "active";
 					}
