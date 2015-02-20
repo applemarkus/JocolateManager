@@ -66,6 +66,21 @@ class Admin extends CI_Controller {
         $this->load->view("template/footer");
     }
 
+    public function backup() {
+        $this->load->dbutil();
+        $this->load->helper('file');
+        $this->load->helper('download');
+
+        $prefs = array(
+            'format'        => 'zip',
+            'filename'      => 'backup_jocolate_manager.sql',
+        );
+
+        $backup =& $this->dbutil->backup($prefs);
+        write_file('backups/backup_'.date('d.m.Y.h.m.i').'.zip', $backup);
+        force_download('backup_jocolate_manager.zip', $backup);
+    }
+
     public function profile($id) {
     	$user = $this->user->get_user($id);
         $data['name'] = $user['name'];

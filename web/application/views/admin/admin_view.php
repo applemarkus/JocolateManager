@@ -82,6 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="row">
 				<div class="col-xs-12 col-md-12">
 					<a href="<?php echo site_url('admin/register'); ?>" id="shortcut" class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-fire"></span> <br/>Make User</a>
+					<a href="<?php echo site_url('admin/backup'); ?>" id="shortcut" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-briefcase"></span> <br/>Backup</a>
 				</div>
 			</div>
 		</div>
