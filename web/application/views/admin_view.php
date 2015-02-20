@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			        </tfoot>
 			 
 			        <tbody>
-<!-- 			        	{members} -->
+			        	{members}
 			            <tr>
 			            	<td>{id}</td>
 			                <td>{name}</td>
@@ -56,11 +56,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                <td>{browser}</td>
 			                <td>{platform}</td>
 			                <td>
-			                	<a class="btn btn-primary btn-sm" href="<?php echo site_url('member/admin/{id}'); ?>" target="admin_view" data-toggle="tooltip" data-placement="top" title="View in Package Viewer"><span class="glyphicon glyphicon-eye-open"></span>
+			                	<a class="btn btn-primary btn-sm" href="<?php echo site_url('admin/profile/{id}'); ?>" data-toggle="tooltip" data-placement="top" title="View {name}'s Profile"><span class="glyphicon glyphicon-eye-open"></span>
+		                        </a>
+		                        <a class="btn btn-danger btn-sm" href="<?php echo site_url('admin/delete/{id}'); ?>" data-toggle="tooltip" data-placement="top" title="Delete {name}'s Profile"><span class="glyphicon glyphicon-remove"></span>
 		                        </a>
 		                    </td>
 			            </tr>
-<!-- 			            {/members} -->
+			            {/members}
 			        </tbody>
 			    </table>
 			</div>

@@ -36,10 +36,6 @@ class Member extends CI_Controller {
         }
     }
 
-    public function admin() {
-        $this->load->template('admin_view');
-    }
-
     public function profile() {
         $user_id = $this->user->get_id($this->session->userdata('user_email'));
         $user = $this->user->get_user($user_id);

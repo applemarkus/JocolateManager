@@ -20,7 +20,7 @@ $page = uri_string();
         <script src="<?php echo base_url(); ?>assets/js/script.js"></script>
 
 
-        <?php if($page == "member/bills" OR $page == "member/packages" OR $page == "member/admin") { ?>
+        <?php if($page == "member/bills" OR $page == "member/packages" OR $page == "admin/index" OR $page == "admin") { ?>
             <script src="<?php echo base_url(); ?>assets/js/jquery.datatables.js"></script>
             <script src="<?php echo base_url(); ?>assets/js/datatables.bootstrap.js"></script>
 

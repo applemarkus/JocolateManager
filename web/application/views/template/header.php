@@ -20,7 +20,7 @@ $page = uri_string();
 	<!-- Custom styles -->
 	<link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet">
 
-	<?php if($page == "member/bills" || $page == "member/packages" || $page == "member/admin") { ?>
+	<?php if($page == "member/bills" || $page == "member/packages" || $page == "admin/index" || $page == "admin") { ?>
 		<link href="<?php echo base_url(); ?>assets/css/datatables.bootstrap.css" rel="stylesheet">
 	<?php } ?>
 
@@ -70,10 +70,10 @@ $page = uri_string();
 				<ul class="nav navbar-nav navbar-right">
 					<?php if($this->user->is_admin()) { ?>
 					<li class="<?php
-					if($page == "member/admin") {
+					if($page == "admin/index" OR $page == "admin") {
 						echo "active";
 					}
-					?>"><a href="<?php echo site_url('member/admin'); ?>">Admin</a></li>
+					?>"><a href="<?php echo site_url('admin/index'); ?>">Admin</a></li>
 					<?php } ?>
 					<li class="<?php
 					if($page == "member/profile") {

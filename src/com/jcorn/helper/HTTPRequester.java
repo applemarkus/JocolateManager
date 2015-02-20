@@ -16,7 +16,7 @@ import java.net.URL;
  */
 public class HTTPRequester {
 
-    private static final String USER_AGENT = "Mozilla/5.0";
+    private static final String USER_AGENT = "JocolateManager/1.0";
 
     public static String getContentFromUrl(String host) throws IOException {
         URL obj = new URL(host);
