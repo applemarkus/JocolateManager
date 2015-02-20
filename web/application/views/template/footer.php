@@ -7,7 +7,7 @@ $page = uri_string();
 <footer class="footer hidden-xs" id="footer">
 	<div class="container">
 		<p class="text-muted">
-        <div class="pull-right hidden-sm"><?php if($this->user->is_admin()) { echo "Page rendered in <strong>{elapsed_time}</strong> seconds. Memory Usage: <strong>{memory_usage}</strong>. "; } ?>Version <strong>1.0.0</strong></div>
+        <div class="pull-right hidden-sm"><?php if($this->session->userdata('logged_in') && $this->user->is_admin()) { echo "Page rendered in <strong>{elapsed_time}</strong> seconds. Memory Usage: <strong>{memory_usage}</strong>. "; } ?>Version <strong>1.0.0</strong></div>
         <strong><a href="http://petritzdesigns.at">&copy; jCorn Development</a></strong></p>
 	</div>
 </footer>
