@@ -428,8 +428,7 @@
 	"expanded_folders":
 	[
 		"/Users/applemarkus/Documents/Github/JocolateManager/web/application",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/controllers",
-		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/views"
+		"/Users/applemarkus/Documents/Github/JocolateManager/web/application/config"
 	],
 	"file_history":
 	[
@@ -727,7 +726,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 527.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
