@@ -26,7 +26,7 @@ public class ShoppingCartItem {
         this.amount = amount;
         this.price = price;
     }
-    
+
     public ShoppingCartItem(String name, String type, String size, String logo, int amount) {
         this.name = name;
         this.type = type;
@@ -73,7 +73,7 @@ public class ShoppingCartItem {
     public String toFileString() {
         return String.format("%s|%s|%s|%s|%d", name, type, size, logo, amount);
     }
-    
+
     public JocolateModel toJocolateModel() {
         if(!logo.equals("Default") && !logo.equals("PetritzDesigns") && !logo.equals("jCorn") && !logo.equals("Happy Birthday")) {
             return new JocolateModel(type, size, "Text", logo, amount);
