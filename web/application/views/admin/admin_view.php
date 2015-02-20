@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                <td>{email}</td>
 			                <td><span class="label label-default">{admin}</span></td>
 			                <td>{last_login}</td>
-			                <td>{ip}</td>
+			                <td><a href="http://www.geoiptool.com/de/?ip={ip}" class="ip" target="_blank">{ip}</a></td>
 			                <td>{browser}</td>
 			                <td>{platform}</td>
 			                <td>
