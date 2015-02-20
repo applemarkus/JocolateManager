@@ -20,7 +20,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.net.URL;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -674,7 +673,7 @@ public class MainViewController extends javax.swing.JFrame {
         try {
             String htmlString = FileHelper.readAllFrom(Settings.getAssetPath("copyright.html"));
             JOptionPane.showMessageDialog(this, htmlString);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Could not read Copyright File...");
             JM.debug(ex);
         }
